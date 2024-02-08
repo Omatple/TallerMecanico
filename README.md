@@ -1,6 +1,6 @@
 # Tarea: Taller mecánico
 ## Profesor: José Ramón Jiménez Reyes
-## Alumno:
+## Alumno: Ángel Martínez Otero
 
 Un nuevo cliente que posee un taller mecánico nos ha pedido que le hagamos una aplicación para gestionar su taller. El taller se dedica a realizar diferentes trabajos a los
 vehículos, aunque el cliente en este **primer sptint** quiere que nos centremos en los trabajos de revisión de un vehículo.
