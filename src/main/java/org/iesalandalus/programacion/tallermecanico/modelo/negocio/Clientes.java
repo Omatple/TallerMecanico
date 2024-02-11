@@ -17,14 +17,15 @@ import java.util.Objects;
 // UN ELEMENTO QUE ESTE RECORRIENDO DICHO BUCLE Y QUE NO SALTE UNA EXCEPCION
 
 public class Clientes {
-    List<Cliente> listaClientes;
+    private final List<Cliente> listaClientes;
 
     public Clientes() {
         listaClientes = new ArrayList<>();
     }
 
     public List<Cliente> get() {
-        return listaClientes;
+        List<Cliente> nuevaLista = listaClientes;
+        return nuevaLista;
     }
 
     public void insertar(Cliente cliente) throws OperationNotSupportedException {

@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.negocio;
 
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 
 import javax.naming.OperationNotSupportedException;
@@ -14,14 +15,15 @@ import java.util.Objects;
 // QUE NO HAYA SABIDO CORREGIR EL ERROR DESDE MIS CLASES Y METODOS ¿SI ES ASI?¿QUE DERIA HABER HECHO?
 // EN VEZ DE IMPORTAR MI CLASE VEHICULO
 public class Vehiculos {
-    List<Vehiculo> listaVehiculos;
+    private final List<Vehiculo> listaVehiculos;
 
     public Vehiculos() {
         listaVehiculos = new ArrayList<>();
     }
 
     public List<Vehiculo> get() {
-        return listaVehiculos;
+        List<Vehiculo> nuevaLista = listaVehiculos;
+        return nuevaLista;
     }
 
     public void insertar(Vehiculo vehiculo) throws OperationNotSupportedException {
