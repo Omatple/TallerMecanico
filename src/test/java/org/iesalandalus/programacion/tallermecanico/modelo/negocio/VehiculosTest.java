@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.negocio;
 
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo; //Esta linea no estaba en los test, la he añadido porque si no la clase test no podia hacer instancias de vehiculo.¿No deberia haberlo hecho?¿Entonces que tendria que haber hecho?
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
