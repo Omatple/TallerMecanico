@@ -47,11 +47,11 @@ public class Modelo {
     //  SI BUSCAR LO QUE HACE ES PONER NULL O NO DEPENDIENDO SI EXISTE EL OBJETO EN LA LISTA, PERO NO QUEREMOS INCLUIR
     // UN OBJETO CON ATRIBUTOS NULL, AUNQUE EXISTEN OTROS CON LOS MISMOS ATRIBUTOS, PERO SI NO SON LOS MISMOS, SE DEBERIA CREAR BIEN
     public void insertar(Revision revision) throws OperationNotSupportedException {
-        this.revisiones.insertar(new Revision(new Cliente(buscar(revision.getCliente())), buscar(revision.getVehiculo()), revision.getFechaInicio()));
+        this.revisiones.insertar(new Revision((buscar(revision.getCliente())), buscar(revision.getVehiculo()), revision.getFechaInicio()));
     }
 
     public Cliente buscar(Cliente cliente) {
-        return new Cliente(this.clientes.buscar(cliente));
+        return this.clientes.buscar(cliente);
     }
 
     public Vehiculo buscar(Vehiculo vehiculo) {
@@ -59,7 +59,7 @@ public class Modelo {
     }
 
     public Revision buscar(Revision revision) {
-        return new Revision(this.revisiones.buscar(revision));
+        return this.revisiones.buscar(revision);
     }
 
     public boolean modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
@@ -79,14 +79,14 @@ public class Modelo {
     }
 
     public void borrar(Cliente cliente) throws OperationNotSupportedException {
-        for (Revision revisionCliente: revisiones.get(cliente)){
+        for (Revision revisionCliente : revisiones.get(cliente)) {
             this.revisiones.borrar(revisionCliente);
         }
         this.clientes.borrar(cliente);
     }
 
     public void borrar(Vehiculo vehiculo) throws OperationNotSupportedException {
-        for (Revision revisionVehiculo: this.revisiones.get(vehiculo)){
+        for (Revision revisionVehiculo : this.revisiones.get(vehiculo)) {
             this.revisiones.borrar(revisionVehiculo);
         }
         this.vehiculos.borrar(vehiculo);
