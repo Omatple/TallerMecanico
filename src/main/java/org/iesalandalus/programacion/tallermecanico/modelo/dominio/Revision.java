@@ -48,7 +48,7 @@ public class Revision {
         this.cliente = new Cliente(revision.getCliente());
         setVehiculo(revision.getVehiculo());
         setFechaInicio(revision.getFechaInicio());
-        setFechaFin(revision.getFechaFin());
+        this.fechaFin = revision.getFechaFin();
         this.horas = revision.getHoras();
         this.precioMaterial = revision.getPrecioMaterial();
     }
@@ -70,7 +70,7 @@ public class Revision {
     }
 
     private void setFechaFin(LocalDate fechaFin) {
-        Objects.requireNonNull(fechaInicio, "La fecha de fin no puede ser nula.");
+        Objects.requireNonNull(fechaFin, "La fecha de fin no puede ser nula.");
         if (fechaFin.isAfter(LocalDate.now())) {
             throw new IllegalArgumentException("La fecha de fin no puede ser futura.");
         }
