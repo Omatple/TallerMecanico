@@ -10,7 +10,6 @@ import org.iesalandalus.programacion.tallermecanico.modelo.negocio.Vehiculos;
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Modelo {
@@ -18,11 +17,8 @@ public class Modelo {
     private Vehiculos vehiculos;
     private Revisiones revisiones;
 
-    // PREGUNTAR SI DEBERIA HABERLE AÑADIDIDO ALGO AL CONSTRUCTOR,
-    // COMO NO SE DICE NADA EN EL DIAGRAMA Y YA INICIALIZAMOS LA VARIABLES
-    // EN EN EL METODO COMENZAR(), NO HE VISTO NECESARIO HACER NADA. ¿AUN ASI PREGUNTAR?
-    // TAMBIEN MIRAR COMENTARIO DE LA LINEA 46. NO ENTIENDO ESA IMPLEMENTACION.
     public Modelo() {
+        comenzar();
     }
 
     public void comenzar() {
@@ -32,7 +28,7 @@ public class Modelo {
     }
 
     public void terminar() {
-        System.out.println("Ha terminado");
+        System.out.println("El modelo ha terminado con éxito. ¡Gracias por utilizar nuestro sistema!");
     }
 
     public void insertar(Cliente cliente) throws OperationNotSupportedException {
@@ -43,23 +39,20 @@ public class Modelo {
         this.vehiculos.insertar(vehiculo);
     }
 
-    //  HE CREADO CREADO EL METODO ASI, DEBIDO A LO QUE PIDEN LOS TESTS, PERO NO LO ENTIENDO PORQUE SE DEBEN BUSCAR
-    //  SI BUSCAR LO QUE HACE ES PONER NULL O NO DEPENDIENDO SI EXISTE EL OBJETO EN LA LISTA, PERO NO QUEREMOS INCLUIR
-    // UN OBJETO CON ATRIBUTOS NULL, AUNQUE EXISTEN OTROS CON LOS MISMOS ATRIBUTOS, PERO SI NO SON LOS MISMOS, SE DEBERIA CREAR BIEN
     public void insertar(Revision revision) throws OperationNotSupportedException {
         this.revisiones.insertar(new Revision((buscar(revision.getCliente())), buscar(revision.getVehiculo()), revision.getFechaInicio()));
     }
 
     public Cliente buscar(Cliente cliente) {
-        return this.clientes.buscar(cliente);
+        return clientes.buscar(cliente);
     }
 
     public Vehiculo buscar(Vehiculo vehiculo) {
-        return this.vehiculos.buscar(vehiculo);
+        return vehiculos.buscar(vehiculo);
     }
 
     public Revision buscar(Revision revision) {
-        return this.revisiones.buscar(revision);
+        return revisiones.buscar(revision);
     }
 
     public boolean modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
@@ -86,7 +79,7 @@ public class Modelo {
     }
 
     public void borrar(Vehiculo vehiculo) throws OperationNotSupportedException {
-        for (Revision revisionVehiculo : this.revisiones.get(vehiculo)) {
+        for (Revision revisionVehiculo : revisiones.get(vehiculo)) {
             this.revisiones.borrar(revisionVehiculo);
         }
         this.vehiculos.borrar(vehiculo);
@@ -97,42 +90,38 @@ public class Modelo {
     }
 
     public List<Cliente> getClientes() {
-        List<Cliente> nuevaListaInstanciada = new ArrayList<>();
-        for (Iterator<Cliente> iterator = this.clientes.get().iterator(); iterator.hasNext(); ) {
-            Cliente clienteLista = iterator.next();
-            nuevaListaInstanciada.add(new Cliente(clienteLista));
+        List<Cliente> coleccionClientesInstanciada = new ArrayList<>();
+        for (Cliente cliente : clientes.get()) {
+            coleccionClientesInstanciada.add(new Cliente(cliente));
         }
-        return nuevaListaInstanciada;
+        return coleccionClientesInstanciada;
     }
 
     public List<Vehiculo> getVehiculos() {
-        return this.vehiculos.get();
+        return vehiculos.get();
     }
 
     public List<Revision> getRevisiones() {
-        List<Revision> nuevaListaInstanciada = new ArrayList<>();
-        for (Iterator<Revision> iterator = revisiones.get().iterator(); iterator.hasNext(); ) {
-            Revision revisionLista = iterator.next();
-            nuevaListaInstanciada.add(new Revision(revisionLista));
+        List<Revision> coleccionRevionesInstanciada = new ArrayList<>();
+        for (Revision revision : revisiones.get()) {
+            coleccionRevionesInstanciada.add(new Revision(revision));
         }
-        return nuevaListaInstanciada;
+        return coleccionRevionesInstanciada;
     }
 
     public List<Revision> getRevisiones(Cliente cliente) {
-        List<Revision> nuevaListaInstanciada = new ArrayList<>();
-        for (Iterator<Revision> iterator = revisiones.get(cliente).iterator(); iterator.hasNext(); ) {
-            Revision revisionLista = iterator.next();
-            nuevaListaInstanciada.add(new Revision(revisionLista));
+        List<Revision> coleccionRevionesClienteInstanciada = new ArrayList<>();
+        for (Revision revisionCliente : revisiones.get(cliente)) {
+            coleccionRevionesClienteInstanciada.add(new Revision(revisionCliente));
         }
-        return nuevaListaInstanciada;
+        return coleccionRevionesClienteInstanciada;
     }
 
     public List<Revision> getRevisiones(Vehiculo vehiculo) {
-        List<Revision> nuevaListaInstanciada = new ArrayList<>();
-        for (Iterator<Revision> iterator = revisiones.get(vehiculo).iterator(); iterator.hasNext(); ) {
-            Revision revisionLista = iterator.next();
-            nuevaListaInstanciada.add(new Revision(revisionLista));
+        List<Revision> coleccionRevionesVehiculoInstanciada = new ArrayList<>();
+        for (Revision revisionVehiculo : revisiones.get(vehiculo)) {
+            coleccionRevionesVehiculoInstanciada.add(new Revision(revisionVehiculo));
         }
-        return nuevaListaInstanciada;
+        return coleccionRevionesVehiculoInstanciada;
     }
 }

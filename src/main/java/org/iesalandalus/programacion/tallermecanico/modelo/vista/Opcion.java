@@ -45,7 +45,7 @@ public enum Opcion {
 
     public static Opcion get(int numeroOpcion) {
         if (!esValida(numeroOpcion)) {
-            throw new IllegalArgumentException("Número de la opción invalido. Intentelo de nuevo.");
+            throw new IllegalArgumentException("Número de la opción invalido. Inténtelo de nuevo.");
         }
         return opciones.get(numeroOpcion);
     }

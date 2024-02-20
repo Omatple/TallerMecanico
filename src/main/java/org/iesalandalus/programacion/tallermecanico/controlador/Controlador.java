@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class Controlador {
-    private Modelo modelo;
+    private final Modelo modelo;
 
-    private Vista vista;
+    private final Vista vista;
 
     public Controlador(Modelo modelo, Vista vista) {
         Objects.requireNonNull(modelo, "El modelo no puede ser nulo");
@@ -24,7 +24,7 @@ public class Controlador {
         this.vista.setControlador(this);
     }
 
-    public void comenzar() throws OperationNotSupportedException {
+    public void comenzar() {
         this.modelo.comenzar();
         this.vista.comenzar();
     }
@@ -47,15 +47,15 @@ public class Controlador {
     }
 
     public Cliente buscar(Cliente cliente) {
-        return this.modelo.buscar(cliente);
+        return modelo.buscar(cliente);
     }
 
     public Vehiculo buscar(Vehiculo vehiculo) {
-        return this.modelo.buscar(vehiculo);
+        return modelo.buscar(vehiculo);
     }
 
     public Revision buscar(Revision revision) {
-        return this.modelo.buscar(revision);
+        return modelo.buscar(revision);
     }
 
     public boolean modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
@@ -87,22 +87,22 @@ public class Controlador {
     }
 
     public List<Cliente> getClientes() {
-        return this.modelo.getClientes();
+        return modelo.getClientes();
     }
 
     public List<Vehiculo> getVehiculos() {
-        return this.modelo.getVehiculos();
+        return modelo.getVehiculos();
     }
 
     public List<Revision> getRevisiones() {
-        return this.modelo.getRevisiones();
+        return modelo.getRevisiones();
     }
 
     public List<Revision> getRevisiones(Cliente cliente) {
-        return this.modelo.getRevisiones(cliente);
+        return modelo.getRevisiones(cliente);
     }
 
     public List<Revision> getRevisiones(Vehiculo vehiculo) {
-        return this.modelo.getRevisiones(vehiculo);
+        return modelo.getRevisiones(vehiculo);
     }
 }

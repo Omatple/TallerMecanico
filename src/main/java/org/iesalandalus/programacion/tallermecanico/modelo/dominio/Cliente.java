@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Cliente {
-    private static final String ER_NOMBRE = "^(?:[A-ZÁÉÍÓÚ][a-záéíóú]+)(?: [A-ZÁÉÍÓÚ][a-záéíóú]+)*$";
+    private static final String ER_NOMBRE = "^[A-ZÁÉÍÓÚ][a-záéíóú]+(?: [A-ZÁÉÍÓÚ][a-záéíóú]+){0,5}$";
     private static final String ER_DNI = "^\\d{8}[A-Z]$";
     private static final String ER_TELEFONO = "^\\d{9}$";
     private String nombre;
@@ -20,9 +20,9 @@ public class Cliente {
 
     public Cliente(Cliente cliente) {
         Objects.requireNonNull(cliente, "No es posible copiar un cliente nulo.");
-        setNombre(cliente.getNombre());
-        setDni(cliente.getDni());
-        setTelefono(cliente.getTelefono());
+        this.nombre = cliente.getNombre();
+        this.dni = cliente.getDni();
+        this.telefono = cliente.getTelefono();
     }
 
     public String getDni() {
@@ -36,7 +36,7 @@ public class Cliente {
         if (!comparador.matches()) {
             throw new IllegalArgumentException("El DNI no tiene un formato válido.");
         }
-        if(!comprobarLetraDni(dni)){
+        if (!comprobarLetraDni(dni)) {
             throw new IllegalArgumentException("La letra del DNI no es correcta.");
         }
         this.dni = dni;
@@ -64,9 +64,6 @@ public class Cliente {
         Objects.requireNonNull(telefono, "El teléfono no puede ser nulo.");
         Pattern patron = Pattern.compile(ER_TELEFONO);
         Matcher comparador = patron.matcher(telefono);
-        if (telefono.isBlank()) {
-            throw new IllegalArgumentException("El teléfono no tiene un formato válido.");
-        }
         if (!comparador.matches()) {
             throw new IllegalArgumentException("El teléfono no tiene un formato válido.");
         }
@@ -74,8 +71,7 @@ public class Cliente {
     }
 
     private boolean comprobarLetraDni(String dni) {
-        int numeroDNI;
-        numeroDNI = Integer.parseInt(dni.substring(0, 8));
+        int numeroDNI = Integer.parseInt(dni.substring(0, 8));
         int indiceLetraDNI = numeroDNI % 23;
         char[] letrasCorrespondientesDNI = {'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'};
         char letraDniPasado = dni.charAt(8);

@@ -7,12 +7,6 @@ import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
 import java.util.*;
-// AUN NO HAGO COMMIT DE ESTA CLASE PORQUE NO ME PASA TODOS LOS TEST
-
-// LLEVO DEMASIADO TIEMPO INTENTANDO SOLUCIONAR EL ERROR DEL TEST EN EL METODO INSTERTAR, QUE IMAGINO QUE
-// PROVIENE DEL METODO COMPROBAR, SIN EMBARGO POR MAS VUELTAS QUE LE DE A ESE METODO, PIENSO QUE ESTA BIEN ESTRUCUTURADO,
-// Y LANZA LAS EXCEPCIONES QUE DEBE LANZAR. PERO DA IGUAL LO QUE PIENSE PORQUE LOS TEST MANDAN, Y SI DICE QUE ESTA MAL LO ESTARA,
-// LE PREGUNTARE AL PROFESOR O PORFESORA PARA QUE ME AYUDE A RESOLVERLO PORQUE POR MI CUENTA NO HE SIDO CAPAZ
 
 public class Revisiones {
     private final List<Revision> listaRevisiones;
@@ -22,30 +16,27 @@ public class Revisiones {
     }
 
     public List<Revision> get() {
-        List<Revision> nuevaLista = listaRevisiones;
-        return nuevaLista;
+        return new ArrayList<>(listaRevisiones);
     }
 
     public List<Revision> get(Cliente cliente) {
-        List<Revision> nuevaLista = new ArrayList<>();
-        for (Iterator<Revision> iterator = get().iterator(); iterator.hasNext(); ) {
-            Revision revisionLista = iterator.next();
-            if (revisionLista.getCliente().equals(cliente)) {
-                nuevaLista.add(revisionLista);
+        List<Revision> coleccionRevisionesCliente = new ArrayList<>();
+        for (Revision revision : listaRevisiones) {
+            if (revision.getCliente().equals(cliente)) {
+                coleccionRevisionesCliente.add(revision);
             }
         }
-        return nuevaLista;
+        return coleccionRevisionesCliente;
     }
 
     public List<Revision> get(Vehiculo vehiculo) {
-        List<Revision> nuevaLista = new ArrayList<>();
-        for (Iterator<Revision> iterator = get().iterator(); iterator.hasNext(); ) {
-            Revision revisionLista = iterator.next();
-            if (revisionLista.getVehiculo().equals(vehiculo)) {
-                nuevaLista.add(revisionLista);
+        List<Revision> coleccionRevisionesVehiculo = new ArrayList<>();
+        for (Revision revision : listaRevisiones) {
+            if (revision.getVehiculo().equals(vehiculo)) {
+                coleccionRevisionesVehiculo.add(revision);
             }
         }
-        return nuevaLista;
+        return coleccionRevisionesVehiculo;
     }
 
     public void insertar(Revision revision) throws OperationNotSupportedException {
@@ -55,19 +46,18 @@ public class Revisiones {
     }
 
     private void comprobarRevision(Cliente cliente, Vehiculo vehiculo, LocalDate fechaRevision) throws OperationNotSupportedException {
-        for (Iterator<Revision> iterator = listaRevisiones.iterator(); iterator.hasNext(); ) {
-            Revision revisionLista = iterator.next();
-            if(revisionLista.getCliente().equals(cliente)) {
-                if (!revisionLista.estaCerrada()) {
+        for (Revision revision : listaRevisiones) {
+            if (revision.getCliente().equals(cliente)) {
+                if (!revision.estaCerrada()) {
                     throw new OperationNotSupportedException("El cliente tiene otra revisión en curso.");
-                } else if (!fechaRevision.isAfter(revisionLista.getFechaFin())) {
+                } else if (!fechaRevision.isAfter(revision.getFechaFin())) {
                     throw new OperationNotSupportedException("El cliente tiene una revisión posterior.");
                 }
             }
-            if(revisionLista.getVehiculo().equals(vehiculo)){
-                if (!revisionLista.estaCerrada()) {
+            if (revision.getVehiculo().equals(vehiculo)) {
+                if (!revision.estaCerrada()) {
                     throw new OperationNotSupportedException("El vehículo está actualmente en revisión.");
-                } else if (!fechaRevision.isAfter(revisionLista.getFechaFin())) {
+                } else if (!fechaRevision.isAfter(revision.getFechaFin())) {
                     throw new OperationNotSupportedException("El vehículo tiene una revisión posterior.");
                 }
             }
@@ -76,21 +66,10 @@ public class Revisiones {
 
     private Revision getRevision(Revision revision) throws OperationNotSupportedException {
         Objects.requireNonNull(revision, "No puedo operar sobre una revisión nula.");
-        int indiceRevisionesLista = 0;
-        int indiceRevisionBuscada = 0;
-        boolean existeRevision = false;
-        for (Iterator<Revision> iterator = get().iterator(); iterator.hasNext(); ) {
-            Revision revisionLista = iterator.next();
-            if (revisionLista.equals(revision)) {
-                indiceRevisionBuscada = indiceRevisionesLista;
-                existeRevision = true;
-            }
-            indiceRevisionesLista++;
-        }
-        if (!existeRevision) {
+        if (!listaRevisiones.contains(revision)) {
             throw new OperationNotSupportedException("No existe ninguna revisión igual.");
         }
-        return listaRevisiones.get(indiceRevisionBuscada);
+        return listaRevisiones.get(listaRevisiones.indexOf(revision));
     }
 
     public void anadirHoras(Revision revision, int horas) throws OperationNotSupportedException {
@@ -114,33 +93,14 @@ public class Revisiones {
 
     public Revision buscar(Revision revision) {
         Objects.requireNonNull(revision, "No se puede buscar una revisión nula.");
-        Revision revisionBuscada = null;
-        for (Iterator<Revision> iterator = get().iterator(); iterator.hasNext(); ) {
-            Revision revisionLista = iterator.next();
-            if (revisionLista.equals(revision)) {
-                revisionBuscada = revisionLista;
-            }
-        }
-        return revisionBuscada;
+        return (listaRevisiones.contains(revision)) ? listaRevisiones.get(listaRevisiones.indexOf(revision)) : null;
     }
 
     public void borrar(Revision revision) throws OperationNotSupportedException {
         Objects.requireNonNull(revision, "No se puede borrar una revisión nula.");
-        int indiceListaRevisiones = 0;
-        int indiceRevisionABorrar = 0;
-        boolean revisionBorrada = false;
-        for (Iterator<Revision> iterator = get().iterator(); iterator.hasNext(); ) {
-            Revision revisionLista = iterator.next();
-            if (revisionLista.equals(revision)) {
-                indiceRevisionABorrar = indiceListaRevisiones;
-                revisionBorrada = true;
-            }
-            indiceListaRevisiones++;
-        }
-        if (!revisionBorrada) {
+        if (!listaRevisiones.contains(revision)) {
             throw new OperationNotSupportedException("No existe ninguna revisión igual.");
-        } else {
-            listaRevisiones.remove(indiceRevisionABorrar);
         }
+        listaRevisiones.remove(listaRevisiones.get(listaRevisiones.indexOf(revision)));
     }
 }

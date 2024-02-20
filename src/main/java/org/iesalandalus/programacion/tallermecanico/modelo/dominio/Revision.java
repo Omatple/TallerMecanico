@@ -1,29 +1,10 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.dominio;
 
 import javax.naming.OperationNotSupportedException;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Locale;
 import java.util.Objects;
-
-// DECIR AL PORFESOR QUE LE HA FALTADO PONER LA CONT DE PRECIO_MATERIAL EN SU DOCUMENTO DEL PROYECTO,
-// AUNQUE ES FACIL DE CALCULAR MIRANDO LOS TEST, QUIZAS ALLA GENTE QUENO SEA CAPAZ DE AVERIGURARLO. DECIRSELO
-
-// PREGUNTAR PROFESOR SOBRE GETPRECIO(), IMAGINO QUE EL DUEÑO DEL TALLER O EL CLIENTE
-// PUEDE QUERER VER COMO VA EL PRECIO DEL VEHICULO TRAIDO, Y POR ESO NO SE LE DEBE PONER EXCEPCION
-// A GETPRECIO() Y GETDIAS() SI TODAVIA NO SE HA CERRADO LA REVISION. YA QUE SE PUEDE DAR UN PRECIO
-// AUNQUE NO TENGAMOS EL DIA DE FINALIZACION, YO HABIA PENSADO EN UN INICIO PONER DESDE LA FECHAAINICIO()
-// HASTA EL DIA ACTUAL YA QUE COMO NO SE HA CERRADO LA ULTIMA INSTANCIA ES HOY, ENTONCES CALCULARIA EL PRECIO TOTAL
-// HASTA EL MOMENTO. SIN EMBARGO AL PONERLO ASI EN EL METOD NO ME PASABA LOS TEST Y HE TENIDO QUE PONER
-// QUE SI NO SE HA CERRADO NO CUENTE LOS DIAS Y CALCULE EL RESTO, NECESITO EXPLICACION DEL ¿PORQUE DEBE SER ASI?
-
-// TAMBIEN PREGUNTAR PORQUE PONER O NO NUEVAS INSTANCIAS EN LOS GETS Y SETS(DEBERIA SER NEGATIVO CREAR INSTANCIAS
-// NUEVAS CADA VEZ QUE LLAMAS A ESTOS METODOS), EN VEZ DE ELLOS SIMPLEMENTE SE HACE UNA NUEVA  INSTANCIA EN LA COPIA,
-// PARA QUE ESTA NO APUNTE AL MISMO OBJETO QUE EL CLIENTE PASADO, ¿SI NO ESTUVIERA LA COPIA, HARIA FALTA PONER INSTANCIAS
-// NUEVAS EN EL GET Y SET DE CLIENTE?
 
 public class Revision {
     private static final float PRECIO_HORA = 30;
@@ -46,8 +27,8 @@ public class Revision {
     public Revision(Revision revision) {
         Objects.requireNonNull(revision, "La revisión no puede ser nula.");
         this.cliente = new Cliente(revision.getCliente());
-        setVehiculo(revision.getVehiculo());
-        setFechaInicio(revision.getFechaInicio());
+        this.vehiculo = revision.getVehiculo();
+        this.fechaInicio = revision.getFechaInicio();
         this.fechaFin = revision.getFechaFin();
         this.horas = revision.getHoras();
         this.precioMaterial = revision.getPrecioMaterial();
@@ -73,8 +54,7 @@ public class Revision {
         Objects.requireNonNull(fechaFin, "La fecha de fin no puede ser nula.");
         if (fechaFin.isAfter(LocalDate.now())) {
             throw new IllegalArgumentException("La fecha de fin no puede ser futura.");
-        }
-        if (fechaFin.isBefore(getFechaInicio())) {
+        } else if (fechaFin.isBefore(getFechaInicio())) {
             throw new IllegalArgumentException("La fecha de fin no puede ser anterior a la fecha de inicio.");
         }
         this.fechaFin = fechaFin;
@@ -161,8 +141,6 @@ public class Revision {
 
     @Override
     public String toString() {
-        DecimalFormatSymbols simbolos = new DecimalFormatSymbols(new Locale("es", "ES"));
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00", simbolos);
-        return (estaCerrada()) ? String.format("%s - %s: (%s - %s), %s horas, %s € en material, %s € total", this.cliente, this.vehiculo, this.fechaInicio.format(FORMATO_FECHA), this.fechaFin.format(FORMATO_FECHA), this.horas, decimalFormat.format(this.precioMaterial), decimalFormat.format(getPrecio())) : String.format("%s - %s: (%s - ), %s horas, %s € en material", this.cliente, this.vehiculo, this.fechaInicio.format(FORMATO_FECHA), this.horas, decimalFormat.format(this.precioMaterial));
+        return (estaCerrada()) ? String.format("%s - %s: (%s - %s), %s horas, %.2f € en material, %.2f € total", this.cliente, this.vehiculo, this.fechaInicio.format(FORMATO_FECHA), this.fechaFin.format(FORMATO_FECHA), this.horas, this.precioMaterial, getPrecio()) : String.format("%s - %s: (%s - ), %s horas, %.2f € en material", this.cliente, this.vehiculo, this.fechaInicio.format(FORMATO_FECHA), this.horas, this.precioMaterial);
     }
 }
