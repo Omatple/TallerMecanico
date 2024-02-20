@@ -8,34 +8,34 @@ import java.util.List;
 import java.util.Objects;
 
 public class Vehiculos {
-    private final List<Vehiculo> listaVehiculos;
+    private final List<Vehiculo> coleccionVehiculos;
 
     public Vehiculos() {
-        listaVehiculos = new ArrayList<>();
+        coleccionVehiculos = new ArrayList<>();
     }
 
     public List<Vehiculo> get() {
-        return new ArrayList<>(listaVehiculos);
+        return new ArrayList<>(coleccionVehiculos);
     }
 
     public void insertar(Vehiculo vehiculo) throws OperationNotSupportedException {
         Objects.requireNonNull(vehiculo, "No se puede insertar un vehículo nulo.");
-        if (listaVehiculos.contains(vehiculo)) {
+        if (coleccionVehiculos.contains(vehiculo)) {
             throw new OperationNotSupportedException("Ya existe un vehículo con esa matrícula.");
         }
-        listaVehiculos.add(vehiculo);
+        coleccionVehiculos.add(vehiculo);
     }
 
     public Vehiculo buscar(Vehiculo vehiculo) {
         Objects.requireNonNull(vehiculo, "No se puede buscar un vehículo nulo.");
-        return (listaVehiculos.contains(vehiculo)) ? listaVehiculos.get(listaVehiculos.indexOf(vehiculo)) : null;
+        return (coleccionVehiculos.contains(vehiculo)) ? coleccionVehiculos.get(coleccionVehiculos.indexOf(vehiculo)) : null;
     }
 
     public void borrar(Vehiculo vehiculo) throws OperationNotSupportedException {
         Objects.requireNonNull(vehiculo, "No se puede borrar un vehículo nulo.");
-        if (!listaVehiculos.contains(vehiculo)) {
+        if (!coleccionVehiculos.contains(vehiculo)) {
             throw new OperationNotSupportedException("No existe ningún vehículo con esa matrícula.");
         }
-        listaVehiculos.remove(listaVehiculos.get(listaVehiculos.indexOf(vehiculo)));
+        coleccionVehiculos.remove(coleccionVehiculos.get(coleccionVehiculos.indexOf(vehiculo)));
     }
 }

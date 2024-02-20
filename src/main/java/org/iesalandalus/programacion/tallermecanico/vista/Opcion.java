@@ -1,4 +1,4 @@
-package org.iesalandalus.programacion.tallermecanico.modelo.vista;
+package org.iesalandalus.programacion.tallermecanico.vista;
 
 import java.util.HashMap;
 import java.util.Map;
