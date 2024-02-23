@@ -11,6 +11,7 @@ import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Modelo {
     private Clientes clientes;
@@ -22,9 +23,9 @@ public class Modelo {
     }
 
     public void comenzar() {
-        this.clientes = new Clientes();
-        this.vehiculos = new Vehiculos();
-        this.revisiones = new Revisiones();
+        clientes = new Clientes();
+        vehiculos = new Vehiculos();
+        revisiones = new Revisiones();
     }
 
     public void terminar() {
@@ -32,61 +33,61 @@ public class Modelo {
     }
 
     public void insertar(Cliente cliente) throws OperationNotSupportedException {
-        this.clientes.insertar(new Cliente(cliente));
+        clientes.insertar(new Cliente(Objects.requireNonNull(cliente, "No existe un cliente igual")));
     }
 
     public void insertar(Vehiculo vehiculo) throws OperationNotSupportedException {
-        this.vehiculos.insertar(vehiculo);
+        vehiculos.insertar(vehiculo);
     }
 
     public void insertar(Revision revision) throws OperationNotSupportedException {
-        this.revisiones.insertar(new Revision((buscar(revision.getCliente())), buscar(revision.getVehiculo()), revision.getFechaInicio()));
+        revisiones.insertar(new Revision((clientes.buscar(revision.getCliente())), vehiculos.buscar(revision.getVehiculo()), revision.getFechaInicio()));
     }
 
     public Cliente buscar(Cliente cliente) {
-        return clientes.buscar(cliente);
+        return new Cliente(Objects.requireNonNull(clientes.buscar(cliente), "No existe un cliente igual"));
     }
 
     public Vehiculo buscar(Vehiculo vehiculo) {
-        return vehiculos.buscar(vehiculo);
+        return Objects.requireNonNull(vehiculos.buscar(vehiculo), "No existe un vehículo igual");
     }
 
     public Revision buscar(Revision revision) {
-        return revisiones.buscar(revision);
+        return new Revision(Objects.requireNonNull(revisiones.buscar(revision), "No existe una revisión igual"));
     }
 
     public boolean modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
-        return this.clientes.modificar(cliente, nombre, telefono);
+        return clientes.modificar(cliente, nombre, telefono);
     }
 
     public void anadirHoras(Revision revision, int horas) throws OperationNotSupportedException {
-        this.revisiones.anadirHoras(revision, horas);
+        revisiones.anadirHoras(revision, horas);
     }
 
     public void anadirPrecioMaterial(Revision revision, float precioMaterial) throws OperationNotSupportedException {
-        this.revisiones.anadirPrecioMaterial(revision, precioMaterial);
+        revisiones.anadirPrecioMaterial(revision, precioMaterial);
     }
 
     public void cerrar(Revision revision, LocalDate fechaFin) throws OperationNotSupportedException {
-        this.revisiones.cerrar(revision, fechaFin);
+        revisiones.cerrar(revision, fechaFin);
     }
 
     public void borrar(Cliente cliente) throws OperationNotSupportedException {
         for (Revision revisionCliente : revisiones.get(cliente)) {
-            this.revisiones.borrar(revisionCliente);
+            revisiones.borrar(revisionCliente);
         }
-        this.clientes.borrar(cliente);
+        clientes.borrar(cliente);
     }
 
     public void borrar(Vehiculo vehiculo) throws OperationNotSupportedException {
         for (Revision revisionVehiculo : revisiones.get(vehiculo)) {
-            this.revisiones.borrar(revisionVehiculo);
+            revisiones.borrar(revisionVehiculo);
         }
-        this.vehiculos.borrar(vehiculo);
+        vehiculos.borrar(vehiculo);
     }
 
     public void borrar(Revision revision) throws OperationNotSupportedException {
-        this.revisiones.borrar(revision);
+        revisiones.borrar(revision);
     }
 
     public List<Cliente> getClientes() {

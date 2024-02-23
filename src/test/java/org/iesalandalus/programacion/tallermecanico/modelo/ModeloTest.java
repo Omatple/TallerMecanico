@@ -28,7 +28,7 @@ class ModeloTest {
     @Mock
     private static Revisiones revisiones;
     @InjectMocks
-    private Modelo modelo ;
+    private Modelo modelo;
 
     private static Cliente cliente;
     private static Vehiculo vehiculo;
@@ -111,6 +111,7 @@ class ModeloTest {
     @Test
     void buscarClienteLlamaClientesBuscar() {
         assertDoesNotThrow(() -> modelo.insertar(cliente));
+        when(clientes.buscar(cliente)).thenReturn(cliente);
         Cliente clienteEncontrado = modelo.buscar(cliente);
         verify(clientes).buscar(cliente);
         assertNotSame(cliente, clienteEncontrado);
@@ -119,6 +120,7 @@ class ModeloTest {
     @Test
     void buscarVehiculoLlamaVehiculosBuscar() {
         assertDoesNotThrow(() -> modelo.insertar(vehiculo));
+        when(vehiculos.buscar(vehiculo)).thenReturn(vehiculo);
         modelo.buscar(vehiculo);
         verify(vehiculos).buscar(vehiculo);
     }
@@ -126,6 +128,7 @@ class ModeloTest {
     @Test
     void buscarRevisionLlamaRevisionesBuscar() {
         assertDoesNotThrow(() -> modelo.insertar(revision));
+        when(revisiones.buscar(revision)).thenReturn(revision);
         Revision revisionEncontrada = modelo.buscar(revision);
         verify(revisiones).buscar(revision);
         assertNotSame(revision, revisionEncontrada);
@@ -222,7 +225,7 @@ class ModeloTest {
         when(revisiones.get(cliente)).thenReturn(new ArrayList<>(List.of(revision)));
         List<Revision> revisionesCliente = modelo.getRevisiones(cliente);
         verify(revisiones).get(cliente);
-        assertNotSame(revision,revisionesCliente.get(0));
+        assertNotSame(revision, revisionesCliente.get(0));
     }
 
     @Test
@@ -230,7 +233,7 @@ class ModeloTest {
         when(revisiones.get(vehiculo)).thenReturn(new ArrayList<>(List.of(revision)));
         List<Revision> revisionesVehiculo = modelo.getRevisiones(vehiculo);
         verify(revisiones).get(vehiculo);
-        assertNotSame(revision,revisionesVehiculo.get(0));
+        assertNotSame(revision, revisionesVehiculo.get(0));
     }
 
 }

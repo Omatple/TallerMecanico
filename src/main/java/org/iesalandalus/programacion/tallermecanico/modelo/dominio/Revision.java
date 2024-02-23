@@ -13,8 +13,8 @@ public class Revision {
     static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
-    private int horas = 0;
-    private float precioMaterial = 0;
+    private int horas;
+    private float precioMaterial;
     private Cliente cliente;
     private Vehiculo vehiculo;
 
@@ -22,16 +22,19 @@ public class Revision {
         setCliente(cliente);
         setVehiculo(vehiculo);
         setFechaInicio(fechaInicio);
+        fechaFin = null;
+        horas = 0;
+        precioMaterial = 0;
     }
 
     public Revision(Revision revision) {
         Objects.requireNonNull(revision, "La revisión no puede ser nula.");
-        this.cliente = new Cliente(revision.getCliente());
-        this.vehiculo = revision.getVehiculo();
-        this.fechaInicio = revision.getFechaInicio();
-        this.fechaFin = revision.getFechaFin();
-        this.horas = revision.getHoras();
-        this.precioMaterial = revision.getPrecioMaterial();
+        cliente = new Cliente(revision.getCliente());
+        vehiculo = revision.getVehiculo();
+        fechaInicio = revision.getFechaInicio();
+        fechaFin = revision.getFechaFin();
+        horas = revision.getHoras();
+        precioMaterial = revision.getPrecioMaterial();
     }
 
     public LocalDate getFechaInicio() {
@@ -86,7 +89,7 @@ public class Revision {
         if (estaCerrada()) {
             throw new OperationNotSupportedException("No se puede añadir horas, ya que la revisión está cerrada.");
         }
-        if (horas < 1) {
+        if (horas <= 0) {
             throw new IllegalArgumentException("Las horas a añadir deben ser mayores que cero.");
         }
         this.horas += horas;
@@ -141,6 +144,6 @@ public class Revision {
 
     @Override
     public String toString() {
-        return (estaCerrada()) ? String.format("%s - %s: (%s - %s), %s horas, %.2f € en material, %.2f € total", this.cliente, this.vehiculo, this.fechaInicio.format(FORMATO_FECHA), this.fechaFin.format(FORMATO_FECHA), this.horas, this.precioMaterial, getPrecio()) : String.format("%s - %s: (%s - ), %s horas, %.2f € en material", this.cliente, this.vehiculo, this.fechaInicio.format(FORMATO_FECHA), this.horas, this.precioMaterial);
+        return (estaCerrada()) ? String.format("%s - %s: (%s - %s), %s horas, %.2f € en material, %.2f € total", cliente, vehiculo, fechaInicio.format(FORMATO_FECHA), fechaFin.format(FORMATO_FECHA), horas, precioMaterial, getPrecio()) : String.format("%s - %s: (%s - ), %s horas, %.2f € en material", cliente, vehiculo, fechaInicio.format(FORMATO_FECHA), horas, precioMaterial);
     }
 }

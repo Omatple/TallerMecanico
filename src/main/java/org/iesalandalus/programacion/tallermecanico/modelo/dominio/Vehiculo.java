@@ -1,11 +1,9 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.dominio;
 
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public record Vehiculo(String marca, String modelo, String matricula) {
-    private static final String ER_MARCA = "^[A-Z][a-z]+(?:[- ][A-Z][a-z]+){0,5}$|^[A-Z]+$";
+    private static final String ER_MARCA = "^[A-Z][a-z]+(?:[- ]?[A-Z][a-z]+){0,5}$|^[A-Z]+$";
     private static final String ER_MATRICULA = "^\\d{4}[^\\Wa-z0-9AEIOU]{3}$";
 
     public Vehiculo {
@@ -16,9 +14,7 @@ public record Vehiculo(String marca, String modelo, String matricula) {
 
     private void valoidarMarca(String marca) {
         Objects.requireNonNull(marca, "La marca no puede ser nula.");
-        Pattern patron = Pattern.compile(ER_MARCA);
-        Matcher comparador = patron.matcher(marca);
-        if (!comparador.matches()) {
+        if (!marca.matches(ER_MARCA)) {
             throw new IllegalArgumentException("La marca no tiene un formato válido.");
         }
     }
@@ -32,9 +28,7 @@ public record Vehiculo(String marca, String modelo, String matricula) {
 
     private void validarMatricula(String matricula) {
         Objects.requireNonNull(matricula, "La matrícula no puede ser nula.");
-        Pattern patron = Pattern.compile(ER_MATRICULA);
-        Matcher comparador = patron.matcher(matricula);
-        if (!comparador.matches()) {
+        if (!matricula.matches(ER_MATRICULA)) {
             throw new IllegalArgumentException("La matrícula no tiene un formato válido.");
         }
     }
@@ -58,6 +52,6 @@ public record Vehiculo(String marca, String modelo, String matricula) {
 
     @Override
     public String toString() {
-        return String.format("%s %s - %s", this.marca, this.modelo, this.matricula);
+        return String.format("%s %s - %s", marca, modelo, matricula);
     }
 }
