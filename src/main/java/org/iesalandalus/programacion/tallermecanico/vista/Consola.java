@@ -6,28 +6,38 @@ import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
 import java.time.LocalDate;
-import java.util.regex.Pattern;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Consola {
 
-    private static final String CADENA_FORMATO_FECHA ="^(?:(?:1[6-9]|[2-9]\\d)?\\d{2})-(?:(?:0?[1-9]|1[0-2])-(?:0?[1-9]|1\\d|2[0-8])|(?:0?[13-9]|1[0-2])-(?:29|30)|(?:0?[13578]|1[02])-31)$|^(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))-02-29$";
-    private Consola() {
-    }
+    private static final String CADENA_FORMATO_FECHA ="dd/MM/yyyy";
+
+    private Consola() {}
 
     public static void mostrarCabecera(String mensaje) {
-        System.out.printf("%s%n%s%n%s%n", "-".repeat(mensaje.length()), mensaje, "-".repeat(mensaje.length()));
+        System.out.printf("%n%s%n", mensaje);
+        String formatoStr = "%0" + mensaje.length() + "d%n";
+        System.out.println(String.format(formatoStr, 0).replace("0", "-"));
     }
 
     public static void mostrarMenu() {
-        mostrarCabecera("Aplicación del taller mecánico. Uso para la gestión de clientes, vehículos y revisiones");
+        mostrarCabecera("Gestión de un taller mecánico.");
         for (Opcion opcion : Opcion.values()) {
-            System.out.println(opcion.toString());
+            System.out.print(opcion);
         }
     }
 
-    private static float leerReal(String mensaje) {
-        System.out.print(mensaje);
-        return Entrada.real();
+    public static Opcion elegirOpcion() {
+        Opcion opcion = null;
+        do {
+            try {
+                opcion = Opcion.get(leerEntero("\nElige un opción: "));
+            } catch (IllegalArgumentException e) {
+                System.out.printf("ERROR: %s%n", e.getMessage());
+            }
+        } while (opcion == null);
+        return opcion;
     }
 
     private static int leerEntero(String mensaje) {
@@ -35,69 +45,74 @@ public class Consola {
         return Entrada.entero();
     }
 
+    private static float leerReal(String mensaje) {
+        System.out.print(mensaje);
+        return Entrada.real();
+    }
+
     private static String leerCadena(String mensaje) {
         System.out.print(mensaje);
         return Entrada.cadena();
     }
 
-    public static String leerFecha(String mensaje) {
-        Pattern patron = Pattern.compile(CADENA_FORMATO_FECHA);
-        String entradaFecha;
-        do {
-            System.out.print(mensaje);
-            entradaFecha = Entrada.cadena();
-            if (!patron.matcher(entradaFecha).matches()) {
-                System.out.println("ERROR: Formato de fecha(YYYY-MM-DD) no valido.");
-            }
-        } while (!patron.matcher(entradaFecha).matches());
-        return entradaFecha;
-    }
-
-
-    public static Opcion elegirOpcion() {
-        return Opcion.get(leerEntero("Ingrese el número correspondiente a su opción elegida del menú: "));
+    private static LocalDate leerFecha(String mensaje) {
+        LocalDate fecha;
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern(CADENA_FORMATO_FECHA);
+        mensaje = String.format("%s (%s): ", mensaje, CADENA_FORMATO_FECHA);
+        try {
+            fecha = LocalDate.parse(leerCadena(mensaje), formatoFecha);
+        } catch (DateTimeParseException e) {
+            fecha = null;
+        }
+        return fecha;
     }
 
     public static Cliente leerCliente() {
-        System.out.println("Introduzca los datos del cliente.");
-        return new Cliente(leerCadena("Ingrese el nombre: "), leerCadena("Ingrese el DNI: "), leerCadena("Ingrese el teléfono: "));
+        String nombre = leerCadena("Introduce el nombre: ");
+        String dni = leerCadena("Introduce el DNI: ");
+        String telefono = leerCadena("Introduce el teléfono: ");
+        return new Cliente(nombre, dni, telefono);
     }
 
     public static Cliente leerClienteDni() {
-        return new Cliente(Cliente.get(leerCadena("Ingrese el DNI: ")));
+        return Cliente.get(leerCadena("Introduce el DNI: "));
     }
 
-    public static String leerClienteNombre() {
-        return leerCadena("Ingrese el nombre: ");
+    public static String leerNuevoNombre() {
+        return leerCadena("Introduce el nuevo nombre: ");
     }
 
-    public static String leerClienteTelefono() {
-        return leerCadena("Ingrese el teléfono: ");
+    public static String leerNuevoTelefono() {
+        return leerCadena("Introduce el nuevo teléfono: ");
     }
 
     public static Vehiculo leerVehiculo() {
-        System.out.println("Introduzca los datos del vehículo.");
-        return new Vehiculo(leerCadena("Ingrese la marca: "), leerCadena("Ingrese el modelo: "), leerCadena("Ingrese la matricula: "));
+        String marca = leerCadena("Introduce la marca: ");
+        String modelo = leerCadena("Introduce el modelo: ");
+        String matricula = leerCadena("Introduce la matrícula: ");
+        return new Vehiculo(marca, modelo, matricula);
     }
 
     public static Vehiculo leerVehiculoMatricula() {
-        return Vehiculo.get(leerCadena("Ingrese la matrícula: "));
+        return Vehiculo.get(leerCadena("Introduce la matrícula: "));
     }
 
     public static Revision leerRevision() {
-        System.out.println("Introduzca los datos de la revisión.");
-        return new Revision(leerClienteDni(), leerVehiculoMatricula(), LocalDate.parse(leerFecha("Ingrese la fecha de inicio de la revisión: ")));
+        Cliente cliente = leerClienteDni();
+        Vehiculo vehiculo = leerVehiculoMatricula();
+        LocalDate fechaInicio = leerFecha("Introduce la fecha de inicio");
+        return new Revision(cliente, vehiculo, fechaInicio);
     }
 
     public static int leerHoras() {
-        return leerEntero("Introduzca las horas que desee añadir a la revisión: ");
+        return leerEntero("Introduce las horas a añadir: ");
     }
 
     public static float leerPrecioMaterial() {
-        return leerReal("Introduzca el precio que desee añadir al material de la revisión: ");
+        return leerReal("Introduce el precio del material a añadir: ");
     }
 
     public static LocalDate leerFechaCierre() {
-        return LocalDate.parse(leerFecha("Introduzca la fecha de cierre de la revisión: "));
+        return leerFecha("Introduce la fecha de cierre");
     }
 }

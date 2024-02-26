@@ -1,13 +1,13 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.dominio;
 
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Cliente {
-    private static final String ER_NOMBRE = "^[A-ZÁÉÍÓÚ][a-záéíóú]+(?: [A-ZÁÉÍÓÚ][a-záéíóú]+){0,5}$";
-    private static final String ER_DNI = "^\\d{8}[A-Z]$";
-    private static final String ER_TELEFONO = "^\\d{9}$";
+
+    private static final String ER_NOMBRE = "[A-ZÁÉÍÓÚÑ][a-záéíóúüñ]+(?: [A-ZÁÉÍÓÚ][a-záéíóúüñ]+)*+";
+    private static final String ER_DNI = "\\d{8}[A-Z]";
+    private static final String ER_TELEFONO = "\\d{9}";
+
     private String nombre;
     private String dni;
     private String telefono;
@@ -20,9 +20,21 @@ public class Cliente {
 
     public Cliente(Cliente cliente) {
         Objects.requireNonNull(cliente, "No es posible copiar un cliente nulo.");
-        nombre = cliente.getNombre();
-        dni = cliente.getDni();
-        telefono = cliente.getTelefono();
+        nombre = cliente.nombre;
+        dni = cliente.dni;
+        telefono = cliente.telefono;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        Objects.requireNonNull(nombre, "El nombre no puede ser nulo.");
+        if (!nombre.matches(ER_NOMBRE)) {
+            throw new IllegalArgumentException("El nombre no tiene un formato válido.");
+        }
+        this.nombre = nombre;
     }
 
     public String getDni() {
@@ -40,16 +52,11 @@ public class Cliente {
         this.dni = dni;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        Objects.requireNonNull(nombre, "El nombre no puede ser nulo.");
-        if (!nombre.matches(ER_NOMBRE)) {
-            throw new IllegalArgumentException("El nombre no tiene un formato válido.");
-        }
-        this.nombre = nombre;
+    private boolean comprobarLetraDni(String dni) {
+        String letrasDni = "TRWAGMYFPDXBNJZSQVHLCKE";
+        int numero = Integer.parseInt(dni.substring(0, 8));
+        char letra = dni.charAt(8);
+        return letra == letrasDni.charAt(numero % 23);
     }
 
     public String getTelefono() {
@@ -64,22 +71,14 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    private boolean comprobarLetraDni(String dni) {
-        String letrasDni = "TRWAGMYFPDXBNJZSQVHLCKE";
-        int numero = Integer.parseInt(dni.substring(0, 8));
-        char letra = dni.charAt(8);
-        return letra == letrasDni.charAt(numero % 23);
-    }
-
     public static Cliente get(String dni) {
-        return new Cliente("Cliente Predeterminado", dni, "000000000");
+        return new Cliente("Bob Esponja", dni, "111222333");
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cliente cliente = (Cliente) o;
+        if (!(o instanceof Cliente cliente)) return false;
         return Objects.equals(dni, cliente.dni);
     }
 
@@ -92,4 +91,5 @@ public class Cliente {
     public String toString() {
         return String.format("%s - %s (%s)", nombre, dni, telefono);
     }
+
 }

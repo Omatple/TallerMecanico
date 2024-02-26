@@ -29,11 +29,11 @@ public class Modelo {
     }
 
     public void terminar() {
-        System.out.println("El modelo ha terminado con éxito. ¡Gracias por utilizar nuestro sistema!");
+        System.out.println("Modelo terminado.");
     }
 
     public void insertar(Cliente cliente) throws OperationNotSupportedException {
-        clientes.insertar(new Cliente(Objects.requireNonNull(cliente, "No existe un cliente igual")));
+        clientes.insertar(new Cliente(cliente));
     }
 
     public void insertar(Vehiculo vehiculo) throws OperationNotSupportedException {
@@ -41,19 +41,24 @@ public class Modelo {
     }
 
     public void insertar(Revision revision) throws OperationNotSupportedException {
-        revisiones.insertar(new Revision((clientes.buscar(revision.getCliente())), vehiculos.buscar(revision.getVehiculo()), revision.getFechaInicio()));
+        Cliente cliente = clientes.buscar(revision.getCliente());
+        Vehiculo vehiculo = vehiculos.buscar(revision.getVehiculo());
+        revisiones.insertar(new Revision(cliente, vehiculo, revision.getFechaInicio()));
     }
 
     public Cliente buscar(Cliente cliente) {
-        return new Cliente(Objects.requireNonNull(clientes.buscar(cliente), "No existe un cliente igual"));
+        cliente = Objects.requireNonNull(clientes.buscar(cliente), "No existe un cliente igual.");
+        return new Cliente(cliente);
     }
 
     public Vehiculo buscar(Vehiculo vehiculo) {
-        return Objects.requireNonNull(vehiculos.buscar(vehiculo), "No existe un vehículo igual");
+        vehiculo = Objects.requireNonNull(vehiculos.buscar(vehiculo), "No existe un vehículo igual.");
+        return vehiculo;
     }
 
     public Revision buscar(Revision revision) {
-        return new Revision(Objects.requireNonNull(revisiones.buscar(revision), "No existe una revisión igual"));
+        revision = Objects.requireNonNull(revisiones.buscar(revision), "No existe una revisión igual.");
+        return new Revision(revision);
     }
 
     public boolean modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
@@ -73,15 +78,17 @@ public class Modelo {
     }
 
     public void borrar(Cliente cliente) throws OperationNotSupportedException {
-        for (Revision revisionCliente : revisiones.get(cliente)) {
-            revisiones.borrar(revisionCliente);
+        List<Revision> revisionesCliente = revisiones.get(cliente);
+        for (Revision revision : revisionesCliente) {
+            revisiones.borrar(revision);
         }
         clientes.borrar(cliente);
     }
 
     public void borrar(Vehiculo vehiculo) throws OperationNotSupportedException {
-        for (Revision revisionVehiculo : revisiones.get(vehiculo)) {
-            revisiones.borrar(revisionVehiculo);
+        List<Revision> revisionesVehciulo = revisiones.get(vehiculo);
+        for (Revision revision : revisionesVehciulo) {
+            revisiones.borrar(revision);
         }
         vehiculos.borrar(vehiculo);
     }
@@ -91,11 +98,11 @@ public class Modelo {
     }
 
     public List<Cliente> getClientes() {
-        List<Cliente> coleccionClientesInstanciada = new ArrayList<>();
+        List<Cliente> copiaClientes = new ArrayList<>();
         for (Cliente cliente : clientes.get()) {
-            coleccionClientesInstanciada.add(new Cliente(cliente));
+            copiaClientes.add(new Cliente(cliente));
         }
-        return coleccionClientesInstanciada;
+        return copiaClientes;
     }
 
     public List<Vehiculo> getVehiculos() {
@@ -103,26 +110,27 @@ public class Modelo {
     }
 
     public List<Revision> getRevisiones() {
-        List<Revision> coleccionRevionesInstanciada = new ArrayList<>();
+        List<Revision> copiaRevisiones = new ArrayList<>();
         for (Revision revision : revisiones.get()) {
-            coleccionRevionesInstanciada.add(new Revision(revision));
+            copiaRevisiones.add(new Revision(revision));
         }
-        return coleccionRevionesInstanciada;
+        return copiaRevisiones;
     }
 
     public List<Revision> getRevisiones(Cliente cliente) {
-        List<Revision> coleccionRevionesClienteInstanciada = new ArrayList<>();
-        for (Revision revisionCliente : revisiones.get(cliente)) {
-            coleccionRevionesClienteInstanciada.add(new Revision(revisionCliente));
+        List<Revision> revisionesCliente = new ArrayList<>();
+        for (Revision revision : revisiones.get(cliente)) {
+            revisionesCliente.add(new Revision(revision));
         }
-        return coleccionRevionesClienteInstanciada;
+        return revisionesCliente;
     }
 
     public List<Revision> getRevisiones(Vehiculo vehiculo) {
-        List<Revision> coleccionRevionesVehiculoInstanciada = new ArrayList<>();
-        for (Revision revisionVehiculo : revisiones.get(vehiculo)) {
-            coleccionRevionesVehiculoInstanciada.add(new Revision(revisionVehiculo));
+        List<Revision> revisionesVehiculo = new ArrayList<>();
+        for (Revision revision : revisiones.get(vehiculo)) {
+            revisionesVehiculo.add(new Revision(revision));
         }
-        return coleccionRevionesVehiculoInstanciada;
+        return revisionesVehiculo;
     }
+
 }
