@@ -1,0 +1,2188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Codegen="http://www.eclipse.org/papyrus/Codegen/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:record="http:///schemas/record/_Dg5xsHSZEe6RyuvFF9iE1Q/0" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/record/_Dg5xsHSZEe6RyuvFF9iE1Q/0 /TallerMecanico/src/main/resources/uml/record.profile.uml#_Dg6YwHSZEe6RyuvFF9iE1Q">
+  <uml:Model xmi:id="_1qinwMWKEe65drXdt8xEJQ" name="tallerMecanico">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_1uZ0EMWKEe65drXdt8xEJQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_BMoK4MWLEe65drXdt8xEJQ" name="TallerMecanico">
+      <packagedElement xmi:type="uml:Package" xmi:id="_jWmg4MWLEe6GV74yg1DxAg" name="org">
+        <packagedElement xmi:type="uml:Package" xmi:id="_jW3moMWLEe6GV74yg1DxAg" name="iesalandalus">
+          <packagedElement xmi:type="uml:Package" xmi:id="_jW40wMWLEe6GV74yg1DxAg" name="programacion">
+            <packagedElement xmi:type="uml:Package" xmi:id="_jW5b0MWLEe6GV74yg1DxAg" name="tallermecanico">
+              <packagedElement xmi:type="uml:Package" xmi:id="_jW6p8MWLEe6GV74yg1DxAg" name="modelo">
+                <packagedElement xmi:type="uml:Package" xmi:id="_jW8fIMWLEe6GV74yg1DxAg" name="dominio">
+                  <packagedElement xmi:type="uml:Class" xmi:id="_jXDz4MWLEe6GV74yg1DxAg" name="Cliente" visibility="public">
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_jere0MWLEe6GV74yg1DxAg" name="ER_NOMBRE" visibility="private" isLeaf="true" isStatic="true" type="_jXQBIMWLEe6GV74yg1DxAg" isUnique="false">
+                      <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_jeuiIMWLEe6GV74yg1DxAg" name="defaultValue">
+                        <language>JAVA</language>
+                        <body>&quot;[A-ZÁÉÍÓÚÑ][a-záéíóúüñ]+(?: [A-ZÁÉÍÓÚ][a-záéíóúüñ]+)*+&quot;</body>
+                      </defaultValue>
+                    </ownedAttribute>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_je2d8MWLEe6GV74yg1DxAg" name="ER_DNI" visibility="private" isLeaf="true" isStatic="true" type="_jXQBIMWLEe6GV74yg1DxAg" isUnique="false">
+                      <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_je6IUMWLEe6GV74yg1DxAg" name="defaultValue">
+                        <language>JAVA</language>
+                        <body>&quot;\\d{8}[A-Z]&quot;</body>
+                      </defaultValue>
+                    </ownedAttribute>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_je-ZwMWLEe6GV74yg1DxAg" name="ER_TELEFONO" visibility="private" isLeaf="true" isStatic="true" type="_jXQBIMWLEe6GV74yg1DxAg" isUnique="false">
+                      <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_jfCrMMWLEe6GV74yg1DxAg" name="defaultValue">
+                        <language>JAVA</language>
+                        <body>&quot;\\d{9}&quot;</body>
+                      </defaultValue>
+                    </ownedAttribute>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_jfFugMWLEe6GV74yg1DxAg" name="nombre" visibility="private" type="_jXQBIMWLEe6GV74yg1DxAg" isUnique="false"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_jfKnAMWLEe6GV74yg1DxAg" name="dni" visibility="private" type="_jXQBIMWLEe6GV74yg1DxAg" isUnique="false"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_jfPfgMWLEe6GV74yg1DxAg" name="telefono" visibility="private" type="_jXQBIMWLEe6GV74yg1DxAg" isUnique="false"/>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jf1VYMWLEe6GV74yg1DxAg" name="Cliente" specification="_jfVmIMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    setNombre(nombre);
+    setDni(dni);
+    setTelefono(telefono);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jgJecMWLEe6GV74yg1DxAg" name="Cliente" specification="_jf4_wMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(cliente, &quot;No es posible copiar un cliente nulo.&quot;);
+    nombre = cliente.nombre;
+    dni = cliente.dni;
+    telefono = cliente.telefono;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jgSBUMWLEe6GV74yg1DxAg" name="getNombre" specification="_jgKskMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return nombre;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jgakMMWLEe6GV74yg1DxAg" name="setNombre" specification="_jgVrsMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(nombre, &quot;El nombre no puede ser nulo.&quot;);
+    if (!nombre.matches(ER_NOMBRE)) {
+        throw new IllegalArgumentException(&quot;El nombre no tiene un formato válido.&quot;);
+    }
+    this.nombre = nombre;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jgigAMWLEe6GV74yg1DxAg" name="getDni" specification="_jgeOkMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return dni;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jgrp8MWLEe6GV74yg1DxAg" name="setDni" specification="_jgmxcMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(dni, &quot;El DNI no puede ser nulo.&quot;);
+    if (!dni.matches(ER_DNI)) {
+        throw new IllegalArgumentException(&quot;El DNI no tiene un formato válido.&quot;);
+    }
+    if (!comprobarLetraDni(dni)) {
+        throw new IllegalArgumentException(&quot;La letra del DNI no es correcta.&quot;);
+    }
+    this.dni = dni;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jhe7MMWLEe6GV74yg1DxAg" name="comprobarLetraDni" specification="_jgvUUMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    String letrasDni = &quot;TRWAGMYFPDXBNJZSQVHLCKE&quot;;
+    int numero = Integer.parseInt(dni.substring(0, 8));
+    char letra = dni.charAt(8);
+    return letra == letrasDni.charAt(numero % 23);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jhm3AMWLEe6GV74yg1DxAg" name="getTelefono" specification="_jhilkMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return telefono;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jhwA8MWLEe6GV74yg1DxAg" name="setTelefono" specification="_jhrIcMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(telefono, &quot;El teléfono no puede ser nulo.&quot;);
+    if (!telefono.matches(ER_TELEFONO)) {
+        throw new IllegalArgumentException(&quot;El teléfono no tiene un formato válido.&quot;);
+    }
+    this.telefono = telefono;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jh7AEMWLEe6GV74yg1DxAg" name="get" specification="_jh0SYMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return new Cliente(&quot;Bob Esponja&quot;, dni, &quot;111222333&quot;);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jiSMcMWLEe6GV74yg1DxAg" name="equals" specification="_jiKQoMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    //		return Objects.equals(dni, cliente.dni);
+    return null;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jib9cMWLEe6GV74yg1DxAg" name="hashCode" specification="_jiWd4MWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return Objects.hash(dni);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jilucMWLEe6GV74yg1DxAg" name="toString" specification="_jig18MWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return String.format(&quot;%s - %s (%s)&quot;, nombre, dni, telefono);
+</body>
+                    </ownedBehavior>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_jfVmIMWLEe6GV74yg1DxAg" name="Cliente" visibility="public" method="_jf1VYMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jfk2sMWLEe6GV74yg1DxAg" name="nombre" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jfohEMWLEe6GV74yg1DxAg" name="dni" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jfq9UMWLEe6GV74yg1DxAg" name="telefono" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_jf4_wMWLEe6GV74yg1DxAg" name="Cliente" visibility="public" method="_jgJecMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jgHpQMWLEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_jgKskMWLEe6GV74yg1DxAg" name="getNombre" visibility="public" method="_jgSBUMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jgQMIMWLEe6GV74yg1DxAg" type="_jXQBIMWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_jgVrsMWLEe6GV74yg1DxAg" name="setNombre" visibility="public" method="_jgakMMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jgYvAMWLEe6GV74yg1DxAg" name="nombre" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_jgeOkMWLEe6GV74yg1DxAg" name="getDni" visibility="public" method="_jgigAMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jggq0MWLEe6GV74yg1DxAg" type="_jXQBIMWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_jgmxcMWLEe6GV74yg1DxAg" name="setDni" visibility="private" method="_jgrp8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jgpNsMWLEe6GV74yg1DxAg" name="dni" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_jgvUUMWLEe6GV74yg1DxAg" name="comprobarLetraDni" visibility="private" method="_jhe7MMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jhZboMWLEe6GV74yg1DxAg" type="_jhYNgMWLEe6GV74yg1DxAg" direction="return"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jhce8MWLEe6GV74yg1DxAg" name="dni" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_jhilkMWLEe6GV74yg1DxAg" name="getTelefono" visibility="public" method="_jhm3AMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jhlo4MWLEe6GV74yg1DxAg" type="_jXQBIMWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_jhrIcMWLEe6GV74yg1DxAg" name="setTelefono" visibility="public" method="_jhwA8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jhtksMWLEe6GV74yg1DxAg" name="telefono" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_jh0SYMWLEe6GV74yg1DxAg" name="get" visibility="public" isStatic="true" method="_jh7AEMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jh2HkMWLEe6GV74yg1DxAg" type="_jXDz4MWLEe6GV74yg1DxAg" direction="return"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jh5K4MWLEe6GV74yg1DxAg" name="dni" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_jiKQoMWLEe6GV74yg1DxAg" name="equals" visibility="public" method="_jiSMcMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jiMs4MWLEe6GV74yg1DxAg" type="_jhYNgMWLEe6GV74yg1DxAg" direction="return"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jiPwMMWLEe6GV74yg1DxAg" name="o" type="_jh-DYMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_jiWd4MWLEe6GV74yg1DxAg" name="hashCode" visibility="public" method="_jib9cMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jiaIQMWLEe6GV74yg1DxAg" type="_jiY6IMWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_jig18MWLEe6GV74yg1DxAg" name="toString" visibility="public" method="_jilucMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_jij5QMWLEe6GV74yg1DxAg" type="_jXQBIMWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                  </packagedElement>
+                  <packagedElement xmi:type="uml:Class" xmi:id="_rmvyIMWLEe6GV74yg1DxAg" name="Revision" visibility="public">
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_rmyOYMWLEe6GV74yg1DxAg" name="PRECIO_HORA" visibility="private" isLeaf="true" isStatic="true" type="_rmxnUMWLEe6GV74yg1DxAg" isUnique="false">
+                      <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_rmy1cMWLEe6GV74yg1DxAg" name="defaultValue">
+                        <language>JAVA</language>
+                        <body>30F</body>
+                      </defaultValue>
+                    </ownedAttribute>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_rm0DkMWLEe6GV74yg1DxAg" name="PRECIO_DIA" visibility="private" isLeaf="true" isStatic="true" type="_rmxnUMWLEe6GV74yg1DxAg" isUnique="false">
+                      <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_rm0qoMWLEe6GV74yg1DxAg" name="defaultValue">
+                        <language>JAVA</language>
+                        <body>10F</body>
+                      </defaultValue>
+                    </ownedAttribute>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_rm1RsMWLEe6GV74yg1DxAg" name="PRECIO_MATERIAL" visibility="private" isLeaf="true" isStatic="true" type="_rmxnUMWLEe6GV74yg1DxAg" isUnique="false">
+                      <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_rm2f0MWLEe6GV74yg1DxAg" name="defaultValue">
+                        <language>JAVA</language>
+                        <body>1.5F</body>
+                      </defaultValue>
+                    </ownedAttribute>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_rm_pwMWLEe6GV74yg1DxAg" name="FORMATO_FECHA" visibility="private" isLeaf="true" isStatic="true" type="_rm3t8cWLEe6GV74yg1DxAg" isUnique="false">
+                      <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_rm_pwcWLEe6GV74yg1DxAg" name="defaultValue">
+                        <language>JAVA</language>
+                        <body>DateTimeFormatter.ofPattern(&quot;dd/MM/yyyy&quot;)</body>
+                      </defaultValue>
+                    </ownedAttribute>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_rnEiQMWLEe6GV74yg1DxAg" name="cliente" visibility="private" type="_jXDz4MWLEe6GV74yg1DxAg" isUnique="false" aggregation="composite" association="_oAu4QMWMEe6GV74yg1DxAg"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_rnKB0MWLEe6GV74yg1DxAg" name="vehiculo" visibility="private" type="_rnFwYMWLEe6GV74yg1DxAg" isUnique="false" aggregation="composite" association="_onrjgMWMEe6GV74yg1DxAg"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_rnPhYMWLEe6GV74yg1DxAg" name="fechaInicio" visibility="private" type="_rnKo4MWLEe6GV74yg1DxAg" isUnique="false"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_rnQIcMWLEe6GV74yg1DxAg" name="fechaFin" visibility="private" type="_rnKo4MWLEe6GV74yg1DxAg" isUnique="false"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_rnRWkMWLEe6GV74yg1DxAg" name="horas" visibility="private" type="_jiY6IMWLEe6GV74yg1DxAg" isUnique="false"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_rnR9oMWLEe6GV74yg1DxAg" name="precioMaterial" visibility="private" type="_rmxnUMWLEe6GV74yg1DxAg" isUnique="false"/>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_rnaggMWLEe6GV74yg1DxAg" name="Revision" specification="_rnSksMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    setCliente(cliente);
+    setVehiculo(vehiculo);
+    setFechaInicio(fechaInicio);
+    fechaFin = null;
+    horas = 0;
+    precioMaterial = 0;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_rngnIMWLEe6GV74yg1DxAg" name="Revision" specification="_rnbHkMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(revision, &quot;La revisión no puede ser nula.&quot;);
+    cliente = new Cliente(revision.cliente);
+    vehiculo = revision.vehiculo;
+    fechaInicio = revision.fechaInicio;
+    fechaFin = revision.fechaFin;
+    horas = revision.horas;
+    precioMaterial = revision.precioMaterial;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_rnjDYMWLEe6GV74yg1DxAg" name="getCliente" specification="_rnhOMMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return cliente;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_rnmGsMWLEe6GV74yg1DxAg" name="setCliente" specification="_rnkRgMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(cliente, &quot;El cliente no puede ser nulo.&quot;);
+    this.cliente = cliente;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_rnn74MWLEe6GV74yg1DxAg" name="getVehiculo" specification="_rnmtwMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return vehiculo;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_rnq_MMWLEe6GV74yg1DxAg" name="setVehiculo" specification="_rnpKAMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(vehiculo, &quot;El vehículo no puede ser nulo.&quot;);
+    this.vehiculo = vehiculo;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_rns0YMWLEe6GV74yg1DxAg" name="getFechaInicio" specification="_rnrmQMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return fechaInicio;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_rnwewMWLEe6GV74yg1DxAg" name="setFechaInicio" specification="_rnuCgMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(fechaInicio, &quot;La fecha de inicio no puede ser nula.&quot;);
+    if (fechaInicio.isAfter(LocalDate.now())) {
+        throw new IllegalArgumentException(&quot;La fecha de inicio no puede ser futura.&quot;);
+    }
+    this.fechaInicio = fechaInicio;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_rnziEMWLEe6GV74yg1DxAg" name="getFechaFin" specification="_rnxs4MWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return fechaFin;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_rn3McMWLEe6GV74yg1DxAg" name="setFechaFin" specification="_rn0wMMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(fechaFin, &quot;La fecha de fin no puede ser nula.&quot;);
+    if (fechaFin.isBefore(fechaInicio)) {
+        throw new IllegalArgumentException(&quot;La fecha de fin no puede ser anterior a la fecha de inicio.&quot;);
+    }
+    if (fechaFin.isAfter(LocalDate.now())) {
+        throw new IllegalArgumentException(&quot;La fecha de fin no puede ser futura.&quot;);
+    }
+    this.fechaFin = fechaFin;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_rn5BoMWLEe6GV74yg1DxAg" name="getHoras" specification="_rn3zgMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return horas;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_roDZsMWLEe6GV74yg1DxAg" name="anadirHoras" specification="_rn5osMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    if (horas &lt;= 0) {
+        throw new IllegalArgumentException(&quot;Las horas a añadir deben ser mayores que cero.&quot;);
+    }
+    if (estaCerrada()) {
+        throw new OperationNotSupportedException(&quot;No se puede añadir horas, ya que la revisión está cerrada.&quot;);
+    }
+    this.horas += horas;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_roISMMWLEe6GV74yg1DxAg" name="getPrecioMaterial" specification="_roFO4MWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return precioMaterial;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_roO_4MWLEe6GV74yg1DxAg" name="anadirPrecioMaterial" specification="_roKucMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    if (precioMaterial &lt;= 0) {
+        throw new IllegalArgumentException(&quot;El precio del material a añadir debe ser mayor que cero.&quot;);
+    }
+    if (estaCerrada()) {
+        throw new OperationNotSupportedException(&quot;No se puede añadir precio del material, ya que la revisión está cerrada.&quot;);
+    }
+    this.precioMaterial += precioMaterial;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_roUfcMWLEe6GV74yg1DxAg" name="estaCerrada" specification="_roRcIMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return fechaFin != null;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_roe3gMWLEe6GV74yg1DxAg" name="cerrar" specification="_roYJ0MWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    if (estaCerrada()) {
+        throw new OperationNotSupportedException(&quot;La revisión ya está cerrada.&quot;);
+    }
+    setFechaFin(fechaFin);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_rokXEMWLEe6GV74yg1DxAg" name="getPrecio" specification="_rogssMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    float precioFijo = PRECIO_DIA * getDias() + PRECIO_HORA * getHoras();
+    float precioEspecifico = PRECIO_MATERIAL * precioMaterial;
+    return precioFijo + precioEspecifico;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ropPkMWLEe6GV74yg1DxAg" name="getDias" specification="_romMQMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return (estaCerrada()) ? (int) ChronoUnit.DAYS.between(fechaInicio, fechaFin) : 0;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_rozAkMWLEe6GV74yg1DxAg" name="equals" specification="_ros58MWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    //        return Objects.equals(cliente, revision.cliente) &amp;&amp; Objects.equals(vehiculo, revision.vehiculo) &amp;&amp; Objects.equals(fechaInicio, revision.fechaInicio);
+    return null;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ro35EMWLEe6GV74yg1DxAg" name="hashCode" specification="_ro01wMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return Objects.hash(cliente, vehiculo, fechaInicio);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ro8KgMWLEe6GV74yg1DxAg" name="toString" specification="_ro5HMMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    String cadena;
+    if (!estaCerrada()) {
+        cadena = String.format(&quot;%s - %s: (%s - ), %d horas, %.2f € en material&quot;, cliente, vehiculo, fechaInicio.format(FORMATO_FECHA), horas, precioMaterial);
+    } else {
+        cadena = String.format(&quot;%s - %s: (%s - %s), %d horas, %.2f € en material, %.2f € total&quot;, cliente, vehiculo, fechaInicio.format(FORMATO_FECHA), fechaFin.format(FORMATO_FECHA), horas, precioMaterial, getPrecio());
+    }
+    return cadena;
+</body>
+                    </ownedBehavior>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_rnSksMWLEe6GV74yg1DxAg" name="Revision" visibility="public" method="_rnaggMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rnXdMMWLEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rnYrUMWLEe6GV74yg1DxAg" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rnZ5cMWLEe6GV74yg1DxAg" name="fechaInicio" type="_rnKo4MWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_rnbHkMWLEe6GV74yg1DxAg" name="Revision" visibility="public" method="_rngnIMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rngAEMWLEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_rnhOMMWLEe6GV74yg1DxAg" name="getCliente" visibility="public" method="_rnjDYMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rnicUMWLEe6GV74yg1DxAg" type="_jXDz4MWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_rnkRgMWLEe6GV74yg1DxAg" name="setCliente" visibility="private" method="_rnmGsMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rnlfoMWLEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_rnmtwMWLEe6GV74yg1DxAg" name="getVehiculo" visibility="public" method="_rnn74MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rnnU0MWLEe6GV74yg1DxAg" type="_rnFwYMWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_rnpKAMWLEe6GV74yg1DxAg" name="setVehiculo" visibility="private" method="_rnq_MMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rnqYIMWLEe6GV74yg1DxAg" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_rnrmQMWLEe6GV74yg1DxAg" name="getFechaInicio" visibility="public" method="_rns0YMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rnsNUMWLEe6GV74yg1DxAg" type="_rnKo4MWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_rnuCgMWLEe6GV74yg1DxAg" name="setFechaInicio" visibility="private" method="_rnwewMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rnvQoMWLEe6GV74yg1DxAg" name="fechaInicio" type="_rnKo4MWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_rnxs4MWLEe6GV74yg1DxAg" name="getFechaFin" visibility="public" method="_rnziEMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rny7AMWLEe6GV74yg1DxAg" type="_rnKo4MWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_rn0wMMWLEe6GV74yg1DxAg" name="setFechaFin" visibility="private" method="_rn3McMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rn2lYMWLEe6GV74yg1DxAg" name="fechaFin" type="_rnKo4MWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_rn3zgMWLEe6GV74yg1DxAg" name="getHoras" visibility="public" method="_rn5BoMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rn4akMWLEe6GV74yg1DxAg" type="_jiY6IMWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_rn5osMWLEe6GV74yg1DxAg" name="anadirHoras" visibility="public" method="_roDZsMWLEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rn6PwMWLEe6GV74yg1DxAg" name="horas" type="_jiY6IMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_roFO4MWLEe6GV74yg1DxAg" name="getPrecioMaterial" visibility="public" method="_roISMMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_roGdAMWLEe6GV74yg1DxAg" type="_rmxnUMWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_roKucMWLEe6GV74yg1DxAg" name="anadirPrecioMaterial" visibility="public" method="_roO_4MWLEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_roMjoMWLEe6GV74yg1DxAg" name="precioMaterial" type="_rmxnUMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_roRcIMWLEe6GV74yg1DxAg" name="estaCerrada" visibility="public" method="_roUfcMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_roSqQMWLEe6GV74yg1DxAg" type="_jhYNgMWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_roYJ0MWLEe6GV74yg1DxAg" name="cerrar" visibility="public" method="_roe3gMWLEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rob0MMWLEe6GV74yg1DxAg" name="fechaFin" type="_rnKo4MWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_rogssMWLEe6GV74yg1DxAg" name="getPrecio" visibility="public" method="_rokXEMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_roih4MWLEe6GV74yg1DxAg" type="_rmxnUMWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_romMQMWLEe6GV74yg1DxAg" name="getDias" visibility="private" method="_ropPkMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_ronaYMWLEe6GV74yg1DxAg" type="_rmxnUMWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_ros58MWLEe6GV74yg1DxAg" name="equals" visibility="public" method="_rozAkMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_rouvIMWLEe6GV74yg1DxAg" type="_jhYNgMWLEe6GV74yg1DxAg" direction="return"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_roxycMWLEe6GV74yg1DxAg" name="o" type="_jh-DYMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_ro01wMWLEe6GV74yg1DxAg" name="hashCode" visibility="public" method="_ro35EMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_ro2D4MWLEe6GV74yg1DxAg" type="_jiY6IMWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_ro5HMMWLEe6GV74yg1DxAg" name="toString" visibility="public" method="_ro8KgMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_ro6VUMWLEe6GV74yg1DxAg" type="_jXQBIMWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                  </packagedElement>
+                  <packagedElement xmi:type="uml:Class" xmi:id="_rnFwYMWLEe6GV74yg1DxAg" name="Vehiculo" visibility="public">
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="__U9CIMWLEe6GV74yg1DxAg" name="ER_MARCA" visibility="private" isLeaf="true" isStatic="true" type="_jXQBIMWLEe6GV74yg1DxAg" isUnique="false">
+                      <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="__U9pMMWLEe6GV74yg1DxAg" name="defaultValue">
+                        <language>JAVA</language>
+                        <body>&quot;[A-Z][a-z]+(?:[- ]?[A-Z][a-z]+)?|[A-Z]+&quot;</body>
+                      </defaultValue>
+                    </ownedAttribute>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="__U-3UMWLEe6GV74yg1DxAg" name="ER_MATRICULA" visibility="private" isLeaf="true" isStatic="true" type="_jXQBIMWLEe6GV74yg1DxAg" isUnique="false">
+                      <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="__U-3UcWLEe6GV74yg1DxAg" name="defaultValue">
+                        <language>JAVA</language>
+                        <body>&quot;\\d{4}[^\\W_AEIOUa-z]{3}&quot;</body>
+                      </defaultValue>
+                    </ownedAttribute>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="__VAFcMWLEe6GV74yg1DxAg" name="marca" visibility="private" type="_jXQBIMWLEe6GV74yg1DxAg" isUnique="false"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="__VBTkMWLEe6GV74yg1DxAg" name="modelo" visibility="private" type="_jXQBIMWLEe6GV74yg1DxAg" isUnique="false"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="__VChsMWLEe6GV74yg1DxAg" name="matricula" visibility="private" type="_jXQBIMWLEe6GV74yg1DxAg" isUnique="false"/>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="__VNg0MWLEe6GV74yg1DxAg" name="Vehiculo" specification="__VDv0MWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    valoidarMarca(marca);
+    validarModelo(modelo);
+    validarMatricula(matricula);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="__VQkIMWLEe6GV74yg1DxAg" name="valoidarMarca" specification="__VOu8MWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(marca, &quot;La marca no puede ser nula.&quot;);
+    if (!marca.matches(ER_MARCA)) {
+        throw new IllegalArgumentException(&quot;La marca no tiene un formato válido.&quot;);
+    }
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="__VTncMWLEe6GV74yg1DxAg" name="validarModelo" specification="__VRyQMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(modelo, &quot;El modelo no puede ser nulo.&quot;);
+    if (modelo.isBlank()) {
+        throw new IllegalArgumentException(&quot;El modelo no puede estar en blanco.&quot;);
+    }
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="__VWDsMWLEe6GV74yg1DxAg" name="validarMatricula" specification="__VUOgMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(matricula, &quot;La matrícula no puede ser nula.&quot;);
+    if (!matricula.matches(ER_MATRICULA)) {
+        throw new IllegalArgumentException(&quot;La matrícula no tiene un formato válido.&quot;);
+    }
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="__VaVIMWLEe6GV74yg1DxAg" name="get" specification="__VX44MWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return new Vehiculo(&quot;Seat&quot;, &quot;León&quot;, matricula);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="__VemkMWLEe6GV74yg1DxAg" name="equals" specification="__VcKUMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    //		return Objects.equals(matricula, vehiculo.matricula);
+    return null;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="__Vf0sMWLEe6GV74yg1DxAg" name="hashCode" specification="__VfNoMWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return Objects.hash(matricula);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="__VhC0MWLEe6GV74yg1DxAg" name="toString" specification="__Vf0scWLEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return String.format(&quot;%s %s - %s&quot;, marca, modelo, matricula);
+</body>
+                    </ownedBehavior>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="__VDv0MWLEe6GV74yg1DxAg" name="Vehiculo" visibility="public" method="__VNg0MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="__VKdgMWLEe6GV74yg1DxAg" name="marca" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="__VLroMWLEe6GV74yg1DxAg" name="modelo" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="__VM5wMWLEe6GV74yg1DxAg" name="matricula" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="__VOu8MWLEe6GV74yg1DxAg" name="valoidarMarca" visibility="private" method="__VQkIMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="__VP9EMWLEe6GV74yg1DxAg" name="marca" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="__VRyQMWLEe6GV74yg1DxAg" name="validarModelo" visibility="private" method="__VTncMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="__VSZUMWLEe6GV74yg1DxAg" name="modelo" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="__VUOgMWLEe6GV74yg1DxAg" name="validarMatricula" visibility="private" method="__VWDsMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="__VVcoMWLEe6GV74yg1DxAg" name="matricula" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="__VX44MWLEe6GV74yg1DxAg" name="get" visibility="public" isStatic="true" method="__VaVIMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="__VYf8MWLEe6GV74yg1DxAg" type="_rnFwYMWLEe6GV74yg1DxAg" direction="return"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="__VZuEMWLEe6GV74yg1DxAg" name="matricula" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="__VcKUMWLEe6GV74yg1DxAg" name="equals" visibility="public" method="__VemkMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="__VcxYMWLEe6GV74yg1DxAg" type="_jhYNgMWLEe6GV74yg1DxAg" direction="return"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="__Vd_gMWLEe6GV74yg1DxAg" name="o" type="_jh-DYMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="__VfNoMWLEe6GV74yg1DxAg" name="hashCode" visibility="public" method="__Vf0sMWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="__VfNocWLEe6GV74yg1DxAg" type="_jiY6IMWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="__Vf0scWLEe6GV74yg1DxAg" name="toString" visibility="public" method="__VhC0MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="__VgbwMWLEe6GV74yg1DxAg" type="_jXQBIMWLEe6GV74yg1DxAg" direction="return"/>
+                    </ownedOperation>
+                  </packagedElement>
+                  <packagedElement xmi:type="uml:Association" xmi:id="_oAu4QMWMEe6GV74yg1DxAg" name="A_cliente_revision" memberEnd="_rnEiQMWLEe6GV74yg1DxAg _oA0X0MWMEe6GV74yg1DxAg">
+                    <ownedEnd xmi:type="uml:Property" xmi:id="_oA0X0MWMEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg" association="_oAu4QMWMEe6GV74yg1DxAg">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oA0-4MWMEe6GV74yg1DxAg"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oA1l8MWMEe6GV74yg1DxAg" value="1"/>
+                    </ownedEnd>
+                  </packagedElement>
+                  <packagedElement xmi:type="uml:Association" xmi:id="_onrjgMWMEe6GV74yg1DxAg" name="A_vehiculo_revision" memberEnd="_rnKB0MWLEe6GV74yg1DxAg _ont_wMWMEe6GV74yg1DxAg">
+                    <ownedEnd xmi:type="uml:Property" xmi:id="_ont_wMWMEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg" association="_onrjgMWMEe6GV74yg1DxAg">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_onum0MWMEe6GV74yg1DxAg"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_onum0cWMEe6GV74yg1DxAg" value="1"/>
+                    </ownedEnd>
+                  </packagedElement>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Package" xmi:id="_IS1RMMWOEe6GV74yg1DxAg" name="negocio">
+                  <packagedElement xmi:type="uml:Class" xmi:id="_IS2fUMWOEe6GV74yg1DxAg" name="Clientes" visibility="public">
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_IS3tcMWOEe6GV74yg1DxAg" name="coleccionClientes" visibility="private" isLeaf="true" type="_jXDz4MWLEe6GV74yg1DxAg" isUnique="false" aggregation="composite" association="_Q8ufMMWOEe6GV74yg1DxAg">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IS4UgMWOEe6GV74yg1DxAg"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IS47kMWOEe6GV74yg1DxAg" value="*"/>
+                    </ownedAttribute>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_IS9NAMWOEe6GV74yg1DxAg" name="Clientes" specification="_IS47kcWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    coleccionClientes = new ArrayList&lt;>();
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_IS_pQMWOEe6GV74yg1DxAg" name="get" specification="_IS90EMWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return new ArrayList&lt;>(coleccionClientes);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ITBecMWOEe6GV74yg1DxAg" name="insertar" specification="_ITAQUMWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(cliente, &quot;No se puede insertar un cliente nulo.&quot;);
+    if (coleccionClientes.contains(cliente)) {
+        throw new OperationNotSupportedException(&quot;Ya existe un cliente con ese DNI.&quot;);
+    }
+    coleccionClientes.add(cliente);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ITFv4MWOEe6GV74yg1DxAg" name="modificar" specification="_ITCskMWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(cliente, &quot;No se puede modificar un cliente nulo.&quot;);
+    Cliente clienteEncontrado = buscar(cliente);
+    if (clienteEncontrado == null) {
+        throw new OperationNotSupportedException(&quot;No existe ningún cliente con ese DNI.&quot;);
+    }
+    boolean modificado = false;
+    if (nombre != null &amp;&amp; !nombre.isBlank()) {
+        clienteEncontrado.setNombre(nombre);
+        modificado = true;
+    }
+    if (telefono != null &amp;&amp; !telefono.isBlank()) {
+        clienteEncontrado.setTelefono(telefono);
+        modificado = true;
+    }
+    return modificado;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ITHlEcWOEe6GV74yg1DxAg" name="buscar" specification="_ITGW8MWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(cliente, &quot;No se puede buscar un cliente nulo.&quot;);
+    int indice = coleccionClientes.indexOf(cliente);
+    return (indice == -1) ? null : coleccionClientes.get(indice);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ITJaQMWOEe6GV74yg1DxAg" name="borrar" specification="_ITIMIMWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(cliente, &quot;No se puede borrar un cliente nulo.&quot;);
+    if (!coleccionClientes.contains(cliente)) {
+        throw new OperationNotSupportedException(&quot;No existe ningún cliente con ese DNI.&quot;);
+    }
+    coleccionClientes.remove(cliente);
+</body>
+                    </ownedBehavior>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_IS47kcWOEe6GV74yg1DxAg" name="Clientes" visibility="public" method="_IS9NAMWOEe6GV74yg1DxAg"/>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_IS90EMWOEe6GV74yg1DxAg" name="get" visibility="public" method="_IS_pQMWOEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_IS-bIMWOEe6GV74yg1DxAg" type="_jXDz4MWLEe6GV74yg1DxAg" direction="return">
+                        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IS_CMMWOEe6GV74yg1DxAg"/>
+                        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IS_CMcWOEe6GV74yg1DxAg" value="*"/>
+                      </ownedParameter>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_ITAQUMWOEe6GV74yg1DxAg" name="insertar" visibility="public" method="_ITBecMWOEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_ITA3YMWOEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_ITCskMWOEe6GV74yg1DxAg" name="modificar" visibility="public" method="_ITFv4MWOEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_ITCskcWOEe6GV74yg1DxAg" type="_jhYNgMWLEe6GV74yg1DxAg" direction="return"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_ITDToMWOEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_ITD6sMWOEe6GV74yg1DxAg" name="nombre" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_ITEhwMWOEe6GV74yg1DxAg" name="telefono" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_ITGW8MWOEe6GV74yg1DxAg" name="buscar" visibility="public" method="_ITHlEcWOEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_ITG-AMWOEe6GV74yg1DxAg" type="_jXDz4MWLEe6GV74yg1DxAg" direction="return"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_ITHlEMWOEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_ITIMIMWOEe6GV74yg1DxAg" name="borrar" visibility="public" method="_ITJaQMWOEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_ITIzMMWOEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                  </packagedElement>
+                  <packagedElement xmi:type="uml:Class" xmi:id="_JZjosMWOEe6GV74yg1DxAg" name="Revisiones" visibility="public">
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_JZohMMWOEe6GV74yg1DxAg" name="coleccionRevisiones" visibility="private" isLeaf="true" type="_rmvyIMWLEe6GV74yg1DxAg" isUnique="false" aggregation="composite" association="_WRlEAMWOEe6GV74yg1DxAg">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JZpIQMWOEe6GV74yg1DxAg"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JZpIQcWOEe6GV74yg1DxAg" value="*"/>
+                    </ownedAttribute>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_JZsLkMWOEe6GV74yg1DxAg" name="Revisiones" specification="_JZpvUMWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    coleccionRevisiones = new ArrayList&lt;>();
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_JZuAwcWOEe6GV74yg1DxAg" name="get" specification="_JZsyoMWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return new ArrayList&lt;>(coleccionRevisiones);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_JZxrIMWOEe6GV74yg1DxAg" name="get" specification="_JZvO4MWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    List&lt;Revision> revisionesCliente = new ArrayList&lt;>();
+    for (Revision revision : coleccionRevisiones) {
+        if (revision.getCliente().equals(cliente)) {
+            revisionesCliente.add(revision);
+        }
+    }
+    return revisionesCliente;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_JZ1VgMWOEe6GV74yg1DxAg" name="get" specification="_JZy5QMWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    List&lt;Revision> revisionesVehiculo = new ArrayList&lt;>();
+    for (Revision revision : coleccionRevisiones) {
+        if (revision.getVehiculo().equals(vehiculo)) {
+            revisionesVehiculo.add(revision);
+        }
+    }
+    return revisionesVehiculo;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_JZ3xwMWOEe6GV74yg1DxAg" name="insertar" specification="_JZ18kMWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(revision, &quot;No se puede insertar una revisión nula.&quot;);
+    comprobarRevision(revision.getCliente(), revision.getVehiculo(), revision.getFechaInicio());
+    coleccionRevisiones.add(revision);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_JZ8DMMWOEe6GV74yg1DxAg" name="comprobarRevision" specification="_JZ4Y0MWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    for (Revision revision : coleccionRevisiones) {
+        if (!revision.estaCerrada()) {
+            if (revision.getCliente().equals(cliente)) {
+                throw new OperationNotSupportedException(&quot;El cliente tiene otra revisión en curso.&quot;);
+            } else if (revision.getVehiculo().equals(vehiculo)) {
+                throw new OperationNotSupportedException(&quot;El vehículo está actualmente en revisión.&quot;);
+            }
+        } else {
+            if (revision.getCliente().equals(cliente) &amp;&amp; !fechaRevision.isAfter(revision.getFechaFin())) {
+                throw new OperationNotSupportedException(&quot;El cliente tiene una revisión posterior.&quot;);
+            } else if (revision.getVehiculo().equals(vehiculo) &amp;&amp; !fechaRevision.isAfter(revision.getFechaFin())) {
+                throw new OperationNotSupportedException(&quot;El vehículo tiene una revisión posterior.&quot;);
+            }
+        }
+    }
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_JaA7sMWOEe6GV74yg1DxAg" name="anadirHoras" specification="_JZ9RUcWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Revision revisionEncontrada = getRevision(revision);
+    revisionEncontrada.anadirHoras(horas);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_JaEmEMWOEe6GV74yg1DxAg" name="getRevision" specification="_JaBiwMWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(revision, &quot;No puedo operar sobre una revisión nula.&quot;);
+    Revision revisionEncontrada = buscar(revision);
+    if (revisionEncontrada == null) {
+        throw new OperationNotSupportedException(&quot;No existe ninguna revisión igual.&quot;);
+    }
+    return revisionEncontrada;
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_JaHCUMWOEe6GV74yg1DxAg" name="anadirPrecioMaterial" specification="_JaFNIMWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Revision revisionEncontrada = getRevision(revision);
+    revisionEncontrada.anadirPrecioMaterial(precioMaterial);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_JaJekMWOEe6GV74yg1DxAg" name="cerrar" specification="_JaHpYMWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Revision revisionEncontrada = getRevision(revision);
+    revisionEncontrada.cerrar(fechaFin);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_JaLTwcWOEe6GV74yg1DxAg" name="buscar" specification="_JaKFoMWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(revision, &quot;No se puede buscar una revisión nula.&quot;);
+    int indice = coleccionRevisiones.indexOf(revision);
+    return (indice == -1) ? null : coleccionRevisiones.get(indice);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_JaNwAMWOEe6GV74yg1DxAg" name="borrar" specification="_JaMh4MWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(revision, &quot;No se puede borrar una revisión nula.&quot;);
+    if (!coleccionRevisiones.contains(revision)) {
+        throw new OperationNotSupportedException(&quot;No existe ninguna revisión igual.&quot;);
+    }
+    coleccionRevisiones.remove(revision);
+</body>
+                    </ownedBehavior>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_JZpvUMWOEe6GV74yg1DxAg" name="Revisiones" visibility="public" method="_JZsLkMWOEe6GV74yg1DxAg"/>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_JZsyoMWOEe6GV74yg1DxAg" name="get" visibility="public" method="_JZuAwcWOEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JZtZsMWOEe6GV74yg1DxAg" type="_rmvyIMWLEe6GV74yg1DxAg" direction="return">
+                        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JZtZscWOEe6GV74yg1DxAg"/>
+                        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JZuAwMWOEe6GV74yg1DxAg" value="*"/>
+                      </ownedParameter>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_JZvO4MWOEe6GV74yg1DxAg" name="get" visibility="public" method="_JZxrIMWOEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JZv18MWOEe6GV74yg1DxAg" type="_rmvyIMWLEe6GV74yg1DxAg" direction="return">
+                        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JZwdAMWOEe6GV74yg1DxAg"/>
+                        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JZwdAcWOEe6GV74yg1DxAg" value="*"/>
+                      </ownedParameter>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JZxEEMWOEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_JZy5QMWOEe6GV74yg1DxAg" name="get" visibility="public" method="_JZ1VgMWOEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JZzgUMWOEe6GV74yg1DxAg" type="_rmvyIMWLEe6GV74yg1DxAg" direction="return">
+                        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JZ0HYMWOEe6GV74yg1DxAg"/>
+                        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JZ0HYcWOEe6GV74yg1DxAg" value="*"/>
+                      </ownedParameter>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JZ0ucMWOEe6GV74yg1DxAg" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_JZ18kMWOEe6GV74yg1DxAg" name="insertar" visibility="public" method="_JZ3xwMWOEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JZ2joMWOEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_JZ4Y0MWOEe6GV74yg1DxAg" name="comprobarRevision" visibility="private" method="_JZ8DMMWOEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JZ4_4MWOEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JZ6OAMWOEe6GV74yg1DxAg" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JZ61EMWOEe6GV74yg1DxAg" name="fechaRevision" type="_rnKo4MWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_JZ9RUcWOEe6GV74yg1DxAg" name="anadirHoras" visibility="public" method="_JaA7sMWOEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JZ-fcMWOEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JZ_tkMWOEe6GV74yg1DxAg" name="horas" type="_JZ9RUMWOEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_JaBiwMWOEe6GV74yg1DxAg" name="getRevision" visibility="private" method="_JaEmEMWOEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JaCJ0MWOEe6GV74yg1DxAg" type="_rmvyIMWLEe6GV74yg1DxAg" direction="return"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JaDX8MWOEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_JaFNIMWOEe6GV74yg1DxAg" name="anadirPrecioMaterial" visibility="public" method="_JaHCUMWOEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JaF0MMWOEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JaGbQMWOEe6GV74yg1DxAg" name="precioMaterial" type="_rmxnUMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_JaHpYMWOEe6GV74yg1DxAg" name="cerrar" visibility="public" method="_JaJekMWOEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JaIQcMWOEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JaI3gMWOEe6GV74yg1DxAg" name="fechaFin" type="_rnKo4MWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_JaKFoMWOEe6GV74yg1DxAg" name="buscar" visibility="public" method="_JaLTwcWOEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JaKssMWOEe6GV74yg1DxAg" type="_rmvyIMWLEe6GV74yg1DxAg" direction="return"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JaLTwMWOEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_JaMh4MWOEe6GV74yg1DxAg" name="borrar" visibility="public" method="_JaNwAMWOEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_JaMh4cWOEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                  </packagedElement>
+                  <packagedElement xmi:type="uml:Class" xmi:id="_KW5asMWOEe6GV74yg1DxAg" name="Vehiculos" visibility="public">
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_KW7P4MWOEe6GV74yg1DxAg" name="coleccionVehiculos" visibility="private" isLeaf="true" type="_rnFwYMWLEe6GV74yg1DxAg" isUnique="false" aggregation="composite" association="_Ylkf4MWOEe6GV74yg1DxAg">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KW7P4cWOEe6GV74yg1DxAg"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KW7P4sWOEe6GV74yg1DxAg" value="*"/>
+                    </ownedAttribute>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_KW_hUMWOEe6GV74yg1DxAg" name="Vehiculos" specification="_KW728MWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    coleccionVehiculos = new ArrayList&lt;>();
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_KXB9kMWOEe6GV74yg1DxAg" name="get" specification="_KW_hUcWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    return new ArrayList&lt;>(coleccionVehiculos);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_KXFA4MWOEe6GV74yg1DxAg" name="insertar" specification="_KXDLsMWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(vehiculo, &quot;No se puede insertar un vehículo nulo.&quot;);
+    if (coleccionVehiculos.contains(vehiculo)) {
+        throw new OperationNotSupportedException(&quot;Ya existe un vehículo con esa matrícula.&quot;);
+    }
+    coleccionVehiculos.add(vehiculo);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_KXIEMMWOEe6GV74yg1DxAg" name="buscar" specification="_KXFn8MWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(vehiculo, &quot;No se puede buscar un vehículo nulo.&quot;);
+    int indice = coleccionVehiculos.indexOf(vehiculo);
+    return (indice == -1) ? null : coleccionVehiculos.get(indice);
+</body>
+                    </ownedBehavior>
+                    <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_KXJ5YMWOEe6GV74yg1DxAg" name="borrar" specification="_KXIrQMWOEe6GV74yg1DxAg">
+                      <language>JAVA</language>
+                      <body>
+    Objects.requireNonNull(vehiculo, &quot;No se puede borrar un vehículo nulo.&quot;);
+    if (!coleccionVehiculos.contains(vehiculo)) {
+        throw new OperationNotSupportedException(&quot;No existe ningún vehículo con esa matrícula.&quot;);
+    }
+    coleccionVehiculos.remove(vehiculo);
+</body>
+                    </ownedBehavior>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_KW728MWOEe6GV74yg1DxAg" name="Vehiculos" visibility="public" method="_KW_hUMWOEe6GV74yg1DxAg"/>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_KW_hUcWOEe6GV74yg1DxAg" name="get" visibility="public" method="_KXB9kMWOEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_KXAvcMWOEe6GV74yg1DxAg" type="_rnFwYMWLEe6GV74yg1DxAg" direction="return">
+                        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KXBWgMWOEe6GV74yg1DxAg"/>
+                        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KXBWgcWOEe6GV74yg1DxAg" value="*"/>
+                      </ownedParameter>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_KXDLsMWOEe6GV74yg1DxAg" name="insertar" visibility="public" method="_KXFA4MWOEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_KXEZ0MWOEe6GV74yg1DxAg" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_KXFn8MWOEe6GV74yg1DxAg" name="buscar" visibility="public" method="_KXIEMMWOEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_KXG2EMWOEe6GV74yg1DxAg" type="_rnFwYMWLEe6GV74yg1DxAg" direction="return"/>
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_KXHdIMWOEe6GV74yg1DxAg" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_KXIrQMWOEe6GV74yg1DxAg" name="borrar" visibility="public" method="_KXJ5YMWOEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                      <ownedParameter xmi:type="uml:Parameter" xmi:id="_KXJSUMWOEe6GV74yg1DxAg" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
+                    </ownedOperation>
+                  </packagedElement>
+                  <packagedElement xmi:type="uml:Association" xmi:id="_Q8ufMMWOEe6GV74yg1DxAg" name="A_coleccionClientes_clientes" memberEnd="_IS3tcMWOEe6GV74yg1DxAg _Q8w7cMWOEe6GV74yg1DxAg">
+                    <ownedEnd xmi:type="uml:Property" xmi:id="_Q8w7cMWOEe6GV74yg1DxAg" name="clientes" type="_IS2fUMWOEe6GV74yg1DxAg" association="_Q8ufMMWOEe6GV74yg1DxAg">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Q8xigMWOEe6GV74yg1DxAg"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Q8xigcWOEe6GV74yg1DxAg" value="1"/>
+                    </ownedEnd>
+                  </packagedElement>
+                  <packagedElement xmi:type="uml:Association" xmi:id="_WRlEAMWOEe6GV74yg1DxAg" name="A_coleccionRevisiones_revisiones" memberEnd="_JZohMMWOEe6GV74yg1DxAg _WRngQMWOEe6GV74yg1DxAg">
+                    <ownedEnd xmi:type="uml:Property" xmi:id="_WRngQMWOEe6GV74yg1DxAg" name="revisiones" type="_JZjosMWOEe6GV74yg1DxAg" association="_WRlEAMWOEe6GV74yg1DxAg">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WRoHUMWOEe6GV74yg1DxAg"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WRoHUcWOEe6GV74yg1DxAg" value="1"/>
+                    </ownedEnd>
+                  </packagedElement>
+                  <packagedElement xmi:type="uml:Association" xmi:id="_Ylkf4MWOEe6GV74yg1DxAg" name="A_coleccionVehiculos_vehiculos" memberEnd="_KW7P4MWOEe6GV74yg1DxAg _YlnjMMWOEe6GV74yg1DxAg">
+                    <ownedEnd xmi:type="uml:Property" xmi:id="_YlnjMMWOEe6GV74yg1DxAg" name="vehiculos" type="_KW5asMWOEe6GV74yg1DxAg" association="_Ylkf4MWOEe6GV74yg1DxAg">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YloKQMWOEe6GV74yg1DxAg"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YloKQcWOEe6GV74yg1DxAg" value="1"/>
+                    </ownedEnd>
+                  </packagedElement>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Class" xmi:id="_qPSTIMWPEe6GV74yg1DxAg" name="Modelo" visibility="public">
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_qPWkkMWPEe6GV74yg1DxAg" name="clientes" visibility="private" type="_IS2fUMWOEe6GV74yg1DxAg" isUnique="false" aggregation="composite" association="_S_JYAMWQEe6GV74yg1DxAg"/>
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_qPaO8MWPEe6GV74yg1DxAg" name="vehiculos" visibility="private" type="_KW5asMWOEe6GV74yg1DxAg" isUnique="false" aggregation="composite" association="_TxuEcMWQEe6GV74yg1DxAg"/>
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_qPdSQMWPEe6GV74yg1DxAg" name="revisiones" visibility="private" type="_JZjosMWOEe6GV74yg1DxAg" isUnique="false" aggregation="composite" association="_UipyIMWQEe6GV74yg1DxAg"/>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qPg8oMWPEe6GV74yg1DxAg" name="Modelo" specification="_qPd5UMWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    comenzar();
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qPhjsMWPEe6GV74yg1DxAg" name="comenzar" specification="_qPg8ocWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    clientes = new Clientes();
+    vehiculos = new Vehiculos();
+    revisiones = new Revisiones();
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qPiKwcWPEe6GV74yg1DxAg" name="terminar" specification="_qPiKwMWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    System.out.println(&quot;Modelo terminado.&quot;);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qPknAMWPEe6GV74yg1DxAg" name="insertar" specification="_qPjY4MWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    clientes.insertar(new Cliente(cliente));
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qPnDQMWPEe6GV74yg1DxAg" name="insertar" specification="_qPlOEMWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    vehiculos.insertar(vehiculo);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qPo4cMWPEe6GV74yg1DxAg" name="insertar" specification="_qPnqUMWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    Cliente cliente = clientes.buscar(revision.getCliente());
+    Vehiculo vehiculo = vehiculos.buscar(revision.getVehiculo());
+    revisiones.insertar(new Revision(cliente, vehiculo, revision.getFechaInicio()));
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qPrUscWPEe6GV74yg1DxAg" name="buscar" specification="_qPpfgMWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    return new Cliente(clientes.buscar(cliente));
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qPu_EMWPEe6GV74yg1DxAg" name="buscar" specification="_qPsi0MWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    return vehiculos.buscar(vehiculo);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qPxbUcWPEe6GV74yg1DxAg" name="buscar" specification="_qPwNMMWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    return new Revision(revisiones.buscar(revision));
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qP1FsMWPEe6GV74yg1DxAg" name="modificar" specification="_qPypcMWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    return clientes.modificar(cliente, nombre, telefono);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qP3h8MWPEe6GV74yg1DxAg" name="anadirHoras" specification="_qP2T0MWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    revisiones.anadirHoras(revision, horas);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qP5-MMWPEe6GV74yg1DxAg" name="anadirPrecioMaterial" specification="_qP4JAMWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    revisiones.anadirPrecioMaterial(revision, precioMaterial);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qP8acMWPEe6GV74yg1DxAg" name="cerrar" specification="_qP6lQMWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    revisiones.cerrar(revision, fechaFin);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qP-PoMWPEe6GV74yg1DxAg" name="borrar" specification="_qP9BgMWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    List&lt;Revision> revisionesCliente = revisiones.get(cliente);
+    for (Revision revision : revisionesCliente) {
+        revisiones.borrar(revision);
+    }
+    clientes.borrar(cliente);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qQAE0MWPEe6GV74yg1DxAg" name="borrar" specification="_qP-2sMWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    List&lt;Revision> revisionesVehciulo = revisiones.get(vehiculo);
+    for (Revision revision : revisionesVehciulo) {
+        revisiones.borrar(revision);
+    }
+    vehiculos.borrar(vehiculo);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qQChEMWPEe6GV74yg1DxAg" name="borrar" specification="_qQBS8MWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    revisiones.borrar(revision);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qQEWQMWPEe6GV74yg1DxAg" name="getClientes" specification="_qQDIIMWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    List&lt;Cliente> copiaClientes = new ArrayList&lt;>();
+    for (Cliente cliente : clientes.get()) {
+        copiaClientes.add(new Cliente(cliente));
+    }
+    return copiaClientes;
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qQFkYsWPEe6GV74yg1DxAg" name="getVehiculos" specification="_qQEWQcWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    return vehiculos.get();
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qQGygsWPEe6GV74yg1DxAg" name="getRevisiones" specification="_qQGLcMWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    List&lt;Revision> copiaRevisiones = new ArrayList&lt;>();
+    for (Revision revision : revisiones.get()) {
+        copiaRevisiones.add(new Revision(revision));
+    }
+    return copiaRevisiones;
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qQJOwcWPEe6GV74yg1DxAg" name="getRevisiones" specification="_qQIAoMWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    List&lt;Revision> revisionesCliente = new ArrayList&lt;>();
+    for (Revision revision : revisiones.get(cliente)) {
+        revisionesCliente.add(new Revision(revision));
+    }
+    return revisionesCliente;
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qQMSEMWPEe6GV74yg1DxAg" name="getRevisiones" specification="_qQJ10MWPEe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    List&lt;Revision> revisionesVehiculo = new ArrayList&lt;>();
+    for (Revision revision : revisiones.get(vehiculo)) {
+        revisionesVehiculo.add(new Revision(revision));
+    }
+    return revisionesVehiculo;
+</body>
+                  </ownedBehavior>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qPd5UMWPEe6GV74yg1DxAg" name="Modelo" visibility="public" method="_qPg8oMWPEe6GV74yg1DxAg"/>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qPg8ocWPEe6GV74yg1DxAg" name="comenzar" visibility="public" method="_qPhjsMWPEe6GV74yg1DxAg"/>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qPiKwMWPEe6GV74yg1DxAg" name="terminar" visibility="public" method="_qPiKwcWPEe6GV74yg1DxAg"/>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qPjY4MWPEe6GV74yg1DxAg" name="insertar" visibility="public" method="_qPknAMWPEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qPj_8MWPEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qPlOEMWPEe6GV74yg1DxAg" name="insertar" visibility="public" method="_qPnDQMWPEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qPmcMMWPEe6GV74yg1DxAg" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qPnqUMWPEe6GV74yg1DxAg" name="insertar" visibility="public" method="_qPo4cMWPEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qPoRYMWPEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qPpfgMWPEe6GV74yg1DxAg" name="buscar" visibility="public" method="_qPrUscWPEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qPqtoMWPEe6GV74yg1DxAg" type="_jXDz4MWLEe6GV74yg1DxAg" direction="return"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qPrUsMWPEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qPsi0MWPEe6GV74yg1DxAg" name="buscar" visibility="public" method="_qPu_EMWPEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qPtw8MWPEe6GV74yg1DxAg" type="_rnFwYMWLEe6GV74yg1DxAg" direction="return"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qPuYAMWPEe6GV74yg1DxAg" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qPwNMMWPEe6GV74yg1DxAg" name="buscar" visibility="public" method="_qPxbUcWPEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qPw0QMWPEe6GV74yg1DxAg" type="_rmvyIMWLEe6GV74yg1DxAg" direction="return"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qPxbUMWPEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qPypcMWPEe6GV74yg1DxAg" name="modificar" visibility="public" method="_qP1FsMWPEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qPypccWPEe6GV74yg1DxAg" type="_jhYNgMWLEe6GV74yg1DxAg" direction="return"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qPzQgMWPEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qPz3kMWPEe6GV74yg1DxAg" name="nombre" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qP0eoMWPEe6GV74yg1DxAg" name="telefono" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qP2T0MWPEe6GV74yg1DxAg" name="anadirHoras" visibility="public" method="_qP3h8MWPEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qP2T0cWPEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qP264MWPEe6GV74yg1DxAg" name="horas" type="_JZ9RUMWOEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qP4JAMWPEe6GV74yg1DxAg" name="anadirPrecioMaterial" visibility="public" method="_qP5-MMWPEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qP4wEMWPEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qP5XIMWPEe6GV74yg1DxAg" name="precioMaterial" type="_rmxnUMWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qP6lQMWPEe6GV74yg1DxAg" name="cerrar" visibility="public" method="_qP8acMWPEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qP7MUMWPEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qP7zYMWPEe6GV74yg1DxAg" name="fechaFin" type="_rnKo4MWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qP9BgMWPEe6GV74yg1DxAg" name="borrar" visibility="public" method="_qP-PoMWPEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qP9okMWPEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qP-2sMWPEe6GV74yg1DxAg" name="borrar" visibility="public" method="_qQAE0MWPEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qP_dwMWPEe6GV74yg1DxAg" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qQBS8MWPEe6GV74yg1DxAg" name="borrar" visibility="public" method="_qQChEMWPEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qQB6AMWPEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qQDIIMWPEe6GV74yg1DxAg" name="getClientes" visibility="public" method="_qQEWQMWPEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qQDvMMWPEe6GV74yg1DxAg" type="_jXDz4MWLEe6GV74yg1DxAg" direction="return">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qQDvMcWPEe6GV74yg1DxAg"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qQDvMsWPEe6GV74yg1DxAg" value="*"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qQEWQcWPEe6GV74yg1DxAg" name="getVehiculos" visibility="public" method="_qQFkYsWPEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qQE9UMWPEe6GV74yg1DxAg" type="_rnFwYMWLEe6GV74yg1DxAg" direction="return">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qQFkYMWPEe6GV74yg1DxAg"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qQFkYcWPEe6GV74yg1DxAg" value="*"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qQGLcMWPEe6GV74yg1DxAg" name="getRevisiones" visibility="public" method="_qQGygsWPEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qQGLccWPEe6GV74yg1DxAg" type="_rmvyIMWLEe6GV74yg1DxAg" direction="return">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qQGygMWPEe6GV74yg1DxAg"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qQGygcWPEe6GV74yg1DxAg" value="*"/>
+                    </ownedParameter>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qQIAoMWPEe6GV74yg1DxAg" name="getRevisiones" visibility="public" method="_qQJOwcWPEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qQInsMWPEe6GV74yg1DxAg" type="_rmvyIMWLEe6GV74yg1DxAg" direction="return">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qQInscWPEe6GV74yg1DxAg"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qQInssWPEe6GV74yg1DxAg" value="*"/>
+                    </ownedParameter>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qQJOwMWPEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_qQJ10MWPEe6GV74yg1DxAg" name="getRevisiones" visibility="public" method="_qQMSEMWPEe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qQKc4MWPEe6GV74yg1DxAg" type="_rmvyIMWLEe6GV74yg1DxAg" direction="return">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qQLD8MWPEe6GV74yg1DxAg"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qQLD8cWPEe6GV74yg1DxAg" value="*"/>
+                    </ownedParameter>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_qQLrAMWPEe6GV74yg1DxAg" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Association" xmi:id="_S_JYAMWQEe6GV74yg1DxAg" name="A_clientes_modelo" memberEnd="_qPWkkMWPEe6GV74yg1DxAg _S_LNMMWQEe6GV74yg1DxAg">
+                  <ownedEnd xmi:type="uml:Property" xmi:id="_S_LNMMWQEe6GV74yg1DxAg" name="modelo" type="_qPSTIMWPEe6GV74yg1DxAg" association="_S_JYAMWQEe6GV74yg1DxAg">
+                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_S_L0QMWQEe6GV74yg1DxAg"/>
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_S_L0QcWQEe6GV74yg1DxAg" value="1"/>
+                  </ownedEnd>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Association" xmi:id="_TxuEcMWQEe6GV74yg1DxAg" name="A_vehiculos_modelo" memberEnd="_qPaO8MWPEe6GV74yg1DxAg _Txv5oMWQEe6GV74yg1DxAg">
+                  <ownedEnd xmi:type="uml:Property" xmi:id="_Txv5oMWQEe6GV74yg1DxAg" name="modelo" type="_qPSTIMWPEe6GV74yg1DxAg" association="_TxuEcMWQEe6GV74yg1DxAg">
+                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TxwgsMWQEe6GV74yg1DxAg"/>
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TxwgscWQEe6GV74yg1DxAg" value="1"/>
+                  </ownedEnd>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Association" xmi:id="_UipyIMWQEe6GV74yg1DxAg" name="A_revisiones_modelo" memberEnd="_qPdSQMWPEe6GV74yg1DxAg _UirnUMWQEe6GV74yg1DxAg">
+                  <ownedEnd xmi:type="uml:Property" xmi:id="_UirnUMWQEe6GV74yg1DxAg" name="modelo" type="_qPSTIMWPEe6GV74yg1DxAg" association="_UipyIMWQEe6GV74yg1DxAg">
+                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UisOYMWQEe6GV74yg1DxAg"/>
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UisOYcWQEe6GV74yg1DxAg" value="1"/>
+                  </ownedEnd>
+                </packagedElement>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Package" xmi:id="_8zbHQMWQEe6GV74yg1DxAg" name="controlador"/>
+              <packagedElement xmi:type="uml:Package" xmi:id="_Lz-8YMWREe6GV74yg1DxAg" name="vista">
+                <packagedElement xmi:type="uml:Enumeration" xmi:id="_L0AKgMWREe6GV74yg1DxAg" name="Opcion" visibility="public">
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_L0MXwMWREe6GV74yg1DxAg" name="numeroOpcion" visibility="private" isLeaf="true" type="_JZ9RUMWOEe6GV74yg1DxAg" isUnique="false"/>
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_L0Nl4MWREe6GV74yg1DxAg" name="texto" visibility="private" isLeaf="true" type="_jXQBIMWLEe6GV74yg1DxAg" isUnique="false"/>
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_L0SeYMWREe6GV74yg1DxAg" name="opciones" visibility="private" isLeaf="true" isStatic="true" type="_L0OM8cWREe6GV74yg1DxAg" isUnique="false">
+                    <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_L0TFcMWREe6GV74yg1DxAg" name="defaultValue">
+                      <language>JAVA</language>
+                      <body>new HashMap&lt;>()</body>
+                    </defaultValue>
+                  </ownedAttribute>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_L0UTkMWREe6GV74yg1DxAg" name="Opcion" visibility="private">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_L0XW4cWREe6GV74yg1DxAg" name="numeroOpcion" type="_JZ9RUMWOEe6GV74yg1DxAg"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_L0YlAMWREe6GV74yg1DxAg" name="texto" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_L0ZMEMWREe6GV74yg1DxAg" name="esValida" visibility="public" isStatic="true">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_L0ZMEcWREe6GV74yg1DxAg" type="_jhYNgMWLEe6GV74yg1DxAg" direction="return"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_L0ZzIMWREe6GV74yg1DxAg" name="numeroOpcion" type="_JZ9RUMWOEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_L0aaMMWREe6GV74yg1DxAg" name="get" visibility="public" isStatic="true">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_L0bBQMWREe6GV74yg1DxAg" type="_L0AKgMWREe6GV74yg1DxAg" direction="return"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_L0bBQcWREe6GV74yg1DxAg" name="numeroOpcion" type="_JZ9RUMWOEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_L0boUMWREe6GV74yg1DxAg" name="toString" visibility="public">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_L0cPYMWREe6GV74yg1DxAg" type="_jXQBIMWLEe6GV74yg1DxAg" direction="return"/>
+                  </ownedOperation>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0BYoMWREe6GV74yg1DxAg" name="INSERTAR_CLIENTE">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0Eb8MWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>11, &quot;Insertar cliente.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0FDAMWREe6GV74yg1DxAg" name="BUSCAR_CLIENTE">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0FqEMWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>12, &quot;Buscar cliente.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0FqEcWREe6GV74yg1DxAg" name="BORRAR_CLIENTE">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0FqEsWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>13, &quot;Borrar cliente.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0FqE8WREe6GV74yg1DxAg" name="LISTAR_CLIENTES">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0GRIMWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>14, &quot;Listar clientes.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0GRIcWREe6GV74yg1DxAg" name="MODIFICAR_CLIENTE">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0GRIsWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>15, &quot;Modificar cliente.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0G4MMWREe6GV74yg1DxAg" name="INSERTAR_VEHICULO">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0G4McWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>21, &quot;Insertar vehículo.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0G4MsWREe6GV74yg1DxAg" name="BUSCAR_VEHICULO">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0HfQMWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>22, &quot;Buscar vehículo.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0HfQcWREe6GV74yg1DxAg" name="BORRAR_VEHICULO">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0HfQsWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>23, &quot;Borrar vehículo.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0IGUMWREe6GV74yg1DxAg" name="LISTAR_VEHICULOS">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0IGUcWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>24, &quot;Listar vehículos.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0ItYMWREe6GV74yg1DxAg" name="INSERTAR_REVISION">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0ItYcWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>31, &quot;Insertar revisión.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0ItYsWREe6GV74yg1DxAg" name="BUSCAR_REVISION">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0ItY8WREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>32, &quot;Buscar revisión.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0JUcMWREe6GV74yg1DxAg" name="BORRAR_REVISION">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0JUccWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>33, &quot;Borrar revisión.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0JUcsWREe6GV74yg1DxAg" name="LISTAR_REVISIONES">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0J7gMWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>34, &quot;Listar revisiones.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0J7gcWREe6GV74yg1DxAg" name="LISTAR_REVISIONES_CLIENTE">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0J7gsWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>35, &quot;Listar revisiones de un cliente.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0KikMWREe6GV74yg1DxAg" name="LISTAR_REVISIONES_VEHICULO">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0KikcWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>36, &quot;Listar revisiones de un vehículo.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0KiksWREe6GV74yg1DxAg" name="ANADIR_HORAS_REVISION">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0Kik8WREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>37, &quot;Añadir horas a una revisión.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0LJoMWREe6GV74yg1DxAg" name="ANADIR_PRECIO_MATERIAL_REVISION">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0LJocWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>38, &quot;Añadir precio del material a una revisión.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0LJosWREe6GV74yg1DxAg" name="CERRAR_REVISION">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0LJo8WREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>39, &quot;Cerrar revisión.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                  <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_L0LwsMWREe6GV74yg1DxAg" name="SALIR">
+                    <specification xmi:type="uml:OpaqueExpression" xmi:id="_L0LwscWREe6GV74yg1DxAg" name="specification">
+                      <language>JAVA</language>
+                      <body>0, &quot;Salir.&quot;</body>
+                    </specification>
+                  </ownedLiteral>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Class" xmi:id="_YdNtwMWREe6GV74yg1DxAg" name="Consola" visibility="public">
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_YdO74MWREe6GV74yg1DxAg" name="CADENA_FORMATO_FECHA" visibility="private" isLeaf="true" isStatic="true" type="_jXQBIMWLEe6GV74yg1DxAg" isUnique="false">
+                    <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_YdPi8MWREe6GV74yg1DxAg" name="defaultValue">
+                      <language>JAVA</language>
+                      <body>&quot;dd/MM/yyyy&quot;</body>
+                    </defaultValue>
+                  </ownedAttribute>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_YdSmQMWREe6GV74yg1DxAg" name="Consola" specification="_YdPi8cWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_YdT0YcWREe6GV74yg1DxAg" name="mostrarCabecera" specification="_YdTNUMWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    System.out.printf(&quot;%n%s%n&quot;, mensaje);
+    String formatoStr = &quot;%0&quot; + mensaje.length() + &quot;d%n&quot;;
+    System.out.println(String.format(formatoStr, 0).replace(&quot;0&quot;, &quot;-&quot;));
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_YdUbccWREe6GV74yg1DxAg" name="mostrarMenu" specification="_YdUbcMWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    mostrarCabecera(&quot;Gestión de un taller mecánico.&quot;);
+    for (Opcion opcion : Opcion.values()) {
+        System.out.print(opcion);
+    }
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_YdWQoMWREe6GV74yg1DxAg" name="elegirOpcion" specification="_YdVCgMWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    Opcion opcion = null;
+    do {
+        try {
+            opcion = Opcion.get(leerEntero(&quot;\nElige un opción: &quot;));
+        } catch (IllegalArgumentException e) {
+            System.out.printf(&quot;ERROR: %s%n&quot;, e.getMessage());
+        }
+    } while (opcion == null);
+    return opcion;
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_YdYF0cWREe6GV74yg1DxAg" name="leerEntero" specification="_YdW3sMWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    System.out.print(mensaje);
+    return Entrada.entero();
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_YdbJIMWREe6GV74yg1DxAg" name="leerReal" specification="_YdZT8MWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    System.out.print(mensaje);
+    return Entrada.real();
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_Ydc-UcWREe6GV74yg1DxAg" name="leerCadena" specification="_YdbwMMWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    System.out.print(mensaje);
+    return Entrada.cadena();
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_YdfakMWREe6GV74yg1DxAg" name="leerFecha" specification="_YddlYMWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    LocalDate fecha;
+    DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern(CADENA_FORMATO_FECHA);
+    mensaje = String.format(&quot;%s (%s): &quot;, mensaje, CADENA_FORMATO_FECHA);
+    try {
+        fecha = LocalDate.parse(leerCadena(mensaje), formatoFecha);
+    } catch (DateTimeParseException e) {
+        fecha = null;
+    }
+    return fecha;
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_YdgosMWREe6GV74yg1DxAg" name="leerCliente" specification="_YdfakcWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    String nombre = leerCadena(&quot;Introduce el nombre: &quot;);
+    String dni = leerCadena(&quot;Introduce el DNI: &quot;);
+    String telefono = leerCadena(&quot;Introduce el teléfono: &quot;);
+    return new Cliente(nombre, dni, telefono);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_Ydh20MWREe6GV74yg1DxAg" name="leerClienteDni" specification="_YdhPwMWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    return Cliente.get(leerCadena(&quot;Introduce el DNI: &quot;));
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_YdjE8MWREe6GV74yg1DxAg" name="leerNuevoNombre" specification="_Ydh20cWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    return leerCadena(&quot;Introduce el nuevo nombre: &quot;);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_YdjsAcWREe6GV74yg1DxAg" name="leerNuevoTelefono" specification="_YdjE8cWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    return leerCadena(&quot;Introduce el nuevo teléfono: &quot;);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_Ydk6IcWREe6GV74yg1DxAg" name="leerVehiculo" specification="_YdkTEMWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    String marca = leerCadena(&quot;Introduce la marca: &quot;);
+    String modelo = leerCadena(&quot;Introduce el modelo: &quot;);
+    String matricula = leerCadena(&quot;Introduce la matrícula: &quot;);
+    return new Vehiculo(marca, modelo, matricula);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_YdmIQcWREe6GV74yg1DxAg" name="leerVehiculoMatricula" specification="_YdlhMMWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    return Vehiculo.get(leerCadena(&quot;Introduce la matrícula: &quot;));
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_YdnWYcWREe6GV74yg1DxAg" name="leerRevision" specification="_YdmvUMWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    Cliente cliente = leerClienteDni();
+    Vehiculo vehiculo = leerVehiculoMatricula();
+    LocalDate fechaInicio = leerFecha(&quot;Introduce la fecha de inicio&quot;);
+    return new Revision(cliente, vehiculo, fechaInicio);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_Ydn9ccWREe6GV74yg1DxAg" name="leerHoras" specification="_YdnWYsWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    return leerEntero(&quot;Introduce las horas a añadir: &quot;);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_YdokgcWREe6GV74yg1DxAg" name="leerPrecioMaterial" specification="_Ydn9csWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    return leerReal(&quot;Introduce el precio del material a añadir: &quot;);
+</body>
+                  </ownedBehavior>
+                  <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_YdpLkcWREe6GV74yg1DxAg" name="leerFechaCierre" specification="_YdokgsWREe6GV74yg1DxAg">
+                    <language>JAVA</language>
+                    <body>
+    return leerFecha(&quot;Introduce la fecha de cierre&quot;);
+</body>
+                  </ownedBehavior>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YdPi8cWREe6GV74yg1DxAg" name="Consola" visibility="private" method="_YdSmQMWREe6GV74yg1DxAg"/>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YdTNUMWREe6GV74yg1DxAg" name="mostrarCabecera" visibility="public" isStatic="true" method="_YdT0YcWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdT0YMWREe6GV74yg1DxAg" name="mensaje" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YdUbcMWREe6GV74yg1DxAg" name="mostrarMenu" visibility="public" isStatic="true" method="_YdUbccWREe6GV74yg1DxAg"/>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YdVCgMWREe6GV74yg1DxAg" name="elegirOpcion" visibility="public" isStatic="true" method="_YdWQoMWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdVpkMWREe6GV74yg1DxAg" type="_L0AKgMWREe6GV74yg1DxAg" direction="return"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YdW3sMWREe6GV74yg1DxAg" name="leerEntero" visibility="private" isStatic="true" method="_YdYF0cWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdW3scWREe6GV74yg1DxAg" type="_JZ9RUMWOEe6GV74yg1DxAg" direction="return"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdYF0MWREe6GV74yg1DxAg" name="mensaje" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YdZT8MWREe6GV74yg1DxAg" name="leerReal" visibility="private" isStatic="true" method="_YdbJIMWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdZ7AMWREe6GV74yg1DxAg" type="_rmxnUMWLEe6GV74yg1DxAg" direction="return"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdaiEMWREe6GV74yg1DxAg" name="mensaje" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YdbwMMWREe6GV74yg1DxAg" name="leerCadena" visibility="private" isStatic="true" method="_Ydc-UcWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdcXQMWREe6GV74yg1DxAg" type="_jXQBIMWLEe6GV74yg1DxAg" direction="return"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_Ydc-UMWREe6GV74yg1DxAg" name="mensaje" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YddlYMWREe6GV74yg1DxAg" name="leerFecha" visibility="private" isStatic="true" method="_YdfakMWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdeMcMWREe6GV74yg1DxAg" type="_rnKo4MWLEe6GV74yg1DxAg" direction="return"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdezgMWREe6GV74yg1DxAg" name="mensaje" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YdfakcWREe6GV74yg1DxAg" name="leerCliente" visibility="public" isStatic="true" method="_YdgosMWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdgBoMWREe6GV74yg1DxAg" type="_jXDz4MWLEe6GV74yg1DxAg" direction="return"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YdhPwMWREe6GV74yg1DxAg" name="leerClienteDni" visibility="public" isStatic="true" method="_Ydh20MWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdhPwcWREe6GV74yg1DxAg" type="_jXDz4MWLEe6GV74yg1DxAg" direction="return"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_Ydh20cWREe6GV74yg1DxAg" name="leerNuevoNombre" visibility="public" isStatic="true" method="_YdjE8MWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_Ydid4MWREe6GV74yg1DxAg" type="_jXQBIMWLEe6GV74yg1DxAg" direction="return"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YdjE8cWREe6GV74yg1DxAg" name="leerNuevoTelefono" visibility="public" isStatic="true" method="_YdjsAcWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdjsAMWREe6GV74yg1DxAg" type="_jXQBIMWLEe6GV74yg1DxAg" direction="return"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YdkTEMWREe6GV74yg1DxAg" name="leerVehiculo" visibility="public" isStatic="true" method="_Ydk6IcWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_Ydk6IMWREe6GV74yg1DxAg" type="_rnFwYMWLEe6GV74yg1DxAg" direction="return"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YdlhMMWREe6GV74yg1DxAg" name="leerVehiculoMatricula" visibility="public" isStatic="true" method="_YdmIQcWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdmIQMWREe6GV74yg1DxAg" type="_rnFwYMWLEe6GV74yg1DxAg" direction="return"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YdmvUMWREe6GV74yg1DxAg" name="leerRevision" visibility="public" isStatic="true" method="_YdnWYcWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdnWYMWREe6GV74yg1DxAg" type="_rmvyIMWLEe6GV74yg1DxAg" direction="return"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YdnWYsWREe6GV74yg1DxAg" name="leerHoras" visibility="public" isStatic="true" method="_Ydn9ccWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_Ydn9cMWREe6GV74yg1DxAg" type="_JZ9RUMWOEe6GV74yg1DxAg" direction="return"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_Ydn9csWREe6GV74yg1DxAg" name="leerPrecioMaterial" visibility="public" isStatic="true" method="_YdokgcWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdokgMWREe6GV74yg1DxAg" type="_rmxnUMWLEe6GV74yg1DxAg" direction="return"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_YdokgsWREe6GV74yg1DxAg" name="leerFechaCierre" visibility="public" isStatic="true" method="_YdpLkcWREe6GV74yg1DxAg">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_YdpLkMWREe6GV74yg1DxAg" type="_rnKo4MWLEe6GV74yg1DxAg" direction="return"/>
+                  </ownedOperation>
+                </packagedElement>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_iBHeMMWXEe6PL5kubjCEzQ" name="Main" visibility="public">
+                <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_iBU5kMWXEe6PL5kubjCEzQ" name="main" specification="_iBLvoMWXEe6PL5kubjCEzQ">
+                  <language>JAVA</language>
+                  <body>
+    Modelo modelo = new Modelo();
+    Vista vista = new Vista();
+    Controlador controlador = new Controlador(modelo, vista);
+    controlador.comenzar();
+</body>
+                </ownedBehavior>
+                <ownedOperation xmi:type="uml:Operation" xmi:id="_iBLvoMWXEe6PL5kubjCEzQ" name="main" visibility="public" isStatic="true" method="_iBU5kMWXEe6PL5kubjCEzQ">
+                  <ownedParameter xmi:type="uml:Parameter" xmi:id="_iBOL4MWXEe6PL5kubjCEzQ" name="args" type="_jXQBIMWLEe6GV74yg1DxAg">
+                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iBPaAMWXEe6PL5kubjCEzQ"/>
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iBQBEMWXEe6PL5kubjCEzQ" value="*"/>
+                  </ownedParameter>
+                </ownedOperation>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_jXLvsMWLEe6GV74yg1DxAg" name="java">
+      <packagedElement xmi:type="uml:Package" xmi:id="_jXNk4MWLEe6GV74yg1DxAg" name="java">
+        <packagedElement xmi:type="uml:Package" xmi:id="_jXOzAMWLEe6GV74yg1DxAg" name="lang">
+          <packagedElement xmi:type="uml:Class" xmi:id="_jXQBIMWLEe6GV74yg1DxAg" name="String"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_jh-DYMWLEe6GV74yg1DxAg" name="Object"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_rm3G4MWLEe6GV74yg1DxAg" name="time">
+          <packagedElement xmi:type="uml:Package" xmi:id="_rm3t8MWLEe6GV74yg1DxAg" name="format">
+            <packagedElement xmi:type="uml:Class" xmi:id="_rm3t8cWLEe6GV74yg1DxAg" name="DateTimeFormatter"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_rnKo4MWLEe6GV74yg1DxAg" name="LocalDate"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_L0OM8MWREe6GV74yg1DxAg" name="util">
+          <packagedElement xmi:type="uml:Class" xmi:id="_L0OM8cWREe6GV74yg1DxAg" name="Map"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_jhVxQMWLEe6GV74yg1DxAg" name="importedTypes">
+      <packagedElement xmi:type="uml:Package" xmi:id="_jhW_YMWLEe6GV74yg1DxAg" name="primitivetype">
+        <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_jhYNgMWLEe6GV74yg1DxAg" name="boolean"/>
+        <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_jiY6IMWLEe6GV74yg1DxAg" name="int"/>
+        <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_rmxnUMWLEe6GV74yg1DxAg" name="float"/>
+        <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_JZ9RUMWOEe6GV74yg1DxAg" name="int"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_rn7d4MWLEe6GV74yg1DxAg" name="javax">
+        <packagedElement xmi:type="uml:Package" xmi:id="_rn7d4cWLEe6GV74yg1DxAg" name="naming">
+          <packagedElement xmi:type="uml:Class" xmi:id="_rn8E8MWLEe6GV74yg1DxAg" name="OperationNotSupportedException"/>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_8zf_wMWQEe6GV74yg1DxAg" name="org">
+        <packagedElement xmi:type="uml:Package" xmi:id="_8zf_wcWQEe6GV74yg1DxAg" name="iesalandalus">
+          <packagedElement xmi:type="uml:Package" xmi:id="_8zf_wsWQEe6GV74yg1DxAg" name="programacion">
+            <packagedElement xmi:type="uml:Package" xmi:id="_8zf_w8WQEe6GV74yg1DxAg" name="tallermecanico">
+              <packagedElement xmi:type="uml:Package" xmi:id="_8zf_xMWQEe6GV74yg1DxAg" name="vista">
+                <packagedElement xmi:type="uml:Class" xmi:id="_8zf_xcWQEe6GV74yg1DxAg" name="Vista"/>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Package" xmi:id="_XYHG4MWREe6GV74yg1DxAg" name="controlador">
+                <packagedElement xmi:type="uml:Class" xmi:id="_XYHG4cWREe6GV74yg1DxAg" name="Controlador"/>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_GKYksMWTEe6GV74yg1DxAg" name="org.iesalandalus.programacion.tallermecanico">
+      <packagedElement xmi:type="uml:Package" xmi:id="_EVjb8MWREe6GV74yg1DxAg" name="vista">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_4v1gkMWREe6GV74yg1DxAg" annotatedElement="_L0AKgMWREe6GV74yg1DxAg">
+          <body>- numeroOpcion: int
+- mensaje: String
+- &lt;&lt;static>> opciones: Map &lt;Integer, String>
+---------------------------------------------------------
+- Opcion( numeroOpcion: int, mensaje: String)
++ &lt;&lt;static>> esValida(numeroOpcion: int): boolean
++ &lt;&lt;static>> get(numeroOpcion: int): Opcion
++ toString(): String</body>
+        </ownedComment>
+        <packagedElement xmi:type="uml:Class" xmi:id="_XYGf0MWREe6GV74yg1DxAg" name="Vista" visibility="public">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_XYJjIMWREe6GV74yg1DxAg" name="controlador" visibility="private" type="_XYHG4cWREe6GV74yg1DxAg" isUnique="false" aggregation="composite" association="_BB0IYMWTEe6GV74yg1DxAg"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_mQn2csWVEe6PL5kubjCEzQ" name="controlador" visibility="private" type="_8zcVYMWQEe6GV74yg1DxAg" aggregation="composite" association="_mQnPYMWVEe6PL5kubjCEzQ"/>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYLYUMWREe6GV74yg1DxAg" name="setControlador" specification="_XYKKMMWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Objects.requireNonNull(controlador, &quot;ERROR: El controlador no puede ser nulo.&quot;);
+    this.controlador = controlador;
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYLYUsWREe6GV74yg1DxAg" name="comenzar" specification="_XYLYUcWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Opcion opcion;
+    do {
+        Consola.mostrarMenu();
+        opcion = Consola.elegirOpcion();
+        ejecutar(opcion);
+    } while (opcion != Opcion.SALIR);
+    controlador.terminar();
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYL_YcWREe6GV74yg1DxAg" name="terminar" specification="_XYL_YMWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    System.out.println(&quot;¡¡¡Hasta luego Lucasss!!!&quot;);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYPCscWREe6GV74yg1DxAg" name="ejecutar" specification="_XYOboMWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+//        try {
+//            switch (opcion) {
+//                case INSERTAR_CLIENTE -> insertarCliente();
+//                case INSERTAR_VEHICULO -> insertarVehiculo();
+//                case INSERTAR_REVISION -> insertarRevision();
+//                case BUSCAR_CLIENTE -> buscarCliente();
+//                case BUSCAR_VEHICULO -> buscarVehiculo();
+//                case BUSCAR_REVISION -> buscarRevision();
+//                case MODIFICAR_CLIENTE -> modificarCliente();
+//                case ANADIR_HORAS_REVISION -> anadirHoras();
+//                case ANADIR_PRECIO_MATERIAL_REVISION -> anadirPrecioMaterial();
+//                case CERRAR_REVISION -> cerrarRevision();
+//                case BORRAR_CLIENTE -> borrarCliente();
+//                case BORRAR_VEHICULO -> borrarVehiculo();
+//                case BORRAR_REVISION -> borrarRevision();
+//                case LISTAR_CLIENTES -> listarClientes();
+//                case LISTAR_VEHICULOS -> listarVehiculos();
+//                case LISTAR_REVISIONES -> listarRevisiones();
+//                case LISTAR_REVISIONES_CLIENTE -> listarRevisionesCliente();
+//                case LISTAR_REVISIONES_VEHICULO -> listarRevisionesVehiculo();
+//                case SALIR -> salir();
+//            }
+//        } catch (Exception e) {
+//            System.out.printf(&quot;ERROR: %s%n&quot;, e.getMessage());
+//        }
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYPpwMWREe6GV74yg1DxAg" name="insertarCliente" specification="_XYPCssWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Insertar Cliente&quot;);
+    controlador.insertar(Consola.leerCliente());
+    System.out.println(&quot;Cliente insertado correctamente.&quot;);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYQQ0cWREe6GV74yg1DxAg" name="insertarVehiculo" specification="_XYQQ0MWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Insertar Vehículo&quot;);
+    controlador.insertar(Consola.leerVehiculo());
+    System.out.println(&quot;Vehículo insertado correctamente.&quot;);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYQ34cWREe6GV74yg1DxAg" name="insertarRevision" specification="_XYQ34MWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Insertar Revisión&quot;);
+    controlador.insertar(Consola.leerRevision());
+    System.out.println(&quot;Revisión insertada correctamente.&quot;);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYRe8cWREe6GV74yg1DxAg" name="buscarCliente" specification="_XYRe8MWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Buscar cliente&quot;);
+    Cliente cliente = controlador.buscar(Consola.leerClienteDni());
+    System.out.println((cliente != null) ? cliente : &quot;No existe ningún cliente con dicho DNI.&quot;);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYSGAcWREe6GV74yg1DxAg" name="buscarVehiculo" specification="_XYSGAMWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Buscar Vehículo&quot;);
+    Vehiculo vehiculo = controlador.buscar(Consola.leerVehiculoMatricula());
+    System.out.println((vehiculo != null) ? vehiculo : &quot;No existe ningún vehículo con dicha matrícula.&quot;);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYSGA8WREe6GV74yg1DxAg" name="buscarRevision" specification="_XYSGAsWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Buscar Revisión&quot;);
+    Revision revision = controlador.buscar(Consola.leerRevision());
+    System.out.println((revision != null) ? revision : &quot;No existe ninguna revisión para ese cliente, vehículo y fecha.&quot;);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYTUIMWREe6GV74yg1DxAg" name="modificarCliente" specification="_XYStEMWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Modificar Cliente&quot;);
+    boolean modificado = controlador.modificar(Consola.leerClienteDni(), Consola.leerNuevoNombre(), Consola.leerNuevoTelefono());
+    System.out.println((modificado) ? &quot;El cliente se ha modificado correctamente.&quot; : &quot;El cliente no se ha modificado.&quot;);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYT7MMWREe6GV74yg1DxAg" name="anadirHoras" specification="_XYTUIcWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Añadir Horas Revisión&quot;);
+    controlador.anadirHoras(Consola.leerRevision(), Consola.leerHoras());
+    System.out.println(&quot;Horas añadidas correctamente.&quot;);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYUiQMWREe6GV74yg1DxAg" name="anadirPrecioMaterial" specification="_XYT7McWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Añadir Precio Material Revisión&quot;);
+    controlador.anadirPrecioMaterial(Consola.leerRevision(), Consola.leerPrecioMaterial());
+    System.out.println(&quot;Precio material añadido correctamente.&quot;);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYVJUMWREe6GV74yg1DxAg" name="cerrarRevision" specification="_XYUiQcWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Cerrar Revisión&quot;);
+    controlador.cerrar(Consola.leerRevision(), Consola.leerFechaCierre());
+    System.out.println(&quot;Revisión cerrada correctamente.&quot;);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYVwYMWREe6GV74yg1DxAg" name="borrarCliente" specification="_XYVJUcWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Borrar Cliente&quot;);
+    controlador.borrar(Consola.leerClienteDni());
+    System.out.println(&quot;Cliente borrado correctamente.&quot;);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYWXcMWREe6GV74yg1DxAg" name="borrarVehiculo" specification="_XYVwYcWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Borrar Vehículo&quot;);
+    controlador.borrar(Consola.leerVehiculoMatricula());
+    System.out.println(&quot;Vehículo borrado correctamente.&quot;);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYW-gcWREe6GV74yg1DxAg" name="borrarRevision" specification="_XYW-gMWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Borrar Revisión&quot;);
+    controlador.borrar(Consola.leerRevision());
+    System.out.println(&quot;Revisión borrada correctamente.&quot;);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYXlkcWREe6GV74yg1DxAg" name="listarClientes" specification="_XYXlkMWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Listar Clientes&quot;);
+    List&lt;Cliente> clientes = controlador.getClientes();
+    if (!clientes.isEmpty()) {
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente);
+        }
+    } else {
+        System.out.println(&quot;No hay clientes que mostrar.&quot;);
+    }
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYYMocWREe6GV74yg1DxAg" name="listarVehiculos" specification="_XYYMoMWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Listar Vehículos&quot;);
+    List&lt;Vehiculo> vehiculos = controlador.getVehiculos();
+    if (!vehiculos.isEmpty()) {
+        for (Vehiculo vehiculo : vehiculos) {
+            System.out.println(vehiculo);
+        }
+    } else {
+        System.out.println(&quot;No hay vehículos que mostrar.&quot;);
+    }
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYYzscWREe6GV74yg1DxAg" name="listarRevisiones" specification="_XYYzsMWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Listar Revisiones&quot;);
+    List&lt;Revision> revisiones = controlador.getRevisiones();
+    if (!revisiones.isEmpty()) {
+        for (Revision revision : revisiones) {
+            System.out.println(revision);
+        }
+    } else {
+        System.out.println(&quot;No hay revisiones que mostrar.&quot;);
+    }
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYZawcWREe6GV74yg1DxAg" name="listarRevisionesCliente" specification="_XYZawMWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Listar Revisiones Cliente&quot;);
+    List&lt;Revision> revisionesCliente = controlador.getRevisiones(Consola.leerClienteDni());
+    if (!revisionesCliente.isEmpty()) {
+        for (Revision revision : revisionesCliente) {
+            System.out.println(revision);
+        }
+    } else {
+        System.out.println(&quot;No hay revisiones que mostrar para dicho cliente.&quot;);
+    }
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYaB0cWREe6GV74yg1DxAg" name="listarRevisionesVehiculo" specification="_XYaB0MWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Consola.mostrarCabecera(&quot;Listar Revisiones Vehículo&quot;);
+    List&lt;Revision> revisionesVehiculo = controlador.getRevisiones(Consola.leerVehiculoMatricula());
+    if (!revisionesVehiculo.isEmpty()) {
+        for (Revision revision : revisionesVehiculo) {
+            System.out.println(revision);
+        }
+    } else {
+        System.out.println(&quot;No hay revisiones que mostrar para dicho vehículo.&quot;);
+    }
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_XYao4MWREe6GV74yg1DxAg" name="salir" specification="_XYaB0sWREe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+//No hacemos nada
+</body>
+          </ownedBehavior>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYKKMMWREe6GV74yg1DxAg" name="setControlador" visibility="public" method="_XYLYUMWREe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_XYKxQMWREe6GV74yg1DxAg" name="controlador" type="_XYHG4cWREe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYLYUcWREe6GV74yg1DxAg" name="comenzar" visibility="public" method="_XYLYUsWREe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYL_YMWREe6GV74yg1DxAg" name="terminar" visibility="public" method="_XYL_YcWREe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYOboMWREe6GV74yg1DxAg" name="ejecutar" visibility="private" method="_XYPCscWREe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_XYPCsMWREe6GV74yg1DxAg" name="opcion" type="_L0AKgMWREe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYPCssWREe6GV74yg1DxAg" name="insertarCliente" visibility="private" method="_XYPpwMWREe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYQQ0MWREe6GV74yg1DxAg" name="insertarVehiculo" visibility="private" method="_XYQQ0cWREe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYQ34MWREe6GV74yg1DxAg" name="insertarRevision" visibility="private" method="_XYQ34cWREe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYRe8MWREe6GV74yg1DxAg" name="buscarCliente" visibility="private" method="_XYRe8cWREe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYSGAMWREe6GV74yg1DxAg" name="buscarVehiculo" visibility="private" method="_XYSGAcWREe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYSGAsWREe6GV74yg1DxAg" name="buscarRevision" visibility="private" method="_XYSGA8WREe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYStEMWREe6GV74yg1DxAg" name="modificarCliente" visibility="private" method="_XYTUIMWREe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYTUIcWREe6GV74yg1DxAg" name="anadirHoras" visibility="private" method="_XYT7MMWREe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYT7McWREe6GV74yg1DxAg" name="anadirPrecioMaterial" visibility="private" method="_XYUiQMWREe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYUiQcWREe6GV74yg1DxAg" name="cerrarRevision" visibility="private" method="_XYVJUMWREe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYVJUcWREe6GV74yg1DxAg" name="borrarCliente" visibility="private" method="_XYVwYMWREe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYVwYcWREe6GV74yg1DxAg" name="borrarVehiculo" visibility="private" method="_XYWXcMWREe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYW-gMWREe6GV74yg1DxAg" name="borrarRevision" visibility="private" method="_XYW-gcWREe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYXlkMWREe6GV74yg1DxAg" name="listarClientes" visibility="private" method="_XYXlkcWREe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYYMoMWREe6GV74yg1DxAg" name="listarVehiculos" visibility="private" method="_XYYMocWREe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYYzsMWREe6GV74yg1DxAg" name="listarRevisiones" visibility="private" method="_XYYzscWREe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYZawMWREe6GV74yg1DxAg" name="listarRevisionesCliente" visibility="private" method="_XYZawcWREe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYaB0MWREe6GV74yg1DxAg" name="listarRevisionesVehiculo" visibility="private" method="_XYaB0cWREe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_XYaB0sWREe6GV74yg1DxAg" name="salir" visibility="private" method="_XYao4MWREe6GV74yg1DxAg"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_BB0IYMWTEe6GV74yg1DxAg" name="A_controlador_vista" memberEnd="_XYJjIMWREe6GV74yg1DxAg _BB2koMWTEe6GV74yg1DxAg">
+          <ownedEnd xmi:type="uml:Property" xmi:id="_BB2koMWTEe6GV74yg1DxAg" name="vista" type="_XYGf0MWREe6GV74yg1DxAg" association="_BB0IYMWTEe6GV74yg1DxAg">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BB2kocWTEe6GV74yg1DxAg"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BB3LsMWTEe6GV74yg1DxAg" value="1"/>
+          </ownedEnd>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="__mg58MWQEe6GV74yg1DxAg" name="controlador">
+        <packagedElement xmi:type="uml:Class" xmi:id="_8zcVYMWQEe6GV74yg1DxAg" name="Controlador" visibility="public">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_8zicAMWQEe6GV74yg1DxAg" name="vista" visibility="private" isLeaf="true" type="_8zf_xcWQEe6GV74yg1DxAg" isUnique="false" aggregation="composite" association="__3AiIMWSEe6GV74yg1DxAg"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_jAEEocWVEe6PL5kubjCEzQ" name="vista" visibility="private" type="_XYGf0MWREe6GV74yg1DxAg" aggregation="composite" association="_jAC2gMWVEe6PL5kubjCEzQ"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_qLkpEsWVEe6PL5kubjCEzQ" name="modelo" visibility="private" type="_qPSTIMWPEe6GV74yg1DxAg" aggregation="composite" association="_qLkCAMWVEe6PL5kubjCEzQ"/>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8zmtcMWQEe6GV74yg1DxAg" name="Controlador" specification="_8zjDEMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    Objects.requireNonNull(modelo, &quot;ERROR: El modelo no puede ser nulo.&quot;);
+    Objects.requireNonNull(vista, &quot;ERROR: La vista no puede ser nula.&quot;);
+    this.modelo = modelo;
+    this.vista = vista;
+    this.vista.setControlador(this);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8znUgMWQEe6GV74yg1DxAg" name="comenzar" specification="_8zmtccWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    modelo.comenzar();
+    vista.comenzar();
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8zn7kcWQEe6GV74yg1DxAg" name="terminar" specification="_8zn7kMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    modelo.terminar();
+    vista.terminar();
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8zqX0MWQEe6GV74yg1DxAg" name="insertar" specification="_8zpJsMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    modelo.insertar(cliente);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8zs0EMWQEe6GV74yg1DxAg" name="insertar" specification="_8zrl8MWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    modelo.insertar(vehiculo);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8zupQMWQEe6GV74yg1DxAg" name="insertar" specification="_8ztbIMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    modelo.insertar(revision);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8zwecMWQEe6GV74yg1DxAg" name="buscar" specification="_8zvQUMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    return modelo.buscar(cliente);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8zyTocWQEe6GV74yg1DxAg" name="buscar" specification="_8zxFgMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    return modelo.buscar(vehiculo);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8z0v4MWQEe6GV74yg1DxAg" name="buscar" specification="_8zy6sMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    return modelo.buscar(revision);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8z3zMMWQEe6GV74yg1DxAg" name="modificar" specification="_8z1W8MWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    return modelo.modificar(cliente, nombre, telefono);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8z6PcMWQEe6GV74yg1DxAg" name="anadirHoras" specification="_8z4aQMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    modelo.anadirHoras(revision, horas);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8z8rsMWQEe6GV74yg1DxAg" name="anadirPrecioMaterial" specification="_8z62gMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    modelo.anadirPrecioMaterial(revision, precioMaterial);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8z-g4MWQEe6GV74yg1DxAg" name="cerrar" specification="_8z9SwMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    modelo.cerrar(revision, fechaFin);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8z_vAMWQEe6GV74yg1DxAg" name="borrar" specification="_8z_H8MWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    modelo.borrar(cliente);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_80BkMMWQEe6GV74yg1DxAg" name="borrar" specification="_80AWEMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    modelo.borrar(vehiculo);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_80CyUMWQEe6GV74yg1DxAg" name="borrar" specification="_80CLQMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    modelo.borrar(revision);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_80EAcsWQEe6GV74yg1DxAg" name="getClientes" specification="_80DZYMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    return modelo.getClientes();
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_80F1osWQEe6GV74yg1DxAg" name="getVehiculos" specification="_80EngMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    return modelo.getVehiculos();
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_80IR4MWQEe6GV74yg1DxAg" name="getRevisiones" specification="_80GcsMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    return modelo.getRevisiones();
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_80L8QMWQEe6GV74yg1DxAg" name="getRevisiones" specification="_80I48MWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    return modelo.getRevisiones(cliente);
+</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_80O_kMWQEe6GV74yg1DxAg" name="getRevisiones" specification="_80MjUMWQEe6GV74yg1DxAg">
+            <language>JAVA</language>
+            <body>
+    return modelo.getRevisiones(vehiculo);
+</body>
+          </ownedBehavior>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8zjDEMWQEe6GV74yg1DxAg" name="Controlador" visibility="public" method="_8zmtcMWQEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8zlfUMWQEe6GV74yg1DxAg" name="modelo" type="_qPSTIMWPEe6GV74yg1DxAg"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8zmGYMWQEe6GV74yg1DxAg" name="vista" type="_8zf_xcWQEe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8zmtccWQEe6GV74yg1DxAg" name="comenzar" visibility="public" method="_8znUgMWQEe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8zn7kMWQEe6GV74yg1DxAg" name="terminar" visibility="public" method="_8zn7kcWQEe6GV74yg1DxAg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8zpJsMWQEe6GV74yg1DxAg" name="insertar" visibility="public" method="_8zqX0MWQEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8zpwwMWQEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8zrl8MWQEe6GV74yg1DxAg" name="insertar" visibility="public" method="_8zs0EMWQEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8zsNAMWQEe6GV74yg1DxAg" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8ztbIMWQEe6GV74yg1DxAg" name="insertar" visibility="public" method="_8zupQMWQEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8zuCMMWQEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8zvQUMWQEe6GV74yg1DxAg" name="buscar" visibility="public" method="_8zwecMWQEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8zvQUcWQEe6GV74yg1DxAg" type="_jXDz4MWLEe6GV74yg1DxAg" direction="return"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8zv3YMWQEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8zxFgMWQEe6GV74yg1DxAg" name="buscar" visibility="public" method="_8zyTocWQEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8zxskMWQEe6GV74yg1DxAg" type="_rnFwYMWLEe6GV74yg1DxAg" direction="return"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8zyToMWQEe6GV74yg1DxAg" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8zy6sMWQEe6GV74yg1DxAg" name="buscar" visibility="public" method="_8z0v4MWQEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8zzhwMWQEe6GV74yg1DxAg" type="_rmvyIMWLEe6GV74yg1DxAg" direction="return"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8z0I0MWQEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8z1W8MWQEe6GV74yg1DxAg" name="modificar" visibility="public" method="_8z3zMMWQEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8z1W8cWQEe6GV74yg1DxAg" type="_jhYNgMWLEe6GV74yg1DxAg" direction="return"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8z1-AMWQEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8z2lEMWQEe6GV74yg1DxAg" name="nombre" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8z3MIMWQEe6GV74yg1DxAg" name="telefono" type="_jXQBIMWLEe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8z4aQMWQEe6GV74yg1DxAg" name="anadirHoras" visibility="public" method="_8z6PcMWQEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8z5oYMWQEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8z5oYcWQEe6GV74yg1DxAg" name="horas" type="_JZ9RUMWOEe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8z62gMWQEe6GV74yg1DxAg" name="anadirPrecioMaterial" visibility="public" method="_8z8rsMWQEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8z7dkMWQEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8z8EoMWQEe6GV74yg1DxAg" name="precioMaterial" type="_rmxnUMWLEe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8z9SwMWQEe6GV74yg1DxAg" name="cerrar" visibility="public" method="_8z-g4MWQEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8z9SwcWQEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8z950MWQEe6GV74yg1DxAg" name="fechaFin" type="_rnKo4MWLEe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8z_H8MWQEe6GV74yg1DxAg" name="borrar" visibility="public" method="_8z_vAMWQEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8z_H8cWQEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_80AWEMWQEe6GV74yg1DxAg" name="borrar" visibility="public" method="_80BkMMWQEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_80A9IMWQEe6GV74yg1DxAg" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_80CLQMWQEe6GV74yg1DxAg" name="borrar" visibility="public" method="_80CyUMWQEe6GV74yg1DxAg" raisedException="_rn8E8MWLEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_80CLQcWQEe6GV74yg1DxAg" name="revision" type="_rmvyIMWLEe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_80DZYMWQEe6GV74yg1DxAg" name="getClientes" visibility="public" method="_80EAcsWQEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_80DZYcWQEe6GV74yg1DxAg" type="_jXDz4MWLEe6GV74yg1DxAg" direction="return">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_80EAcMWQEe6GV74yg1DxAg"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_80EAccWQEe6GV74yg1DxAg" value="*"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_80EngMWQEe6GV74yg1DxAg" name="getVehiculos" visibility="public" method="_80F1osWQEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_80FOkMWQEe6GV74yg1DxAg" type="_rnFwYMWLEe6GV74yg1DxAg" direction="return">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_80F1oMWQEe6GV74yg1DxAg"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_80F1ocWQEe6GV74yg1DxAg" value="*"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_80GcsMWQEe6GV74yg1DxAg" name="getRevisiones" visibility="public" method="_80IR4MWQEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_80HDwMWQEe6GV74yg1DxAg" type="_rmvyIMWLEe6GV74yg1DxAg" direction="return">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_80Hq0MWQEe6GV74yg1DxAg"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_80Hq0cWQEe6GV74yg1DxAg" value="*"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_80I48MWQEe6GV74yg1DxAg" name="getRevisiones" visibility="public" method="_80L8QMWQEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_80KHEMWQEe6GV74yg1DxAg" type="_rmvyIMWLEe6GV74yg1DxAg" direction="return">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_80KHEcWQEe6GV74yg1DxAg"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_80KHEsWQEe6GV74yg1DxAg" value="*"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_80LVMMWQEe6GV74yg1DxAg" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_80MjUMWQEe6GV74yg1DxAg" name="getRevisiones" visibility="public" method="_80O_kMWQEe6GV74yg1DxAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_80NxcMWQEe6GV74yg1DxAg" type="_rmvyIMWLEe6GV74yg1DxAg" direction="return">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_80NxccWQEe6GV74yg1DxAg"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_80NxcsWQEe6GV74yg1DxAg" value="*"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_80OYgMWQEe6GV74yg1DxAg" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="__3AiIMWSEe6GV74yg1DxAg" name="A_vista_controlador" memberEnd="_8zicAMWQEe6GV74yg1DxAg __3C-YMWSEe6GV74yg1DxAg">
+          <ownedEnd xmi:type="uml:Property" xmi:id="__3C-YMWSEe6GV74yg1DxAg" name="controlador" type="_8zcVYMWQEe6GV74yg1DxAg" association="__3AiIMWSEe6GV74yg1DxAg">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3C-YcWSEe6GV74yg1DxAg"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3DlcMWSEe6GV74yg1DxAg" value="1"/>
+          </ownedEnd>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_TzrBsMWPEe6GV74yg1DxAg" name="modelo">
+        <packagedElement xmi:type="uml:Package" xmi:id="_-T3GoMWNEe6GV74yg1DxAg" name="negocio"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_Dxq6gMWLEe65drXdt8xEJQ" name="dominio"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_jAC2gMWVEe6PL5kubjCEzQ" memberEnd="_jAEEocWVEe6PL5kubjCEzQ _jAFSwMWVEe6PL5kubjCEzQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jADdkMWVEe6PL5kubjCEzQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jAEEoMWVEe6PL5kubjCEzQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_jAFSwMWVEe6PL5kubjCEzQ" name="controlador" type="_8zcVYMWQEe6GV74yg1DxAg" association="_jAC2gMWVEe6PL5kubjCEzQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_mQnPYMWVEe6PL5kubjCEzQ" memberEnd="_mQn2csWVEe6PL5kubjCEzQ _mQodgsWVEe6PL5kubjCEzQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mQn2cMWVEe6PL5kubjCEzQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mQn2ccWVEe6PL5kubjCEzQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_mQodgsWVEe6PL5kubjCEzQ" name="vista" type="_XYGf0MWREe6GV74yg1DxAg" association="_mQnPYMWVEe6PL5kubjCEzQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_qLkCAMWVEe6PL5kubjCEzQ" visibility="private" memberEnd="_qLkpEsWVEe6PL5kubjCEzQ _qLl3MMWVEe6PL5kubjCEzQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qLkpEMWVEe6PL5kubjCEzQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qLkpEcWVEe6PL5kubjCEzQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_qLl3MMWVEe6PL5kubjCEzQ" name="controlador" visibility="private" type="_8zcVYMWQEe6GV74yg1DxAg" association="_qLkCAMWVEe6PL5kubjCEzQ"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_1thqUMWKEe65drXdt8xEJQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1tnw8MWKEe65drXdt8xEJQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/PapyrusJava/1#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PapyrusJava_PROFILES/PapyrusJava.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_1ttQgMWKEe65drXdt8xEJQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1tvFsMWKEe65drXdt8xEJQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1tvFscWKEe65drXdt8xEJQ" key="Version" value="0.0.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1tvFssWKEe65drXdt8xEJQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1tvFs8WKEe65drXdt8xEJQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1tvFtMWKEe65drXdt8xEJQ" key="Date" value="2023-10-27"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1tvFtcWKEe65drXdt8xEJQ" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1tt3kMWKEe65drXdt8xEJQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="/TallerMecanico/src/main/resources/uml/record.profile.uml#_Dg6YwHSZEe6RyuvFF9iE1Q"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="/TallerMecanico/src/main/resources/uml/record.profile.uml#_jHGY0HSYEe6RyuvFF9iE1Q"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_FhqRcMWLEe65drXdt8xEJQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Fhq4gMWLEe65drXdt8xEJQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/Codegen/1#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://Codegen_PROFILES/Codegen.profile.uml#_fPDsIBa-EearhdjjJ6cVzQ"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_FhrfkMWLEe65drXdt8xEJQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_FhsGoMWLEe65drXdt8xEJQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <Codegen:External xmi:id="_jejjAMWLEe6GV74yg1DxAg" name="java.lang.String" base_Classifier="_jXQBIMWLEe6GV74yg1DxAg"/>
+  <standard:Create xmi:id="_jffXIMWLEe6GV74yg1DxAg" base_BehavioralFeature="_jfVmIMWLEe6GV74yg1DxAg"/>
+  <standard:Create xmi:id="_jgBioMWLEe6GV74yg1DxAg" base_BehavioralFeature="_jf4_wMWLEe6GV74yg1DxAg"/>
+  <Codegen:External xmi:id="_jiF_MMWLEe6GV74yg1DxAg" name="java.lang.Object" base_Classifier="_jh-DYMWLEe6GV74yg1DxAg"/>
+  <Codegen:External xmi:id="_rm90kMWLEe6GV74yg1DxAg" name="java.time.format.DateTimeFormatter" base_Classifier="_rm3t8cWLEe6GV74yg1DxAg"/>
+  <Codegen:External xmi:id="_rnD7MMWLEe6GV74yg1DxAg" name="org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente" base_Classifier="_jXDz4MWLEe6GV74yg1DxAg"/>
+  <Codegen:External xmi:id="_rnIzsMWLEe6GV74yg1DxAg" name="org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo" base_Classifier="_rnFwYMWLEe6GV74yg1DxAg"/>
+  <Codegen:External xmi:id="_rnOTQMWLEe6GV74yg1DxAg" name="java.time.LocalDate" base_Classifier="_rnKo4MWLEe6GV74yg1DxAg"/>
+  <standard:Create xmi:id="_rnWPEMWLEe6GV74yg1DxAg" base_BehavioralFeature="_rnSksMWLEe6GV74yg1DxAg"/>
+  <standard:Create xmi:id="_rnex8MWLEe6GV74yg1DxAg" base_BehavioralFeature="_rnbHkMWLEe6GV74yg1DxAg"/>
+  <Codegen:External xmi:id="_roAWYMWLEe6GV74yg1DxAg" name="javax.naming.OperationNotSupportedException" base_Classifier="_rn8E8MWLEe6GV74yg1DxAg"/>
+  <standard:Create xmi:id="__VIoUMWLEe6GV74yg1DxAg" base_BehavioralFeature="__VDv0MWLEe6GV74yg1DxAg"/>
+  <record:Record xmi:id="_ickPoMWNEe6GV74yg1DxAg" base_Class="_rnFwYMWLEe6GV74yg1DxAg"/>
+  <standard:Create xmi:id="_IS7-4MWOEe6GV74yg1DxAg" base_BehavioralFeature="_IS47kcWOEe6GV74yg1DxAg"/>
+  <Codegen:External xmi:id="_JZmsAMWOEe6GV74yg1DxAg" name="org.iesalandalus.programacion.tallermecanico.modelo.dominio.Revision" base_Classifier="_rmvyIMWLEe6GV74yg1DxAg"/>
+  <standard:Create xmi:id="_JZrkgMWOEe6GV74yg1DxAg" base_BehavioralFeature="_JZpvUMWOEe6GV74yg1DxAg"/>
+  <standard:Create xmi:id="_KW-TMMWOEe6GV74yg1DxAg" base_BehavioralFeature="_KW728MWOEe6GV74yg1DxAg"/>
+  <Codegen:External xmi:id="_qPVWcMWPEe6GV74yg1DxAg" name="org.iesalandalus.programacion.tallermecanico.modelo.negocio.Clientes" base_Classifier="_IS2fUMWOEe6GV74yg1DxAg"/>
+  <Codegen:External xmi:id="_qPZn4MWPEe6GV74yg1DxAg" name="org.iesalandalus.programacion.tallermecanico.modelo.negocio.Vehiculos" base_Classifier="_KW5asMWOEe6GV74yg1DxAg"/>
+  <Codegen:External xmi:id="_qPcrMMWPEe6GV74yg1DxAg" name="org.iesalandalus.programacion.tallermecanico.modelo.negocio.Revisiones" base_Classifier="_JZjosMWOEe6GV74yg1DxAg"/>
+  <standard:Create xmi:id="_qPgVkMWPEe6GV74yg1DxAg" base_BehavioralFeature="_qPd5UMWPEe6GV74yg1DxAg"/>
+  <Codegen:External xmi:id="_8zeKkMWQEe6GV74yg1DxAg" name="org.iesalandalus.programacion.tallermecanico.modelo.Modelo" base_Classifier="_qPSTIMWPEe6GV74yg1DxAg"/>
+  <Codegen:External xmi:id="_8zh08MWQEe6GV74yg1DxAg" name="org.iesalandalus.programacion.tallermecanico.vista.Vista" base_Classifier="_8zf_xcWQEe6GV74yg1DxAg"/>
+  <standard:Create xmi:id="_8zk4QMWQEe6GV74yg1DxAg" base_BehavioralFeature="_8zjDEMWQEe6GV74yg1DxAg"/>
+  <Codegen:External xmi:id="_L0RQQMWREe6GV74yg1DxAg" name="java.util.Map" base_Classifier="_L0OM8cWREe6GV74yg1DxAg"/>
+  <standard:Create xmi:id="_L0XW4MWREe6GV74yg1DxAg" base_BehavioralFeature="_L0UTkMWREe6GV74yg1DxAg"/>
+  <Codegen:External xmi:id="_XYI8EMWREe6GV74yg1DxAg" name="org.iesalandalus.programacion.tallermecanico.controlador.Controlador" base_Classifier="_XYHG4cWREe6GV74yg1DxAg"/>
+  <Codegen:External xmi:id="_XYN0kMWREe6GV74yg1DxAg" name="Opcion" base_Classifier="_L0AKgMWREe6GV74yg1DxAg"/>
+  <standard:Create xmi:id="_YdRYIMWREe6GV74yg1DxAg" base_BehavioralFeature="_YdPi8cWREe6GV74yg1DxAg"/>
+</xmi:XMI>
