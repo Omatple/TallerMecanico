@@ -6,12 +6,9 @@ import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Revisiones {
-
     private final List<Revision> coleccionRevisiones;
 
     public Revisiones() {
@@ -23,23 +20,23 @@ public class Revisiones {
     }
 
     public List<Revision> get(Cliente cliente) {
-        List<Revision> revisionesCliente = new ArrayList<>();
+        List<Revision> coleccionRevisionesCliente = new ArrayList<>();
         for (Revision revision : coleccionRevisiones) {
             if (revision.getCliente().equals(cliente)) {
-                revisionesCliente.add(revision);
+                coleccionRevisionesCliente.add(revision);
             }
         }
-        return revisionesCliente;
+        return coleccionRevisionesCliente;
     }
 
     public List<Revision> get(Vehiculo vehiculo) {
-        List<Revision> revisionesVehiculo = new ArrayList<>();
+        List<Revision> coleccionRevisionesVehiculo = new ArrayList<>();
         for (Revision revision : coleccionRevisiones) {
             if (revision.getVehiculo().equals(vehiculo)) {
-                revisionesVehiculo.add(revision);
+                coleccionRevisionesVehiculo.add(revision);
             }
         }
-        return revisionesVehiculo;
+        return coleccionRevisionesVehiculo;
     }
 
     public void insertar(Revision revision) throws OperationNotSupportedException {
@@ -50,50 +47,53 @@ public class Revisiones {
 
     private void comprobarRevision(Cliente cliente, Vehiculo vehiculo, LocalDate fechaRevision) throws OperationNotSupportedException {
         for (Revision revision : coleccionRevisiones) {
-            if (!revision.estaCerrada()) {
-                if (revision.getCliente().equals(cliente)) {
+            if (revision.getCliente().equals(cliente)) {
+                if (!revision.estaCerrada()) {
                     throw new OperationNotSupportedException("El cliente tiene otra revisión en curso.");
-                } else if (revision.getVehiculo().equals(vehiculo)) {
-                    throw new OperationNotSupportedException("El vehículo está actualmente en revisión.");
-                }
-            } else {
-                if (revision.getCliente().equals(cliente) && !fechaRevision.isAfter(revision.getFechaFin())) {
+                } else if (!fechaRevision.isAfter(revision.getFechaFin())) {
                     throw new OperationNotSupportedException("El cliente tiene una revisión posterior.");
-                } else if (revision.getVehiculo().equals(vehiculo) && !fechaRevision.isAfter(revision.getFechaFin())) {
+                }
+            }
+            if (revision.getVehiculo().equals(vehiculo)) {
+                if (!revision.estaCerrada()) {
+                    throw new OperationNotSupportedException("El vehículo está actualmente en revisión.");
+                } else if (!fechaRevision.isAfter(revision.getFechaFin())) {
                     throw new OperationNotSupportedException("El vehículo tiene una revisión posterior.");
                 }
             }
         }
     }
 
-    public void anadirHoras(Revision revision, int horas) throws OperationNotSupportedException {
-        Revision revisionEncontrada = getRevision(revision);
-        revisionEncontrada.anadirHoras(horas);
-    }
-
     private Revision getRevision(Revision revision) throws OperationNotSupportedException {
         Objects.requireNonNull(revision, "No puedo operar sobre una revisión nula.");
-        Revision revisionEncontrada = buscar(revision);
-        if (revisionEncontrada == null) {
+        if (!coleccionRevisiones.contains(revision)) {
             throw new OperationNotSupportedException("No existe ninguna revisión igual.");
         }
-        return revisionEncontrada;
+        return coleccionRevisiones.get(coleccionRevisiones.indexOf(revision));
+    }
+
+    public void anadirHoras(Revision revision, int horas) throws OperationNotSupportedException {
+        if (horas < 1) {
+            throw new IllegalArgumentException("No puedes ingresar horas negativas.");
+        }
+        getRevision(revision).anadirHoras(horas);
     }
 
     public void anadirPrecioMaterial(Revision revision, float precioMaterial) throws OperationNotSupportedException {
-        Revision revisionEncontrada = getRevision(revision);
-        revisionEncontrada.anadirPrecioMaterial(precioMaterial);
+        if (precioMaterial <= 0) {
+            throw new IllegalArgumentException("El precio del material no puede ser inferior a 0.");
+        }
+        getRevision(revision).anadirPrecioMaterial(precioMaterial);
     }
 
     public void cerrar(Revision revision, LocalDate fechaFin) throws OperationNotSupportedException {
-        Revision revisionEncontrada = getRevision(revision);
-        revisionEncontrada.cerrar(fechaFin);
+        Objects.requireNonNull(fechaFin, "No puedo operar sobre una fecha de fin nula.");
+        getRevision(revision).cerrar(fechaFin);
     }
 
     public Revision buscar(Revision revision) {
         Objects.requireNonNull(revision, "No se puede buscar una revisión nula.");
-        int indice = coleccionRevisiones.indexOf(revision);
-        return (indice == -1) ? null : coleccionRevisiones.get(indice);
+        return (coleccionRevisiones.contains(revision)) ? coleccionRevisiones.get(coleccionRevisiones.indexOf(revision)) : null;
     }
 
     public void borrar(Revision revision) throws OperationNotSupportedException {
@@ -101,6 +101,6 @@ public class Revisiones {
         if (!coleccionRevisiones.contains(revision)) {
             throw new OperationNotSupportedException("No existe ninguna revisión igual.");
         }
-        coleccionRevisiones.remove(revision);
+        coleccionRevisiones.remove(coleccionRevisiones.get(coleccionRevisiones.indexOf(revision)));
     }
 }

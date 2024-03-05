@@ -1,21 +1,24 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.dominio;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public record Vehiculo(String marca, String modelo, String matricula) {
-
-    private static final String ER_MARCA = "[A-Z][a-z]+(?:[- ]?[A-Z][a-z]+)?|[A-Z]+";
-    private static final String ER_MATRICULA = "\\d{4}[^\\W_AEIOUa-z]{3}";
+    private static final String ER_MARCA = "^[A-Z][a-z]+(?:[- ][A-Z][a-z]+){0,5}$|^[A-Z]+$";
+    private static final String ER_MATRICULA = "^\\d{4}[^\\Wa-z0-9AEIOU]{3}$";
 
     public Vehiculo {
-        validarMarca(marca);
+        valoidarMarca(marca);
         validarModelo(modelo);
         validarMatricula(matricula);
     }
 
-    private void validarMarca(String marca) {
+    private void valoidarMarca(String marca) {
         Objects.requireNonNull(marca, "La marca no puede ser nula.");
-        if (!marca.matches(ER_MARCA)) {
+        Pattern patron = Pattern.compile(ER_MARCA);
+        Matcher comparador = patron.matcher(marca);
+        if (!comparador.matches()) {
             throw new IllegalArgumentException("La marca no tiene un formato válido.");
         }
     }
@@ -29,19 +32,22 @@ public record Vehiculo(String marca, String modelo, String matricula) {
 
     private void validarMatricula(String matricula) {
         Objects.requireNonNull(matricula, "La matrícula no puede ser nula.");
-        if (!matricula.matches(ER_MATRICULA)) {
+        Pattern patron = Pattern.compile(ER_MATRICULA);
+        Matcher comparador = patron.matcher(matricula);
+        if (!comparador.matches()) {
             throw new IllegalArgumentException("La matrícula no tiene un formato válido.");
         }
     }
 
-    public static Vehiculo get(String matricula)  {
-        return new Vehiculo("Seat", "León", matricula);
+    public static Vehiculo get(String matricula) {
+        return new Vehiculo("Marca Predeterminada", "Modelo Predeterminado", matricula);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Vehiculo vehiculo)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vehiculo vehiculo = (Vehiculo) o;
         return Objects.equals(matricula, vehiculo.matricula);
     }
 
@@ -52,7 +58,6 @@ public record Vehiculo(String marca, String modelo, String matricula) {
 
     @Override
     public String toString() {
-        return String.format("%s %s - %s", marca, modelo, matricula);
+        return String.format("%s %s - %s", this.marca, this.modelo, this.matricula);
     }
-
 }

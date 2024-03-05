@@ -28,8 +28,7 @@ public class Vehiculos {
 
     public Vehiculo buscar(Vehiculo vehiculo) {
         Objects.requireNonNull(vehiculo, "No se puede buscar un vehículo nulo.");
-        int indice = coleccionVehiculos.indexOf(vehiculo);
-        return (indice == -1) ? null : coleccionVehiculos.get(indice);
+        return (coleccionVehiculos.contains(vehiculo)) ? coleccionVehiculos.get(coleccionVehiculos.indexOf(vehiculo)) : null;
     }
 
     public void borrar(Vehiculo vehiculo) throws OperationNotSupportedException {
@@ -37,6 +36,6 @@ public class Vehiculos {
         if (!coleccionVehiculos.contains(vehiculo)) {
             throw new OperationNotSupportedException("No existe ningún vehículo con esa matrícula.");
         }
-        coleccionVehiculos.remove(vehiculo);
+        coleccionVehiculos.remove(coleccionVehiculos.get(coleccionVehiculos.indexOf(vehiculo)));
     }
 }

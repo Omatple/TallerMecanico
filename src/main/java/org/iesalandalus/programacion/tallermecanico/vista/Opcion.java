@@ -4,54 +4,54 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Opcion {
-    INSERTAR_CLIENTE(11, "Insertar cliente."),
-    BUSCAR_CLIENTE(12, "Buscar cliente."),
-    BORRAR_CLIENTE(13, "Borrar cliente."),
-    LISTAR_CLIENTES(14, "Listar clientes."),
-    MODIFICAR_CLIENTE(15, "Modificar cliente."),
-    INSERTAR_VEHICULO(21, "Insertar vehículo."),
-    BUSCAR_VEHICULO(22, "Buscar vehículo."),
-    BORRAR_VEHICULO(23, "Borrar vehículo."),
-    LISTAR_VEHICULOS(24, "Listar vehículos."),
-    INSERTAR_REVISION(31, "Insertar revisión."),
-    BUSCAR_REVISION(32, "Buscar revisión."),
-    BORRAR_REVISION(33, "Borrar revisión."),
-    LISTAR_REVISIONES(34, "Listar revisiones."),
-    LISTAR_REVISIONES_CLIENTE(35, "Listar revisiones de un cliente."),
-    LISTAR_REVISIONES_VEHICULO(36, "Listar revisiones de un vehículo."),
-    ANADIR_HORAS_REVISION(37, "Añadir horas a una revisión."),
-    ANADIR_PRECIO_MATERIAL_REVISION(38, "Añadir precio del material a una revisión."),
-    CERRAR_REVISION(39, "Cerrar revisión."),
-    SALIR(0, "Salir.");
+    INSERTAR_CLIENTE("Insertar cliente", 1),
+    BUSCAR_CLIENTE("Buscar cliente", 2),
+    BORRAR_CLIENTE("Borrar cliente", 3),
+    LISTAR_CLIENTES("Listar clientes", 4),
+    MODIFICAR_CLIENTE("Modificar cliente", 5),
+    INSERTAR_VEHICULO("Insertar vehículo", 6),
+    BUSCAR_VEHICULO("Buscar vehículo", 7),
+    BORRAR_VEHICULO("Borrar vehículo", 8),
+    LISTAR_VEHICULOS("Listar vehículos", 9),
+    INSERTAR_REVISION("Insertar revisión", 10),
+    BUSCAR_REVISION("Buscar revisión", 11),
+    BORRAR_REVISION("Borrar revisión", 12),
+    LISTAR_REVISIONES("Listar revisiones", 13),
+    LISTAR_REVISIONES_CLIENTE("Listar revisiones cliente", 14),
+    LISTAR_REVISIONES_VEHICULO("Listar revisiones vehículo", 15),
+    ANADIR_HORAS_REVISION("Añadir horas revisión", 16),
+    ANADIR_PRECIO_MATERIAL_REVISION("Añadir precio material revisión", 17),
+    CERRAR_REVISION("Cerrar revisión", 18),
+    SALIR("Salir", 19);
 
+    private final String mensaje;
     private final int numeroOpcion;
-    private final String texto;
     private static final Map<Integer, Opcion> opciones = new HashMap<>();
 
     static {
-        for (Opcion opcion : values()) {
+        for (Opcion opcion : Opcion.values()) {
             opciones.put(opcion.numeroOpcion, opcion);
         }
     }
 
-    private Opcion(int numeroOpcion, String texto) {
+    Opcion(String mensaje, int numeroOpcion) {
+        this.mensaje = mensaje;
         this.numeroOpcion = numeroOpcion;
-        this.texto = texto;
     }
 
     public static boolean esValida(int numeroOpcion) {
-        return opciones.containsKey(numeroOpcion);
+        return (opciones.containsKey(numeroOpcion));
     }
 
     public static Opcion get(int numeroOpcion) {
         if (!esValida(numeroOpcion)) {
-            throw new IllegalArgumentException("El número de la opción no es correcto.");
+            throw new IllegalArgumentException("Número de la opción invalido. Inténtelo de nuevo.");
         }
         return opciones.get(numeroOpcion);
     }
 
     @Override
     public String toString() {
-        return String.format("%d.- %s%n", numeroOpcion, texto);
+        return String.format("%s.- %s", this.numeroOpcion, this.mensaje);
     }
 }
