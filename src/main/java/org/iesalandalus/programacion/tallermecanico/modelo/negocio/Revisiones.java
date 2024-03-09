@@ -1,6 +1,7 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.negocio;
 
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Mecanico;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Revision;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 
@@ -48,14 +49,14 @@ public class Revisiones {
     private void comprobarRevision(Cliente cliente, Vehiculo vehiculo, LocalDate fechaRevision) throws OperationNotSupportedException {
         for (Revision revision : coleccionRevisiones) {
             if (revision.getCliente().equals(cliente)) {
-                if (!revision.estaCerrada()) {
+                if (!revision.estaCerrado()) {
                     throw new OperationNotSupportedException("El cliente tiene otra revisión en curso.");
                 } else if (!fechaRevision.isAfter(revision.getFechaFin())) {
                     throw new OperationNotSupportedException("El cliente tiene una revisión posterior.");
                 }
             }
             if (revision.getVehiculo().equals(vehiculo)) {
-                if (!revision.estaCerrada()) {
+                if (!revision.estaCerrado()) {
                     throw new OperationNotSupportedException("El vehículo está actualmente en revisión.");
                 } else if (!fechaRevision.isAfter(revision.getFechaFin())) {
                     throw new OperationNotSupportedException("El vehículo tiene una revisión posterior.");
@@ -79,11 +80,11 @@ public class Revisiones {
         getRevision(revision).anadirHoras(horas);
     }
 
-    public void anadirPrecioMaterial(Revision revision, float precioMaterial) throws OperationNotSupportedException {
+    public void anadirPrecioMaterial(Mecanico mecanico, float precioMaterial) throws OperationNotSupportedException {
         if (precioMaterial <= 0) {
             throw new IllegalArgumentException("El precio del material no puede ser inferior a 0.");
         }
-        getRevision(revision).anadirPrecioMaterial(precioMaterial);
+        //getRevision(mecanico).anadirPrecioMaterial(precioMaterial);
     }
 
     public void cerrar(Revision revision, LocalDate fechaFin) throws OperationNotSupportedException {

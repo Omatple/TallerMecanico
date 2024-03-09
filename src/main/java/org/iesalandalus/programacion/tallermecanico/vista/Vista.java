@@ -209,7 +209,7 @@ public class Vista {
                     mensajeRevision = "No se ha encontrado ningúna revisión con esa información. Por favor, inténtalo de nuevo.";
                 } else {
                     for (Revision revisionVehiculo : revisionesVehiculo) {
-                        if (!revisionVehiculo.estaCerrada()) {
+                        if (!revisionVehiculo.estaCerrado()) {
                             yaTieneFechaCierre = false;
                             revisionAnadirHoras = revisionVehiculo;
                         }
@@ -251,7 +251,7 @@ public class Vista {
                     mensajeRevision = "No se ha encontrado ningúna revisión con esa información. Por favor, inténtalo de nuevo.";
                 } else {
                     for (Revision revisionVehiculo : revisionesVehiculo) {
-                        if (!revisionVehiculo.estaCerrada()) {
+                        if (!revisionVehiculo.estaCerrado()) {
                             yaTieneFechaCierre = false;
                             revisionAnadirPrecioMaterial = revisionVehiculo;
                         }
@@ -268,10 +268,10 @@ public class Vista {
                 saltaExcepcion = true;
                 while (saltaExcepcion) {
                     try {
-                        controlador.anadirPrecioMaterial(revisionAnadirPrecioMaterial, Consola.leerPrecioMaterial());
+                        //controlador.anadirPrecioMaterial(revisionAnadirPrecioMaterial, Consola.leerPrecioMaterial());
                         mensajeRevision = String.format("¡El precio del material ha sido añadido exitosamente a la revisión! A continuación se muestran los detalles: %s", controlador.buscar(revisionAnadirPrecioMaterial));
                         saltaExcepcion = false;
-                    } catch (OperationNotSupportedException | IllegalArgumentException e) {
+                    } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
                     }
                 }
@@ -293,7 +293,7 @@ public class Vista {
                     mensajeRevision = "No se ha encontrado ningúna revisión con esa información. Por favor, inténtalo de nuevo.";
                 } else {
                     for (Revision revisionVehiculo : revisionesVehiculo) {
-                        if (!revisionVehiculo.estaCerrada()) {
+                        if (!revisionVehiculo.estaCerrado()) {
                             yaTieneFechaCierre = false;
                             revisionACerrar = revisionVehiculo;
                         }

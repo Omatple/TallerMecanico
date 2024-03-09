@@ -2,6 +2,7 @@ package org.iesalandalus.programacion.tallermecanico.controlador;
 
 import org.iesalandalus.programacion.tallermecanico.modelo.Modelo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Mecanico;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Revision;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 import org.iesalandalus.programacion.tallermecanico.vista.Vista;
@@ -66,8 +67,8 @@ public class Controlador {
         this.modelo.anadirHoras(revision, horas);
     }
 
-    public void anadirPrecioMaterial(Revision revision, float precioMaterial) throws OperationNotSupportedException {
-        this.modelo.anadirPrecioMaterial(revision, precioMaterial);
+    public void anadirPrecioMaterial(Mecanico mecanico, float precioMaterial) throws OperationNotSupportedException {
+        this.modelo.anadirPrecioMaterial(mecanico, precioMaterial);
     }
 
     public void cerrar(Revision revision, LocalDate fechaFin) throws OperationNotSupportedException {

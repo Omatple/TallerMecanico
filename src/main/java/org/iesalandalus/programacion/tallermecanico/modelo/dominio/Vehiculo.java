@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public record Vehiculo(String marca, String modelo, String matricula) {
-    private static final String ER_MARCA = "^[A-Z][a-z]+(?:[- ][A-Z][a-z]+){0,5}$|^[A-Z]+$";
+    private static final String ER_MARCA = "^[A-Z][a-z]+(?:[- ]?[A-Z][a-z]+){0,5}$|^[A-Z]+$";
     private static final String ER_MATRICULA = "^\\d{4}[^\\Wa-z0-9AEIOU]{3}$";
 
     public Vehiculo {
