@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Controlador {
+    /*
     private final Modelo modelo;
 
     private final Vista vista;
@@ -106,4 +107,5 @@ public class Controlador {
     public List<Revision> getRevisiones(Vehiculo vehiculo) {
         return modelo.getRevisiones(vehiculo);
     }
+     */
 }

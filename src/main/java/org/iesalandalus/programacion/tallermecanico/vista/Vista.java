@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Vista {
+    /*
     private Controlador controlador;
 
     public void setControlador(Controlador controlador) {
@@ -493,4 +494,6 @@ public class Vista {
     private void salir() {
         controlador.terminar();
     }
+
+     */
 }
