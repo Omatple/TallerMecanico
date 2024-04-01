@@ -131,8 +131,7 @@ public abstract class Trabajo {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Trabajo trabajo = (Trabajo) o;
+        if (!(o instanceof Trabajo trabajo)) return false;
         return Objects.equals(fechaInicio, trabajo.fechaInicio) && Objects.equals(cliente, trabajo.cliente) && Objects.equals(vehiculo, trabajo.vehiculo);
     }
 
