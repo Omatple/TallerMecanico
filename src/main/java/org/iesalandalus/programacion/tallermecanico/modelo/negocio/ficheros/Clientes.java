@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class Clientes implements IClientes {
 
-    private static final String FICHERO_CLIENTES = String.format("%s%s%s", "datos", File.separator, "clientes.xml");
+    private static final String FICHERO_CLIENTES = String.format("%s%s%s%s%s", "datos", File.separator, "ficheros", File.separator, "clientes.xml");
     private static final String RAIZ = "clientes";
     private static final String CLIENTE = "cliente";
     private static final String NOMBRE = "nombre";
@@ -54,7 +54,7 @@ public class Clientes implements IClientes {
                 if (cliente.getNodeType() == Node.ELEMENT_NODE) {
                     insertar(getCliente((Element) cliente));
                 }
-            } catch (OperationNotSupportedException|IllegalArgumentException|NullPointerException e) {
+            } catch (OperationNotSupportedException | IllegalArgumentException | NullPointerException e) {
                 System.out.printf("Error al leer el cliente %d. --> %s%n", i, e.getMessage());
             }
         }

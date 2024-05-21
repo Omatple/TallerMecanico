@@ -17,6 +17,11 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.mockito:mockito-inline:+'
     implementation 'com.github.JRJimenezReyes:entrada:1.0.3'
+    // Driver para mariaDB
+    implementation 'org.mariadb.jdbc:mariadb-java-client:+'
+    implementation 'org.slf4j:slf4j-simple:+'
+    // Driver para mongoDB
+    implementation 'org.mongodb:mongodb-driver-sync:+'
 }
 
 javafx {

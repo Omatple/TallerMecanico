@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Mecanico;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Revision;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.TipoTrabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controlador;
@@ -88,6 +89,8 @@ public class VentanaTrabajosCliente extends Controlador {
 
     }
 
+    void
+
     @FXML
     void initialize() {
         btlistar.setVisible(false);
@@ -115,13 +118,17 @@ public class VentanaTrabajosCliente extends Controlador {
         });
         tcHoras.setCellValueFactory(new PropertyValueFactory<>("horas"));
         tcPrecioMaterial.setCellValueFactory(c -> {
-            String precioMaterial = String.format("%s €", ((Mecanico) c.getValue()).getPrecioMaterial());
+            String precioMaterial = "";
+            if (c.getValue() instanceof Mecanico mecanico) {
+                precioMaterial = String.format("%s €", mecanico.getPrecioMaterial());
+            }
             return new SimpleObjectProperty<>(precioMaterial);
         });
         tcPrecioFinal.setCellValueFactory(c -> {
             String precio = String.format("%s €", c.getValue().getPrecio());
             return new SimpleObjectProperty<>(precio);
         });
+        tvTrabajos.getSelectionModel().selectionModeProperty().addListener(observable -> );
     }
 
 }

@@ -1,0 +1,14 @@
+services:
+  tallermecanico-mongodb:
+    container_name: tallermecanico-mongoDB
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_DATABASE=tallerMecanico
+      - MONGO_INITDB_ROOT_USERNAME=taller
+      - MONGO_INITDB_ROOT_PASSWORD=taller
+    volumes:
+      - volumen-tallermecanico:/data/db
+    ports:
+      - 27017:27017
+volumes:
+  volumen-tallermecanico:
