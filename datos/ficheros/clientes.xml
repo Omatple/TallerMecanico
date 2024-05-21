@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clientes>
+    <cliente dni="77152572S" nombre="Juan Javier Segura Salinas" telefono="643284852"/>
+    <cliente dni="11111111H" nombre="Pepino" telefono="010011001"/>
+    <cliente dni="76657112K" nombre="Ángel Martínez Otero" telefono="624476933"/>
+</clientes>
