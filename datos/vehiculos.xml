@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<vehiculos>
+    <vehiculo marca="SEAT" matricula="9171LMR" modelo="Ibiza 2002"/>
+    <vehiculo marca="BMW" matricula="1981DNY" modelo="320 E46"/>
+</vehiculos>

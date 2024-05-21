@@ -1,117 +1,73 @@
 package org.iesalandalus.programacion.tallermecanico.controlador;
 
+import org.iesalandalus.programacion.tallermecanico.modelo.FabricaModelo;
 import org.iesalandalus.programacion.tallermecanico.modelo.Modelo;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Mecanico;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
+import org.iesalandalus.programacion.tallermecanico.modelo.negocio.FabricaFuenteDatos;
+import org.iesalandalus.programacion.tallermecanico.vista.FabricaVista;
 import org.iesalandalus.programacion.tallermecanico.vista.Vista;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 
-import javax.naming.OperationNotSupportedException;
 import java.util.Objects;
 
 public class Controlador implements IControlador {
-    private final Modelo modelo;
 
+    private final Modelo modelo;
     private final Vista vista;
 
-    public Controlador(Modelo modelo, Vista vista) {
-        Objects.requireNonNull(modelo, "El modelo no puede ser nulo");
-        Objects.requireNonNull(vista, "La vista no puede ser nula");
-        this.modelo = modelo;
-        this.vista = vista;
+    public Controlador(FabricaModelo fabricaModelo, FabricaFuenteDatos fabricaFuenteDatos, FabricaVista fabricaVista) {
+        Objects.requireNonNull(fabricaModelo, "ERROR: La fábrica del modelo no puede ser nula.");
+        Objects.requireNonNull(fabricaFuenteDatos, "ERROR: La fábrica de la fuente de datos no puede ser nula.");
+        Objects.requireNonNull(fabricaVista, "ERROR: La fábrica de la vista no puede ser nula.");
+        this.modelo = fabricaModelo.crear(fabricaFuenteDatos);
+        this.vista = fabricaVista.crear();
         this.vista.getGestorEventos().suscribir(this, Evento.values());
     }
 
     @Override
     public void comenzar() {
-        this.modelo.comenzar();
-        this.vista.comenzar();
+        modelo.comenzar();
+        vista.comenzar();
     }
 
     @Override
     public void terminar() {
-        this.modelo.terminar();
-        this.vista.terminar();
+        modelo.terminar();
+        vista.terminar();
     }
 
     @Override
     public void actualizar(Evento evento) {
-        String texto = "";
-        boolean exito = false;
         try {
+            String resultado = "";
             switch (evento) {
-                case INSERTAR_CLIENTE -> {
-                    modelo.insertar(vista.leerCliente());
-                    texto = "¡Cliente insertado exitosamente en el sistema!";
-                }
+                case INSERTAR_CLIENTE -> { modelo.insertar(vista.leerCliente()); resultado = "Cliente insertado correctamente."; }
+                case INSERTAR_VEHICULO -> { modelo.insertar(vista.leerVehiculo()); resultado = "Vehículo insertado correctamente"; }
+                case INSERTAR_REVISION -> { modelo.insertar(vista.leerRevision()); resultado = "Trabajo de revisión insertado correctamente."; }
+                case INSERTAR_MECANICO -> { modelo.insertar(vista.leerMecanico()); resultado = "Trabajo mecánico insertado correctamente."; }
                 case BUSCAR_CLIENTE -> vista.mostrarCliente(modelo.buscar(vista.leerClienteDni()));
-                case BORRAR_CLIENTE -> {
-                    modelo.borrar(vista.leerClienteDni());
-                    texto = "¡Cliente eliminado exitosamente del sistema!";
-                }
-                case MODIFICAR_CLIENTE -> {
-                    modelo.modificar(modelo.buscar(vista.leerClienteDni()), vista.leerNuevoNombre(), vista.leerNuevoTelefono());
-                    texto = "¡Cliente modificado exitosamente en el sistema!";
-                }
-                case LISTAR_CLIENTES -> vista.mostrarClientes(modelo.getClientes());
-                case INSERTAR_VEHICULO -> {
-                    modelo.insertar(vista.leerVehiculo());
-                    texto = "¡Vehículo insertado exitosamente en el sistema!";
-                }
                 case BUSCAR_VEHICULO -> vista.mostrarVehiculo(modelo.buscar(vista.leerVehiculoMatricula()));
-
-                case BORRAR_VEHICULO -> {
-                    modelo.borrar(vista.leerVehiculoMatricula());
-                    texto = "¡Vehículo eliminado exitosamente del sistema!";
-                }
+                case BUSCAR_TRABAJO -> vista.mostrarTrabajo(modelo.buscar(vista.leerRevision()));
+                case MODIFICAR_CLIENTE -> resultado = (modelo.modificar(vista.leerClienteDni(), vista.leerNuevoNombre(), vista.leerNuevoTelefono())) ? "El cliente se ha modificado correctamente." : "El cliente no se ha modificado.";
+                case ANADIR_HORAS_TRABAJO -> { modelo.anadirHoras(vista.leerTrabajoVehiculo(), vista.leerHoras()); resultado = "Horas añadidas correctamente."; }
+                case ANADIR_PRECIO_MATERIAL_TRABAJO -> { modelo.anadirPrecioMaterial(vista.leerTrabajoVehiculo(), vista.leerPrecioMaterial()); resultado = "Precio del material añadido correctamente."; }
+                case CERRAR_TRABAJO -> { modelo.cerrar(vista.leerTrabajoVehiculo(), vista.leerFechaCierre()); resultado = "Trabajo cerrado correctamente."; }
+                case BORRAR_CLIENTE -> { modelo.borrar(vista.leerClienteDni()); resultado = "Cliente eliminado correctamente."; }
+                case BORRAR_VEHICULO -> { modelo.borrar(vista.leerVehiculoMatricula()); resultado = "Vehículo eliminado correctamente."; }
+                case BORRAR_TRABAJO -> { modelo.borrar(vista.leerRevision()); resultado = "Trabajo eliminado correctamente."; }
+                case LISTAR_CLIENTES -> vista.mostrarClientes(modelo.getClientes());
                 case LISTAR_VEHICULOS -> vista.mostrarVehiculos(modelo.getVehiculos());
-
-                case INSERTAR_REVISION -> {
-                    modelo.insertar(vista.leerRevision());
-                    texto = "¡Revisión insertado exitosamente en el sistema!";
-                }
-                case INSERTAR_MECANICO -> {
-                    modelo.insertar(vista.leerMecanico());
-                    texto = "¡Trabajo mecánico insertado exitosamente en el sistema!";
-                }
-                case BUSCAR_TRABAJO -> {
-                    Trabajo trabajo = vista.leerRevision();
-                    vista.mostrarTrabajo(modelo.buscar(trabajo));
-                }
-
-                case BORRAR_TRABAJO -> {
-                    modelo.borrar(vista.leerRevision());
-                    texto = "¡Trabajo eliminado exitosamente del sistema!";
-                }
                 case LISTAR_TRABAJOS -> vista.mostrarTrabajos(modelo.getTrabajos());
-
                 case LISTAR_TRABAJOS_CLIENTE -> vista.mostrarTrabajos(modelo.getTrabajos(vista.leerClienteDni()));
-
-                case LISTAR_TRABAJOS_VEHICULO ->
-                        vista.mostrarTrabajos(modelo.getTrabajos(vista.leerVehiculoMatricula()));
-
-                case ANADIR_HORAS_TRABAJO -> {
-                    modelo.anadirHoras(vista.leerTrabajoVehiculo(), vista.leerHoras());
-                    texto = "¡La cantidad de horas ha sido añadida exitosamente al trabajo en el sistema!";
-                }
-                case ANADIR_PRECIO_MATERIAL_TRABAJO -> {
-                    modelo.anadirPrecioMaterial(vista.leerTrabajoVehiculo(), vista.leerPrecioMaterial());
-                    texto = "¡El precio del material ha sido añadido exitosamente al trabajo en el sistema!";
-                }
-                case CERRAR_TRABAJO -> {
-                    modelo.cerrar(vista.leerTrabajoVehiculo(), vista.leerFechaCierre());
-                    texto = "¡Trabajo cerrado exitosamente en el sistema!";
-                }
+                case LISTAR_TRABAJOS_VEHICULO -> vista.mostrarTrabajos(modelo.getTrabajos(vista.leerVehiculoMatricula()));
+                case MOSTRAR_ESTADISTICAS_MENSUALES -> vista.mostrarEstadisticasMensuales(modelo.getEstadisticasMensuales(vista.leerMes()));
                 case SALIR -> terminar();
-
             }
-            exito = true;
-            if (!texto.isBlank()) {
-                vista.notificarResultado(evento, texto, exito);
+            if (!resultado.isBlank()) {
+                vista.notificarResultado(evento, resultado, true);
             }
-        } catch (OperationNotSupportedException | IllegalArgumentException | NullPointerException e) {
-            vista.notificarResultado(evento, e.getMessage(), exito);
+        } catch (Exception e) {
+            vista.notificarResultado(evento, e.getMessage(), false);
         }
-
     }
+
 }
