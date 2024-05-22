@@ -16,7 +16,7 @@ public class VentanaAgregarPrecioMaterial extends Controlador {
         if (tfPrecioMaterial.getText().isBlank()){
             precioMaterial = 0;
         }else{
-            precioMaterial = Float.parseFloat((String.format("%.2f", tfPrecioMaterial.getText())));
+            precioMaterial = Float.parseFloat(tfPrecioMaterial.getText().replace(",", "."));
         }
         return precioMaterial;
     }

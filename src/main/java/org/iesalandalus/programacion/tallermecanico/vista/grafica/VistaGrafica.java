@@ -41,14 +41,6 @@ public class VistaGrafica implements Vista {
         return ventanaPrincipal;
     }
 
-    public BuscarCliente getBuscarCliente() {
-        return ((VentanaPrincipal) ventanaPrincipal).getBuscarCliente();
-    }
-
-    public ClienteEncontrado getClienteEncontrado() {
-        return getBuscarCliente().getClienteEncontrado();
-    }
-
     @Override
     public GestorEventos getGestorEventos() {
         return gestorEventos;
@@ -103,7 +95,7 @@ public class VistaGrafica implements Vista {
 
     @Override
     public Trabajo leerMecanico() {
-        return null;
+        return ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajo().getTrabajo();
     }
 
     @Override
@@ -163,7 +155,8 @@ public class VistaGrafica implements Vista {
 
     @Override
     public void mostrarVehiculos(List<Vehiculo> vehiculos) {
-
+        ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajo().rellenarCbVehiculos(vehiculos);
+        ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajo().getEscenario().show();
     }
 
     @Override
@@ -193,6 +186,11 @@ public class VistaGrafica implements Vista {
                 ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaAgregarPrecioMaterial().getEscenario().close();
             }
             case BORRAR_TRABAJO -> getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
+            case CERRAR_TRABAJO -> getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
+            case INSERTAR_MECANICO -> {
+                getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajo().getEscenario().close();
+            }
         }
     }
 }

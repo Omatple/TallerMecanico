@@ -11,6 +11,7 @@ import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.VistaGrafica;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controlador;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controladores;
+import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Dialogos;
 
 import java.util.List;
 
@@ -70,10 +71,12 @@ public class VentanaClientes extends Controlador {
         btlistar.setVisible(false);
     }
 
-    // PENSAR Y RESOLVER PROBLEMA ELIMINAR INSERTAR, APARECEN DOBLES CELDAS EN LA TABLA
-    // TAMBIEN AÑADIR BOTON Y METODOS PARA LISTAR LOS TRABAJOS DE UN CLIENTE
     public void rellenarTabla(List<Cliente> clientes) {
+        if(btlistar.isVisible()){
+            btlistar.setVisible(false);
+        }
         coleccionClientes.clear();
+        tvClientes.getItems().clear();
         coleccionClientes.addAll(clientes);
     }
 
@@ -110,7 +113,12 @@ public class VentanaClientes extends Controlador {
 
     @FXML
     void listarTrabajos() {
-        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
+        if (tvClientes.getSelectionModel().getSelectedIndex() == -1) {
+            Dialogos.mostrarDialogoError("LISTAR TRABAJOS CLIENTES", "ERROR: Selecciona un cliente para listar sus trabajos.", getEscenario());
+        } else {
+            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
+        }
+
     }
 
     void setNuevoNombre(String nuevoNombre) {
@@ -168,5 +176,6 @@ public class VentanaClientes extends Controlador {
             return new SimpleObjectProperty<>(textField);
         });
         tvClientes.getSelectionModel().selectedIndexProperty().addListener(observable -> activarTextFieldFila());
+        tvClientes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> ventanaTrabajosCliente.setStrDniCliente(newValue.getDni()));
     }
 }

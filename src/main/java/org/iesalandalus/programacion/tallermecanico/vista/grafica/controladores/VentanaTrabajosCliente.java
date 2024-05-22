@@ -24,6 +24,7 @@ public class VentanaTrabajosCliente extends Controlador {
 
     private final VentanaAgregarHoras ventanaAgregarHoras = (VentanaAgregarHoras) Controladores.get("/vistas/VentanaAgregarHoras.fxml", "AÑADIR HORAS", getEscenario());
     private final VentanaAgregarPrecioMaterial ventanaAgregarPrecioMaterial = (VentanaAgregarPrecioMaterial) Controladores.get("/vistas/VentanaAgregarPrecioMaterial.fxml", "AÑADIR PRECIO MATERIAL", getEscenario());
+    private final VentanaInsertarTrabajo ventanaInsertarTrabajo = (VentanaInsertarTrabajo) Controladores.get("/vistas/VentanaInsertarTrabajo.fxml", "INSERTAR TRABAJO CLIENTE", getEscenario());
 
 
     @FXML
@@ -68,8 +69,18 @@ public class VentanaTrabajosCliente extends Controlador {
         return ventanaAgregarPrecioMaterial;
     }
 
+    public VentanaInsertarTrabajo getVentanaInsertarTrabajo() {
+        return ventanaInsertarTrabajo;
+    }
+
+
+    // RESOOLVER PORQUE AL BUSCAR TENIENDO UNO SELECCIONADO ABAJO, NO SE ACTIVA EL DATEPIKER
     public void rellenarTabla(List<Trabajo> trabajos) {
+        if(btlistar.isVisible()){
+            btlistar.setVisible(false);
+        }
         coleccionTrabajos.clear();
+        tvTrabajos.getItems().clear();
         coleccionTrabajos.addAll(trabajos);
     }
 
@@ -85,12 +96,37 @@ public class VentanaTrabajosCliente extends Controlador {
 
     @FXML
     void aniadir() {
-
+        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_VEHICULOS);
     }
 
     @FXML
     void buscar() {
-
+        ObservableList<Trabajo> coleccionTrabajosBuscados = FXCollections.observableArrayList();
+        if (dpFechaInicio.getEditor().getText().isBlank()) {
+            Dialogos.mostrarDialogoError("BUSCAR TRABAJO CLIENTE", "ERROR: Debes elegir una fecha de inicio antes de buscar un trabajo.", getEscenario());
+        } else {
+            for (Trabajo trabajo : coleccionTrabajos) {
+                if (trabajo.getFechaInicio().equals(dpFechaInicio.getValue())) {
+                    coleccionTrabajosBuscados.add(trabajo);
+                }
+            }
+            tcFechaFin.setCellValueFactory(c -> {
+                dpFechaFin = new DatePicker();
+                DatePicker datePicker = new DatePicker();
+                datePicker.setEditable(false);
+                if (c.getValue().estaCerrado()) {
+                    datePicker.setDisable(true);
+                    if (c.getValue().estaCerrado()) {
+                        datePicker.setValue(c.getValue().getFechaFin());
+                    }
+                } else {
+                    datePicker.getEditor().textProperty().addListener((observable, oldValue, newValue) -> setFechaFin(newValue));
+                }
+                return new SimpleObjectProperty<>(datePicker);
+            });
+            rellenarTabla(coleccionTrabajosBuscados);
+            btlistar.setVisible(true);
+        }
     }
 
     @FXML
@@ -144,37 +180,40 @@ public class VentanaTrabajosCliente extends Controlador {
     }
 
     void activarDatePicker() {
-        tcFechaFin.setCellValueFactory(c -> {
-            dpFechaFin = new DatePicker();
-            DatePicker datePicker = new DatePicker();
-            datePicker.setEditable(false);
-            if (!c.getValue().equals(getTrabajo()) || c.getValue().estaCerrado()) {
-                datePicker.setDisable(true);
-                if (c.getValue().estaCerrado()) {
-                    datePicker.setValue(c.getValue().getFechaFin());
+        if (!btlistar.isVisible()) {
+            tcFechaFin.setCellValueFactory(c -> {
+                dpFechaFin = new DatePicker();
+                DatePicker datePicker = new DatePicker();
+                datePicker.setEditable(false);
+                if (!c.getValue().equals(getTrabajo()) || c.getValue().estaCerrado()) {
+                    datePicker.setDisable(true);
+                    if (c.getValue().estaCerrado()) {
+                        datePicker.setValue(c.getValue().getFechaFin());
+                    }
+                } else {
+                    datePicker.getEditor().textProperty().addListener((observable, oldValue, newValue) -> setFechaFin(newValue));
                 }
-            } else {
-                datePicker.getEditor().textProperty().addListener((observable, oldValue, newValue) -> setFechaFin(newValue));
-            }
-            return new SimpleObjectProperty<>(datePicker);
-        });
-        listar();
+                return new SimpleObjectProperty<>(datePicker);
+            });
+            listar();
+        }
     }
+
     void setFechaFin(String strFechaFin) {
         System.out.println(strFechaFin);
         LocalDate fechaFin;
         try {
             fechaFin = LocalDate.parse(strFechaFin, Trabajo.FORMATO_FECHA);
-        }catch(Exception e){
+        } catch (Exception e) {
             try {
                 fechaFin = LocalDate.parse(strFechaFin, DateTimeFormatter.ofPattern("d/M/yyyy"));
-            }catch(Exception ex){
+            } catch (Exception ex) {
                 try {
                     fechaFin = LocalDate.parse(strFechaFin, DateTimeFormatter.ofPattern("dd/M/yyyy"));
-                }catch(Exception exc){
+                } catch (Exception exc) {
                     try {
                         fechaFin = LocalDate.parse(strFechaFin, DateTimeFormatter.ofPattern("d/MM/yyyy"));
-                    }catch (Exception exce){
+                    } catch (Exception exce) {
                         throw new IllegalArgumentException("ERROR: Fecha fin fuera del rango.");
                     }
                 }
@@ -183,8 +222,13 @@ public class VentanaTrabajosCliente extends Controlador {
         dpFechaFin.setValue(fechaFin);
     }
 
+    void setStrDniCliente(String dni) {
+        ventanaInsertarTrabajo.setTextTfCliente(dni);
+    }
+
     @FXML
     void initialize() {
+        dpFechaInicio.setEditable(false);
         btlistar.setVisible(false);
         tvTrabajos.setItems(coleccionTrabajos);
         tcTipo.setCellValueFactory(c -> {
