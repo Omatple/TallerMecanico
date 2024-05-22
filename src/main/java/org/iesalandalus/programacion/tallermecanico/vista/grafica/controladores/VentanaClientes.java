@@ -45,12 +45,10 @@ public class VentanaClientes extends Controlador {
     private Button btlistar;
 
     public String getNuevoNombre() {
-        System.out.println(nuevoNombre);
         return nuevoNombre;
     }
 
     public String getNuevoTelefono() {
-        System.out.println(nuevoTelefono);
         return nuevoTelefono;
     }
 

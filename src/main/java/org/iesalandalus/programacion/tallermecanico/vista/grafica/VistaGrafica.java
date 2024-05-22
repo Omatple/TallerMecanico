@@ -71,7 +71,7 @@ public class VistaGrafica implements Vista {
 
     @Override
     public Cliente leerClienteDni() {
-       // return Cliente.get(((VentanaClientes) getVentanaPrincipal()).getTfDni());
+        // return Cliente.get(((VentanaClientes) getVentanaPrincipal()).getTfDni());
         return ((VentanaClientes) getVentanaPrincipal()).getCliente();
     }
 
@@ -98,7 +98,7 @@ public class VistaGrafica implements Vista {
 
     @Override
     public Trabajo leerRevision() {
-        return null;
+        return ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getTrabajo();
     }
 
     @Override
@@ -108,22 +108,22 @@ public class VistaGrafica implements Vista {
 
     @Override
     public Trabajo leerTrabajoVehiculo() {
-        return null;
+        return ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getTrabajo();
     }
 
     @Override
     public int leerHoras() {
-        return 0;
+        return ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaAgregarHoras().getHoras();
     }
 
     @Override
     public float leerPrecioMaterial() {
-        return 0;
+        return ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaAgregarPrecioMaterial().getPrecioMaterial();
     }
 
     @Override
     public LocalDate leerFechaCierre() {
-        return null;
+        return ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getFechaCierre();
     }
 
     @Override
@@ -184,6 +184,15 @@ public class VistaGrafica implements Vista {
                 ((VentanaClientes) ventanaPrincipal).getLeerCliente().getEscenario().close();
             }
             case BORRAR_CLIENTE -> getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
+            case ANADIR_HORAS_TRABAJO -> {
+                getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaAgregarHoras().getEscenario().close();
+            }
+            case ANADIR_PRECIO_MATERIAL_TRABAJO -> {
+                getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaAgregarPrecioMaterial().getEscenario().close();
+            }
+            case BORRAR_TRABAJO -> getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
         }
     }
 }
