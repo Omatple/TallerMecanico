@@ -58,7 +58,6 @@
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Button mnemonicParsing="false" onAction="#borrar" text="Borrar" />
-            <Button mnemonicParsing="false" onAction="#modificar" text="Modificar" />
             <Button mnemonicParsing="false" onAction="#listarTrabajos" text="Listar Trabajos" />
             <Button mnemonicParsing="false" onAction="#insertar" text="Insertar" />
          </children>

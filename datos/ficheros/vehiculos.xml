@@ -2,4 +2,25 @@
 <vehiculos>
     <vehiculo marca="SEAT" matricula="9171LMR" modelo="Ibiza 2002"/>
     <vehiculo marca="BMW" matricula="1981DNY" modelo="320 E46"/>
+    <vehiculo marca="Ford" matricula="8324GHD" modelo="Focus 2010"/>
+    <vehiculo marca="Toyota" matricula="5463BNV" modelo="Corolla 2015"/>
+    <vehiculo marca="Renault" matricula="2749HJK" modelo="Clio 2008"/>
+    <vehiculo marca="Volkswagen" matricula="6852KRT" modelo="Golf 2018"/>
+    <vehiculo marca="Peugeot" matricula="4938LSX" modelo="208 2014"/>
+    <vehiculo marca="BMW" matricula="1782WDF" modelo="320i 2020"/>
+    <vehiculo marca="Audi" matricula="3367NVP" modelo="A4 2016"/>
+    <vehiculo marca="Mercedes" matricula="7512QHM" modelo="C200 2019"/>
+    <vehiculo marca="Hyundai" matricula="9273TPQ" modelo="Elantra 2017"/>
+    <vehiculo marca="Kia" matricula="8126VRX" modelo="Sportage 2013"/>
+    <vehiculo marca="Honda" matricula="6451FJW" modelo="Civic 2011"/>
+    <vehiculo marca="Nissan" matricula="5198MZH" modelo="Qashqai 2021"/>
+    <vehiculo marca="Mazda" matricula="2847CKY" modelo="CX-5 2019"/>
+    <vehiculo marca="Citroen" matricula="6719LJV" modelo="C3 2015"/>
+    <vehiculo marca="Opel" matricula="3842TRW" modelo="Astra 2012"/>
+    <vehiculo marca="Fiat" matricula="7154WXZ" modelo="500 2020"/>
+    <vehiculo marca="Volvo" matricula="2635VFG" modelo="XC60 2018"/>
+    <vehiculo marca="Suzuki" matricula="9348BQY" modelo="Vitara 2017"/>
+    <vehiculo marca="Mitsubishi" matricula="7481KLM" modelo="Outlander 2016"/>
+    <vehiculo marca="Lexus" matricula="5937ZRW" modelo="RX 2020"/>
+    <vehiculo marca="Skoda" matricula="8275GMX" modelo="Octavia 2014"/>
 </vehiculos>

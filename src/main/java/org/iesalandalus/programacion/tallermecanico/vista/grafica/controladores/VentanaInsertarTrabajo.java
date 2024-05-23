@@ -10,10 +10,13 @@ import org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.VistaGrafica;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controlador;
+import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controladores;
 
 import java.util.List;
 
 public class VentanaInsertarTrabajo extends Controlador {
+
+    private final VentanaInsertarVehiculo ventanaInsertarVehiculo = (VentanaInsertarVehiculo) Controladores.get("/vistas/VentanaInsertarVehiculo.fxml", "INSERCAR VEHICULO", getEscenario());
 
     @FXML
     private ComboBox<String> cbTipo;
@@ -44,6 +47,15 @@ public class VentanaInsertarTrabajo extends Controlador {
         return trabajo;
     }
 
+    public VentanaInsertarVehiculo getVentanaInsertarVehiculo() {
+        return ventanaInsertarVehiculo;
+    }
+
+    public void limpiarVehiculoFechaInicio() {
+        tfVehiculo.clear();
+        dpFechaInicio.editorProperty().get().clear();
+    }
+
     public void rellenarCbVehiculos(List<Vehiculo> vehiculos) {
         coleccionVehiculosLibres.clear();
         coleccionVehiculosLibres.addAll(vehiculos);
@@ -66,7 +78,8 @@ public class VentanaInsertarTrabajo extends Controlador {
 
     @FXML
     void insertarVehiculo() {
-
+        ventanaInsertarVehiculo.limpiarCampos();
+        ventanaInsertarVehiculo.getEscenario().show();
     }
 
     public void setTextTfCliente(String textTfCliente) {
@@ -90,5 +103,4 @@ public class VentanaInsertarTrabajo extends Controlador {
         cbTipo.getSelectionModel().select(0);
         dpFechaInicio.setEditable(false);
     }
-
 }

@@ -1,11 +1,11 @@
 package org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores;
 
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.VistaGrafica;
@@ -16,12 +16,15 @@ import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Dia
 import java.util.List;
 
 public class VentanaClientes extends Controlador {
-    private ObservableList<Cliente> coleccionClientes = FXCollections.observableArrayList();
 
-    private final LeerCliente leerCliente = (LeerCliente) Controladores.get("/vistas/LeerCliente.fxml", "INSERCION CLIENTE", getEscenario());
+    private final ObservableList<Cliente> coleccionClientes = FXCollections.observableArrayList();
+
+    private final VentanaInsertarCliente ventanaInsertarCliente = (VentanaInsertarCliente) Controladores.get("/vistas/VentanaInsertarCliente.fxml", "INSERTAR CLIENTE", getEscenario());
 
     private final VentanaTrabajosCliente ventanaTrabajosCliente = (VentanaTrabajosCliente) Controladores.get("/vistas/VentanaTrabajosCliente.fxml", "LISTADO TRABAJOS CLIENTE", getEscenario());
+
     private String nuevoNombre;
+
     private String nuevoTelefono;
 
     @FXML
@@ -31,13 +34,13 @@ public class VentanaClientes extends Controlador {
     private TableView<Cliente> tvClientes;
 
     @FXML
-    private TableColumn<Cliente, TextField> tcDni;
+    private TableColumn<Cliente, String> tcDni;
 
     @FXML
-    private TableColumn<Cliente, TextField> tcNombre;
+    private TableColumn<Cliente, String> tcNombre;
 
     @FXML
-    private TableColumn<Cliente, TextField> tcTelefono;
+    private TableColumn<Cliente, String> tcTelefono;
 
     @FXML
     private TextField tfDni;
@@ -45,11 +48,15 @@ public class VentanaClientes extends Controlador {
     @FXML
     private Button btlistar;
 
+    boolean btBuscarEsPulsado;
+
     public String getNuevoNombre() {
+        System.out.println(nuevoNombre);
         return nuevoNombre;
     }
 
     public String getNuevoTelefono() {
+        System.out.println(nuevoTelefono);
         return nuevoTelefono;
     }
 
@@ -57,12 +64,16 @@ public class VentanaClientes extends Controlador {
         return tfDni.getText();
     }
 
-    public LeerCliente getLeerCliente() {
-        return leerCliente;
+    public VentanaInsertarCliente getLeerCliente() {
+        return ventanaInsertarCliente;
     }
 
     public VentanaTrabajosCliente getVentanaTrabajosCliente() {
         return ventanaTrabajosCliente;
+    }
+
+    public boolean esVisibleListar() {
+        return btlistar.isVisible();
     }
 
     @FXML
@@ -72,22 +83,32 @@ public class VentanaClientes extends Controlador {
     }
 
     public void rellenarTabla(List<Cliente> clientes) {
-        if(btlistar.isVisible()){
+        if (btlistar.isVisible()) {
             btlistar.setVisible(false);
         }
-        coleccionClientes.clear();
         tvClientes.getItems().clear();
+        coleccionClientes.clear();
         coleccionClientes.addAll(clientes);
     }
 
     public Cliente getCliente() {
-        return tvClientes.getSelectionModel().getSelectedItem();
+        Cliente cliente;
+        if (esVisibleListar()) {
+            cliente = tvClientes.getSelectionModel().getSelectedItem();
+        } else if (btBuscarEsPulsado) {
+            cliente = Cliente.get(getTfDni());
+        } else {
+            cliente = tvClientes.getSelectionModel().getSelectedItem();
+        }
+        btBuscarEsPulsado = false;
+        return cliente;
     }
 
     public void filaBuscada(Cliente cliente) {
         coleccionClientes.clear();
         coleccionClientes.add(cliente);
         btlistar.setVisible(true);
+        tfDni.clear();
     }
 
     @FXML
@@ -97,18 +118,14 @@ public class VentanaClientes extends Controlador {
 
     @FXML
     void buscar() {
+        btBuscarEsPulsado = true;
         VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BUSCAR_CLIENTE);
     }
 
     @FXML
     void insertar() {
-        leerCliente.limpiarCampos();
-        leerCliente.getEscenario().show();
-    }
-
-    @FXML
-    void modificar() {
-        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.MODIFICAR_CLIENTE);
+        ventanaInsertarCliente.limpiarCampos();
+        ventanaInsertarCliente.getEscenario().show();
     }
 
     @FXML
@@ -118,7 +135,6 @@ public class VentanaClientes extends Controlador {
         } else {
             VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
         }
-
     }
 
     void setNuevoNombre(String nuevoNombre) {
@@ -129,53 +145,32 @@ public class VentanaClientes extends Controlador {
         this.nuevoTelefono = nuevoTelefono;
     }
 
-    void activarTextFieldFila() {
-        tcNombre.setCellValueFactory(c -> {
-            TextField textField = new TextField();
-            textField.setText(c.getValue().getNombre());
-            textField.setEditable(false);
-            Cliente clienteSeleccionado = getCliente();
-            if ((clienteSeleccionado != null) && (clienteSeleccionado.getDni().equals(c.getValue().getDni()))) {
-                setNuevoNombre(null);
-                textField.setEditable(true);
-                textField.textProperty().addListener((observable, oldValue, newValue) -> setNuevoNombre(newValue));
-            }
-            return new SimpleObjectProperty<>(textField);
-        });
-        tcTelefono.setCellValueFactory(c -> {
-            TextField textField = new TextField();
-            textField.setText(c.getValue().getTelefono());
-            textField.setEditable(false);
-            Cliente clienteSeleccionado = getCliente();
-            if ((clienteSeleccionado != null) && (clienteSeleccionado.getDni().equals(c.getValue().getDni()))) {
-                setNuevoTelefono(null);
-                textField.setEditable(true);
-                textField.textProperty().addListener((observable, oldValue, newValue) -> setNuevoTelefono(newValue));
-            }
-            return new SimpleObjectProperty<>(textField);
-        });
-        listar();
-    }
-
     @FXML
     void initialize() {
+        btBuscarEsPulsado = false;
         btlistar.setVisible(false);
         btClientes.setDisable(true);
         tvClientes.setItems(coleccionClientes);
+        tvClientes.editableProperty().setValue(true);
         tcDni.setCellValueFactory(new PropertyValueFactory<>("dni"));
-        tcNombre.setCellValueFactory(c -> {
-            TextField textField = new TextField();
-            textField.setText(c.getValue().getNombre());
-            textField.setEditable(false);
-            return new SimpleObjectProperty<>(textField);
+        tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        tcNombre.setCellFactory(TextFieldTableCell.forTableColumn());
+        tcNombre.setOnEditCommit(cEditada -> {
+            if (!cEditada.getNewValue().equals(tvClientes.getSelectionModel().getSelectedItem().getNombre())) {
+                setNuevoNombre(cEditada.getNewValue());
+                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.MODIFICAR_CLIENTE);
+                setNuevoNombre(null);
+            }
         });
-        tcTelefono.setCellValueFactory(c -> {
-            TextField textField = new TextField();
-            textField.setText(c.getValue().getTelefono());
-            textField.setEditable(false);
-            return new SimpleObjectProperty<>(textField);
+        tcTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+        tcTelefono.setCellFactory(TextFieldTableCell.forTableColumn());
+        tcTelefono.setOnEditCommit(cEditada -> {
+            if (!cEditada.getNewValue().equals(tvClientes.getSelectionModel().getSelectedItem().getTelefono())) {
+                setNuevoTelefono(cEditada.getNewValue());
+                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.MODIFICAR_CLIENTE);
+                setNuevoTelefono(null);
+            }
         });
-        tvClientes.getSelectionModel().selectedIndexProperty().addListener(observable -> activarTextFieldFila());
         tvClientes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> ventanaTrabajosCliente.setStrDniCliente(newValue.getDni()));
     }
 }

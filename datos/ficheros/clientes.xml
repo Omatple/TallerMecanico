@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <clientes>
     <cliente dni="77152572S" nombre="Juan Javier Segura Salinas" telefono="643284852"/>
-    <cliente dni="11111111H" nombre="Pepino" telefono="010011001"/>
-    <cliente dni="76657112K" nombre="Ángel Martínez Otero" telefono="624476933"/>
+    <cliente dni="76657112K" nombre="Angel Martinez Otero" telefono="624476933"/>
+    <cliente dni="82444261W" nombre="Carlos Fernandez Garcia" telefono="612345678"/>
+    <cliente dni="27530712B" nombre="Maria Rodriguez Lopez" telefono="619876543"/>
+    <cliente dni="03481372T" nombre="Jose Martinez Sanchez" telefono="622334556"/>
+    <cliente dni="42697318A" nombre="Ana Perez Gomez" telefono="635778899"/>
+    <cliente dni="17310372C" nombre="Luis Gonzalez Diaz" telefono="648223344"/>
+    <cliente dni="03263164Q" nombre="Carmen Alvarez Ruiz" telefono="655667788"/>
+    <cliente dni="58701355L" nombre="Juan Hernandez Morales" telefono="661990112"/>
+    <cliente dni="82956205N" nombre="Isabel Torres Vargas" telefono="673445566"/>
+    <cliente dni="76351784H" nombre="Francisco Ramirez Castillo" telefono="688889900"/>
+    <cliente dni="78182128E" nombre="Laura Suarez Ortega" telefono="691223334"/>
+    <cliente dni="39977939Y" nombre="Javier Jimenez Navarro" telefono="699556667"/>
+    <cliente dni="16710483V" nombre="Marta Molina Ramos" telefono="612778889"/>
+    <cliente dni="12529080Z" nombre="Pedro Ortega Fernandez" telefono="625990001"/>
+    <cliente dni="60803063X" nombre="Lucia Castro Vega" telefono="636445556"/>
+    <cliente dni="17593954N" nombre="Alberto Herrera Aguilar" telefono="647778899"/>
+    <cliente dni="09071508D" nombre="Elena Diaz Campos" telefono="659112233"/>
+    <cliente dni="32713340A" nombre="Raul Romero Martin" telefono="672334445"/>
+    <cliente dni="15415833Z" nombre="Silvia Ortiz Mendez" telefono="685556677"/>
+    <cliente dni="74238816Z" nombre="Antonio Marin Blanco" telefono="698778899"/>
+    <cliente dni="86668598K" nombre="Patricia Rubio Paredes" telefono="612990001"/>
+    <cliente dni="02456440V" nombre="Sergio Moreno Torres" telefono="623445556"/>
+    <cliente dni="02485380T" nombre="Teresa Iglesias Ponce" telefono="634778899"/>
 </clientes>

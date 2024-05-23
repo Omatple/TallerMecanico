@@ -53,7 +53,7 @@ public class VistaGrafica implements Vista {
 
     @Override
     public void terminar() {
-        getVentanaPrincipal().getEscenario().close();
+        ventanaPrincipal.getEscenario().close();
     }
 
     @Override
@@ -63,24 +63,23 @@ public class VistaGrafica implements Vista {
 
     @Override
     public Cliente leerClienteDni() {
-        // return Cliente.get(((VentanaClientes) getVentanaPrincipal()).getTfDni());
-        return ((VentanaClientes) getVentanaPrincipal()).getCliente();
+        return ((VentanaClientes) ventanaPrincipal).getCliente();
     }
 
     @Override
     public String leerNuevoNombre() {
-        return ((VentanaClientes) getVentanaPrincipal()).getNuevoNombre();
+        return ((VentanaClientes) ventanaPrincipal).getNuevoNombre();
     }
 
     @Override
     public String leerNuevoTelefono() {
-        return ((VentanaClientes) getVentanaPrincipal()).getNuevoTelefono();
+        return ((VentanaClientes) ventanaPrincipal).getNuevoTelefono();
 
     }
 
     @Override
     public Vehiculo leerVehiculo() {
-        return null;
+        return ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajo().getVentanaInsertarVehiculo().getVehiculo();
     }
 
     @Override
@@ -130,12 +129,19 @@ public class VistaGrafica implements Vista {
             cerrarVentana(evento);
         } else {
             Dialogos.mostrarDialogoError(String.format("%s", evento.toString()), String.format("ERROR: %s%n", texto), null);
+            if (evento.equals(Evento.MODIFICAR_CLIENTE)) {
+                if (((VentanaClientes) ventanaPrincipal).esVisibleListar()) {
+                    getGestorEventos().notificar(Evento.BUSCAR_CLIENTE);
+                } else
+                    getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
+            }
         }
     }
 
+
     @Override
     public void mostrarCliente(Cliente cliente) {
-        ((VentanaClientes) getVentanaPrincipal()).filaBuscada(cliente);
+        ((VentanaClientes) ventanaPrincipal).filaBuscada(cliente);
     }
 
     @Override
@@ -150,12 +156,13 @@ public class VistaGrafica implements Vista {
 
     @Override
     public void mostrarClientes(List<Cliente> clientes) {
-        ((VentanaClientes) getVentanaPrincipal()).rellenarTabla(clientes);
+        ((VentanaClientes) ventanaPrincipal).rellenarTabla(clientes);
     }
 
     @Override
     public void mostrarVehiculos(List<Vehiculo> vehiculos) {
         ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajo().rellenarCbVehiculos(vehiculos);
+        ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajo().limpiarVehiculoFechaInicio();
         ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajo().getEscenario().show();
     }
 
@@ -190,6 +197,10 @@ public class VistaGrafica implements Vista {
             case INSERTAR_MECANICO -> {
                 getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
                 ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajo().getEscenario().close();
+            }
+            case INSERTAR_VEHICULO -> {
+                gestorEventos.notificar(Evento.LISTAR_VEHICULOS);
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajo().getVentanaInsertarVehiculo().getEscenario().close();
             }
         }
     }

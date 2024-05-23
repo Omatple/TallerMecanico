@@ -7,31 +7,31 @@ import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.VistaGrafica;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controlador;
 
-public class LeerCliente extends Controlador {
+public class VentanaInsertarCliente extends Controlador {
 
     @FXML
-    private TextField lbDNI;
+    private TextField tfDNI;
 
     @FXML
-    private TextField lbNombre;
+    private TextField tfNombre;
 
     @FXML
-    private TextField lbTelefono;
+    private TextField tfTelefono;
 
     @FXML
-    void cerrarVentana() {
+    void cerrar() {
         getEscenario().close();
     }
 
     public Cliente getCliente() {
-        String nombre = lbNombre.getText();
-        String DNI = lbDNI.getText();
-        String telefono = lbTelefono.getText();
+        String nombre = tfNombre.getText();
+        String DNI = tfDNI.getText();
+        String telefono = tfTelefono.getText();
         return new Cliente(nombre, DNI, telefono);
     }
 
     @FXML
-    void insertarCliente(){
+    void insertar(){
         VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.INSERTAR_CLIENTE);
     }
 
@@ -40,8 +40,8 @@ public class LeerCliente extends Controlador {
     }
 
     void limpiarCampos(){
-        lbDNI.clear();
-        lbNombre.clear();
-        lbTelefono.clear();
+        tfDNI.clear();
+        tfNombre.clear();
+        tfTelefono.clear();
     }
 }
