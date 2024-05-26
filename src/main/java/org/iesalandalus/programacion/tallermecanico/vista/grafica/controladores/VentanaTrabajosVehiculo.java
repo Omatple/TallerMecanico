@@ -20,11 +20,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class VentanaTrabajosCliente extends Controlador {
+public class VentanaTrabajosVehiculo extends Controlador {
 
     private final VentanaAgregarHoras ventanaAgregarHoras = (VentanaAgregarHoras) Controladores.get("/vistas/VentanaAgregarHoras.fxml", "AÑADIR HORAS", getEscenario());
     private final VentanaAgregarPrecioMaterial ventanaAgregarPrecioMaterial = (VentanaAgregarPrecioMaterial) Controladores.get("/vistas/VentanaAgregarPrecioMaterial.fxml", "AÑADIR PRECIO MATERIAL", getEscenario());
-    private final VentanaInsertarTrabajoCliente ventanaInsertarTrabajoCliente = (VentanaInsertarTrabajoCliente) Controladores.get("/vistas/VentanaInsertarTrabajoCliente.fxml", "INSERTAR TRABAJO CLIENTE", getEscenario());
+    private final VentanaInsertarTrabajoVehiculo ventanaInsertarTrabajoVehiculo = (VentanaInsertarTrabajoVehiculo) Controladores.get("/vistas/VentanaInsertarTrabajoVehiculo.fxml", "INSERTAR TRABAJO VEHICULO", getEscenario());
+
 
     @FXML
     private DatePicker dpFechaInicio;
@@ -51,7 +52,7 @@ public class VentanaTrabajosCliente extends Controlador {
     private TableColumn<Trabajo, String> tcTipo;
 
     @FXML
-    private TableColumn<Trabajo, String> tcVehiculo;
+    private TableColumn<Trabajo, String> tcCliente;
 
     @FXML
     private TableView<Trabajo> tvTrabajos;
@@ -68,14 +69,14 @@ public class VentanaTrabajosCliente extends Controlador {
         return ventanaAgregarPrecioMaterial;
     }
 
-    public VentanaInsertarTrabajoCliente getVentanaInsertarTrabajoCliente() {
-        return ventanaInsertarTrabajoCliente;
+    public VentanaInsertarTrabajoVehiculo getVentanaInsertarTrabajoVehiculo() {
+        return ventanaInsertarTrabajoVehiculo;
     }
 
 
     // RESOOLVER PORQUE AL BUSCAR TENIENDO UNO SELECCIONADO ABAJO, NO SE ACTIVA EL DATEPIKER
     public void rellenarTabla(List<Trabajo> trabajos) {
-        if(btlistar.isVisible()){
+        if (btlistar.isVisible()) {
             btlistar.setVisible(false);
         }
         coleccionTrabajos.clear();
@@ -95,14 +96,14 @@ public class VentanaTrabajosCliente extends Controlador {
 
     @FXML
     void aniadir() {
-        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_VEHICULOS);
+        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
     }
 
     @FXML
     void buscar() {
         ObservableList<Trabajo> coleccionTrabajosBuscados = FXCollections.observableArrayList();
         if (dpFechaInicio.getEditor().getText().isBlank()) {
-            Dialogos.mostrarDialogoError("BUSCAR TRABAJO CLIENTE", "ERROR: Debes elegir una fecha de inicio antes de buscar un trabajo.", getEscenario());
+            Dialogos.mostrarDialogoError("BUSCAR TRABAJO VEHICULO", "ERROR: Debes elegir una fecha de inicio antes de buscar un trabajo.", getEscenario());
         } else {
             for (Trabajo trabajo : coleccionTrabajos) {
                 if (trabajo.getFechaInicio().equals(dpFechaInicio.getValue())) {
@@ -139,7 +140,7 @@ public class VentanaTrabajosCliente extends Controlador {
 
     @FXML
     void listar() {
-        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
+        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_VEHICULO);
         btlistar.setVisible(false);
     }
 
@@ -221,8 +222,8 @@ public class VentanaTrabajosCliente extends Controlador {
         dpFechaFin.setValue(fechaFin);
     }
 
-    void setStrDniCliente(String dni) {
-        ventanaInsertarTrabajoCliente.setTextTfCliente(dni);
+    void setStrMatriculaVehiculo(String matricula) {
+        ventanaInsertarTrabajoVehiculo.setTextTfVehiculo(matricula);
     }
 
     @FXML
@@ -234,9 +235,9 @@ public class VentanaTrabajosCliente extends Controlador {
             String tipo = TipoTrabajo.get(c.getValue()).toString();
             return new SimpleObjectProperty<>(tipo);
         });
-        tcVehiculo.setCellValueFactory(c -> {
-            String vehiculo = c.getValue().getVehiculo().matricula();
-            return new SimpleObjectProperty<>(vehiculo);
+        tcCliente.setCellValueFactory(c -> {
+            String cliente = c.getValue().getCliente().getDni();
+            return new SimpleObjectProperty<>(cliente);
         });
         tcFechaInicio.setCellValueFactory(c -> {
             LocalDate fechaInicio = c.getValue().getFechaInicio();

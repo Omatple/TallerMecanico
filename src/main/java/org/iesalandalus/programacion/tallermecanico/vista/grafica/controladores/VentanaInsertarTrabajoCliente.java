@@ -14,7 +14,7 @@ import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Con
 
 import java.util.List;
 
-public class VentanaInsertarTrabajo extends Controlador {
+public class VentanaInsertarTrabajoCliente extends Controlador {
 
     private final VentanaInsertarVehiculo ventanaInsertarVehiculo = (VentanaInsertarVehiculo) Controladores.get("/vistas/VentanaInsertarVehiculo.fxml", "INSERCAR VEHICULO", getEscenario());
 
@@ -33,7 +33,7 @@ public class VentanaInsertarTrabajo extends Controlador {
     @FXML
     private DatePicker dpFechaInicio;
 
-    private final ObservableList<Vehiculo> coleccionVehiculosLibres = FXCollections.observableArrayList();
+    private final ObservableList<Vehiculo> coleccionVehiculos = FXCollections.observableArrayList();
     private static final String MECANICO = "Mecánico";
     private static final String REVISION = "Revisión";
 
@@ -57,8 +57,8 @@ public class VentanaInsertarTrabajo extends Controlador {
     }
 
     public void rellenarCbVehiculos(List<Vehiculo> vehiculos) {
-        coleccionVehiculosLibres.clear();
-        coleccionVehiculosLibres.addAll(vehiculos);
+        coleccionVehiculos.clear();
+        coleccionVehiculos.addAll(vehiculos);
     }
 
     @FXML
@@ -90,7 +90,7 @@ public class VentanaInsertarTrabajo extends Controlador {
     void initialize() {
         tfCliente.setEditable(false);
         tfCliente.setDisable(true);
-        cbVehiculo.setItems(coleccionVehiculosLibres);
+        cbVehiculo.setItems(coleccionVehiculos);
         cbVehiculo.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             cbVehiculo.getSelectionModel().clearSelection();
             if (newValue == null) {

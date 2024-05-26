@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaClientes">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaVehiculos">
    <children>
       <MenuBar>
         <menus>
@@ -34,25 +34,25 @@
       </MenuBar>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="btClientes" mnemonicParsing="false" text="Clientes" />
-            <Button mnemonicParsing="false" onAction="#ventanaVehiculos" text="Vehiculos" />
+            <Button mnemonicParsing="false" onAction="#ventanaVehiculos" text="Clientes" />
+            <Button fx:id="btVehiculos" mnemonicParsing="false" text="Vehiculos" />
             <Button mnemonicParsing="false" onAction="#ventanaTrabajos" text="Trabajos" />
          </children>
       </HBox>
-      <Label text="LISTADO DE CLIENTES" />
+      <Label text="LISTADO DE VEHICULOS" />
       <HBox>
          <children>
-            <Label text="DNI:" />
-            <TextField fx:id="tfDni" />
+            <Label text="Matricula:" />
+            <TextField fx:id="tfMatricula" />
             <Button mnemonicParsing="false" onAction="#buscar" text="BUSCAR" />
-            <Button fx:id="btlistar" mnemonicParsing="false" onAction="#listar" text="LISTAR CLIENTES" />
+            <Button fx:id="btlistar" mnemonicParsing="false" onAction="#listar" text="LISTAR VEHICULOS" />
          </children>
       </HBox>
-      <TableView fx:id="tvClientes" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tvVehiculos" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn fx:id="tcDni" prefWidth="75.0" text="DNI" />
-          <TableColumn fx:id="tcNombre" prefWidth="75.0" text="NOMBRE" />
-            <TableColumn fx:id="tcTelefono" prefWidth="75.0" text="TELEFONO" />
+          <TableColumn fx:id="tcMatricula" prefWidth="75.0" text="MATRICULA" />
+          <TableColumn fx:id="tcMarca" prefWidth="75.0" text="MARCA" />
+            <TableColumn fx:id="tcModelo" prefWidth="75.0" text="MODELO" />
         </columns>
       </TableView>
       <HBox prefHeight="100.0" prefWidth="200.0">

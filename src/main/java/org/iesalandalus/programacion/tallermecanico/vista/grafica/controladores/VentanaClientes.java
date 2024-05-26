@@ -23,6 +23,8 @@ public class VentanaClientes extends Controlador {
 
     private final VentanaTrabajosCliente ventanaTrabajosCliente = (VentanaTrabajosCliente) Controladores.get("/vistas/VentanaTrabajosCliente.fxml", "LISTADO TRABAJOS CLIENTE", getEscenario());
 
+    private final VentanaVehiculos ventanaVehiculos = (VentanaVehiculos) Controladores.get("/vistas/VentanaVehiculos.fxml", "TALLER MECANICO", getEscenario());
+
     private String nuevoNombre;
 
     private String nuevoTelefono;
@@ -64,7 +66,11 @@ public class VentanaClientes extends Controlador {
         return tfDni.getText();
     }
 
-    public VentanaInsertarCliente getLeerCliente() {
+    public VentanaVehiculos getVentanaVehiculos() {
+        return ventanaVehiculos;
+    }
+
+    public VentanaInsertarCliente getVentanaInsertarCliente() {
         return ventanaInsertarCliente;
     }
 
@@ -143,6 +149,19 @@ public class VentanaClientes extends Controlador {
 
     void setNuevoTelefono(String nuevoTelefono) {
         this.nuevoTelefono = nuevoTelefono;
+    }
+
+
+    @FXML
+    void ventanaTrabajos() {
+
+    }
+
+    @FXML
+    void ventanaVehiculos() {
+        getEscenario().close();
+        ventanaVehiculos.getEscenario().show();
+        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_VEHICULOS);
     }
 
     @FXML
