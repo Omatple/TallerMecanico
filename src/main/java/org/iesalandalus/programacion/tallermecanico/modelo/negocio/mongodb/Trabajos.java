@@ -7,10 +7,8 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;
 import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos;
-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.mongodb.Vehiculos;
 
 import javax.naming.OperationNotSupportedException;
-import javax.swing.text.Element;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -37,7 +35,8 @@ public class Trabajos implements ITrabajos {
     private MongoCollection<Document> coleccionTrabajos;
     private static Trabajos instancia;
 
-    private Trabajos() {}
+    private Trabajos() {
+    }
 
     public static Trabajos getInstancia() {
         if (instancia == null) {
@@ -68,14 +67,13 @@ public class Trabajos implements ITrabajos {
         Trabajo trabajo = null;
         if (documento != null) {
             Cliente cliente = Clientes.getInstancia().getCliente((Document) documento.get(CLIENTE));
-            Vehiculo vehiculo = Vehiculos.getInstancia().getVehiculo((Element) documento.get(VEHICULO));
-            // CAMIBAR CASTIING ELEMENT A DOCUMENT
+            Vehiculo vehiculo = Vehiculos.getInstancia().getVehiculo((Document) documento.get(VEHICULO));
             LocalDate fechaInicio = toLocalDate(documento.getDate(FECHA_INICIO));
             String tipo = documento.getString(TIPO);
             try {
                 if (tipo.equals(REVISION)) {
                     trabajo = new Revision(cliente, vehiculo, fechaInicio);
-                } else if (tipo.equals(MECANICO)){
+                } else if (tipo.equals(MECANICO)) {
                     trabajo = new Mecanico(cliente, vehiculo, fechaInicio);
                     if (documento.containsKey(PRECIO_MATERIAL)) {
                         double precioMaterial = documento.getDouble(PRECIO_MATERIAL);
@@ -101,8 +99,7 @@ public class Trabajos implements ITrabajos {
         Document documento = null;
         if (trabajo != null) {
             Document documentoCliente = Clientes.getInstancia().getDocumento(trabajo.getCliente());
-            Document documentoVehiculo = (Document) Vehiculos.getInstancia().getDocumento(trabajo.getVehiculo());
-            //QUITAR CASTING DOCUMENT <--
+            Document documentoVehiculo = Vehiculos.getInstancia().getDocumento(trabajo.getVehiculo());
             Date fechaInicio = toDate(trabajo.getFechaInicio());
             TipoTrabajo tipoTrabajo = TipoTrabajo.get(trabajo);
             documento = new Document().append(CLIENTE, documentoCliente).append(VEHICULO, documentoVehiculo).append(FECHA_INICIO, fechaInicio).append(TIPO, tipoTrabajo.toString());
@@ -149,7 +146,8 @@ public class Trabajos implements ITrabajos {
         for (Document documento : coleccionTrabajos.find(getCriterioBusqueda(cliente))) {
             trabajos.add(getTrabajo(documento));
         }
-        return trabajos;    }
+        return trabajos;
+    }
 
     @Override
     public List<Trabajo> get(Vehiculo vehiculo) {
@@ -157,7 +155,8 @@ public class Trabajos implements ITrabajos {
         for (Document documento : coleccionTrabajos.find(getCriterioBusqueda(vehiculo))) {
             trabajos.add(getTrabajo(documento));
         }
-        return trabajos;    }
+        return trabajos;
+    }
 
     @Override
     public Map<TipoTrabajo, Integer> getEstadisticasMensuales(LocalDate mes) {
@@ -205,6 +204,7 @@ public class Trabajos implements ITrabajos {
             throw new OperationNotSupportedException("El vehículo tiene otro trabajo posterior.");
         }
     }
+
     @Override
     public void anadirHoras(Trabajo trabajo, int horas) throws OperationNotSupportedException {
         Objects.requireNonNull(trabajo, "No puedo añadir horas a un trabajo nulo.");
@@ -221,7 +221,7 @@ public class Trabajos implements ITrabajos {
         Objects.requireNonNull(trabajo, "No puedo añadir precio del material a un trabajo nulo.");
         Bson filtro = and(getCriterioBusqueda(trabajo), exists(FECHA_FIN, false), eq(TIPO, MECANICO));
         UpdateResult resultado = coleccionTrabajos.updateOne(filtro, set(PRECIO_MATERIAL, precioMaterial));
-        ((Mecanico)trabajo).anadirPrecioMaterial(precioMaterial);
+        ((Mecanico) trabajo).anadirPrecioMaterial(precioMaterial);
         if (resultado.getMatchedCount() == 0) {
             throw new OperationNotSupportedException("No existe ningún trabajo abierto igual.");
         }

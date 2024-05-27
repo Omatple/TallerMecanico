@@ -4,7 +4,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.FindOneAndReplaceOptions;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import com.mongodb.client.model.ReturnDocument;
-import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.result.DeleteResult;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -29,7 +28,9 @@ public class Clientes implements IClientes {
 
     private static Clientes instancia;
     private MongoCollection<Document> coleccionClientes;
-    private Clientes() {}
+
+    private Clientes() {
+    }
 
     public static Clientes getInstancia() {
         if (instancia == null) {
@@ -101,7 +102,7 @@ public class Clientes implements IClientes {
             modificacion = (modificacion == null) ? set(TELEFONO, telefono) : combine(modificacion, set(TELEFONO, telefono));
         }
         if (modificacion != null) {
-            FindOneAndUpdateOptions opciones =  new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
+            FindOneAndUpdateOptions opciones = new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
             Document clienteModificado = coleccionClientes.findOneAndUpdate(getCriterioBusqueda(cliente), modificacion, opciones);
             if (clienteModificado == null) {
                 throw new OperationNotSupportedException("No existe ningún cliente con ese DNI.");
