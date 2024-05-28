@@ -48,7 +48,7 @@ public class VentanaVehiculos extends Controlador {
 
     @FXML
     void ventanaTrabajos() {
-
+    //implementar los mismos metodos para los menuiitem que clientes, salir, acercade, estsadisticas, poner confirmacion y guardado en salir. Tomar referencia clase clientes
     }
 
     @FXML

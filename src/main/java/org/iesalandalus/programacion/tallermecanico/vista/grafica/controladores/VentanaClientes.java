@@ -25,6 +25,8 @@ public class VentanaClientes extends Controlador {
 
     private final VentanaVehiculos ventanaVehiculos = (VentanaVehiculos) Controladores.get("/vistas/VentanaVehiculos.fxml", "TALLER MECANICO", getEscenario());
 
+    private final VentanaAcercaDe ventanaAcercaDe = (VentanaAcercaDe) Controladores.get("/vistas/VentanaAcercaDe.fxml", "ACERCA DE ...", getEscenario());
+
     private String nuevoNombre;
 
     private String nuevoTelefono;
@@ -119,7 +121,9 @@ public class VentanaClientes extends Controlador {
 
     @FXML
     void borrar() {
-        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_CLIENTE);
+        if (Dialogos.mostrarDialogoConfirmacion("BORRAR CLIENTE", "¿Estás seguro de que quieres borrar este cliente?", getEscenario())) {
+            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_CLIENTE);
+        }
     }
 
     @FXML
@@ -151,6 +155,23 @@ public class VentanaClientes extends Controlador {
         this.nuevoTelefono = nuevoTelefono;
     }
 
+    @FXML
+    void miAcercaDe() {
+        ventanaAcercaDe.getEscenario().show();
+    }
+
+    @FXML
+    void miEstadisticasMensuales() {
+
+    }
+
+    @FXML
+    void miSalir() {
+        if (Dialogos.mostrarDialogoConfirmacion("SALIR", "¿Estás seguro de que quieres salir de la aplicación?", getEscenario())) {
+            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.SALIR);
+            getEscenario().close();
+        }
+    }
 
     @FXML
     void ventanaTrabajos() {
