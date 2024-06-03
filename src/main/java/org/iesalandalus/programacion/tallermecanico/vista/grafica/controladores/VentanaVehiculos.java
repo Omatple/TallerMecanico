@@ -23,6 +23,8 @@ public class VentanaVehiculos extends Controlador {
 
     private final VentanaTrabajosVehiculo ventanaTrabajosVehiculo = (VentanaTrabajosVehiculo) Controladores.get("/vistas/VentanaTrabajosVehiculo.fxml", "LISTADO TRABAJOS VEHICULO", getEscenario());
 
+    private final VentanaAcercaDe ventanaAcercaDe = (VentanaAcercaDe) Controladores.get("/vistas/VentanaAcercaDe.fxml", "ACERCA DE ...", getEscenario());
+
     @FXML
     private Button btVehiculos;
 
@@ -44,16 +46,17 @@ public class VentanaVehiculos extends Controlador {
     @FXML
     private Button btlistar;
 
+    @FXML
+    private Button btClientes;
+
     boolean btBuscarEsPulsado;
 
     @FXML
     void ventanaTrabajos() {
-    //implementar los mismos metodos para los menuiitem que clientes, salir, acercade, estsadisticas, poner confirmacion y guardado en salir. Tomar referencia clase clientes
     }
 
-    @FXML
-    void ventanaVehiculos() {
-
+    Button getBtClientes() {
+        return btClientes;
     }
 
     public String getTfMatricula() {
@@ -109,7 +112,9 @@ public class VentanaVehiculos extends Controlador {
 
     @FXML
     void borrar() {
-        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_VEHICULO);
+        if (Dialogos.mostrarDialogoConfirmacion("BORRAR VEHICULO", "¿Estás seguro de que quieres borrar este vehiculo?", getEscenario())) {
+            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_VEHICULO);
+        }
     }
 
     @FXML
@@ -130,6 +135,24 @@ public class VentanaVehiculos extends Controlador {
             Dialogos.mostrarDialogoError("LISTAR TRABAJOS VEHICULO", "ERROR: Selecciona un vehiculo para listar sus trabajos.", getEscenario());
         } else {
             VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_VEHICULO);
+        }
+    }
+
+    @FXML
+    void miAcercaDe() {
+        ventanaAcercaDe.getEscenario().show();
+    }
+
+    @FXML
+    void miEstadisticasMensuales() {
+
+    }
+
+    @FXML
+    void miSalir() {
+        if (Dialogos.mostrarDialogoConfirmacion("SALIR", "¿Estás seguro de que quieres salir de la aplicación?", getEscenario())) {
+            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.SALIR);
+            getEscenario().close();
         }
     }
 

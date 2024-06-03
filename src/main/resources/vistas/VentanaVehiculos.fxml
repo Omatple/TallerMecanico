@@ -17,24 +17,24 @@
         <menus>
           <Menu mnemonicParsing="false" text="Aplicación">
             <items>
-              <MenuItem mnemonicParsing="false" text="Salir" />
+              <MenuItem mnemonicParsing="false" onAction="#miSalir" text="Salir" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Opciones">
             <items>
-              <MenuItem mnemonicParsing="false" text="Guardar" />
+              <MenuItem mnemonicParsing="false" onAction="#miEstadisticasMensuales" text="Estadisticas Mensuales" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Ayuda">
             <items>
-              <MenuItem mnemonicParsing="false" text="Acerca de..." />
+              <MenuItem mnemonicParsing="false" onAction="#miAcercaDe" text="Acerca de..." />
             </items>
           </Menu>
         </menus>
       </MenuBar>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#ventanaVehiculos" text="Clientes" />
+            <Button fx:id="btClientes" mnemonicParsing="false" text="Clientes" />
             <Button fx:id="btVehiculos" mnemonicParsing="false" text="Vehiculos" />
             <Button mnemonicParsing="false" onAction="#ventanaTrabajos" text="Trabajos" />
          </children>

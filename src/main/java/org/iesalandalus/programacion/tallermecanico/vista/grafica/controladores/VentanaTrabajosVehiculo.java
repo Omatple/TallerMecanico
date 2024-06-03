@@ -84,6 +84,11 @@ public class VentanaTrabajosVehiculo extends Controlador {
         coleccionTrabajos.addAll(trabajos);
     }
 
+    @FXML
+    void cancelar() {
+        getEscenario().close();
+    }
+
     public Trabajo getTrabajo() {
         System.out.println(tvTrabajos.selectionModelProperty().getValue().getSelectedItem());
         return tvTrabajos.selectionModelProperty().getValue().getSelectedItem();

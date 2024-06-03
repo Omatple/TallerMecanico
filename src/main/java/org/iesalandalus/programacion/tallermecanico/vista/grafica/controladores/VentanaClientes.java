@@ -212,5 +212,16 @@ public class VentanaClientes extends Controlador {
             }
         });
         tvClientes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> ventanaTrabajosCliente.setStrDniCliente(newValue.getDni()));
+        ventanaVehiculos.getBtClientes().setOnAction(e -> {
+            ventanaVehiculos.getEscenario().close();
+            getEscenario().show();
+        });
+        ventanaVehiculos.getEscenario().setOnCloseRequest(event -> {
+            if (Dialogos.mostrarDialogoConfirmacion("SALIR", "¿Estás seguro de que quieres salir de la aplicación?", ventanaVehiculos.getEscenario())) {
+                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.SALIR);
+            } else {
+                event.consume();
+            }
+        });
     }
 }

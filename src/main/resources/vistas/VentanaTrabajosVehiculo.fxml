@@ -32,6 +32,7 @@
       </TableView>
       <HBox>
          <children>
+            <Button mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
             <Button mnemonicParsing="false" onAction="#borrar" text="Borrar" />
             <Button mnemonicParsing="false" onAction="#cerrar" text="Cerrar" />
             <Button mnemonicParsing="false" onAction="#aniadirHoras" text="Añadir Horas" />

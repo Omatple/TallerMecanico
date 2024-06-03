@@ -75,12 +75,17 @@ public class VentanaTrabajosCliente extends Controlador {
 
     // RESOOLVER PORQUE AL BUSCAR TENIENDO UNO SELECCIONADO ABAJO, NO SE ACTIVA EL DATEPIKER
     public void rellenarTabla(List<Trabajo> trabajos) {
-        if(btlistar.isVisible()){
+        if (btlistar.isVisible()) {
             btlistar.setVisible(false);
         }
         coleccionTrabajos.clear();
         tvTrabajos.getItems().clear();
         coleccionTrabajos.addAll(trabajos);
+    }
+
+    @FXML
+    void cancelar() {
+        getEscenario().close();
     }
 
     public Trabajo getTrabajo() {
