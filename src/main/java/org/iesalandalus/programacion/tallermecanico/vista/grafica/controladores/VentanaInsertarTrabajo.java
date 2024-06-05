@@ -14,15 +14,23 @@ import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Con
 
 import java.util.List;
 
-public class VentanaInsertarTrabajoVehiculo extends Controlador {
+public class VentanaInsertarTrabajo extends Controlador {
 
     private final VentanaInsertarCliente ventanaInsertarCliente = (VentanaInsertarCliente) Controladores.get("/vistas/VentanaInsertarCliente.fxml", "INSERCAR CLIENTE", getEscenario());
+
+    private final VentanaInsertarVehiculo ventanaInsertarVehiculo = (VentanaInsertarVehiculo) Controladores.get("/vistas/VentanaInsertarVehiculo.fxml", "INSERCAR VEHICULO", getEscenario());
+
+    @FXML
+    private ComboBox<Cliente> cbCliente;
 
     @FXML
     private ComboBox<String> cbTipo;
 
     @FXML
-    private ComboBox<Cliente> cbCliente;
+    private ComboBox<Vehiculo> cbVehiculo;
+
+    @FXML
+    private DatePicker dpFechaInicio;
 
     @FXML
     private TextField tfCliente;
@@ -30,12 +38,10 @@ public class VentanaInsertarTrabajoVehiculo extends Controlador {
     @FXML
     private TextField tfVehiculo;
 
-    @FXML
-    private DatePicker dpFechaInicio;
-
     private final ObservableList<Cliente> coleccionClientes = FXCollections.observableArrayList();
-    private static final String MECANICO = "Mec√°nico";
-    private static final String REVISION = "Revisi√≥n";
+    private final ObservableList<Vehiculo> coleccionVehiculos = FXCollections.observableArrayList();
+    private static final String MECANICO = "Mec·nico";
+    private static final String REVISION = "RevisiÛn";
 
     public Trabajo getTrabajo() {
         Trabajo trabajo = null;
@@ -51,8 +57,13 @@ public class VentanaInsertarTrabajoVehiculo extends Controlador {
         return ventanaInsertarCliente;
     }
 
-    public void limpiarClienteFechaInicio() {
+    public VentanaInsertarVehiculo getVentanaInsertarVehiculo() {
+        return ventanaInsertarVehiculo;
+    }
+
+    public void limpiarCampos() {
         tfCliente.clear();
+        tfVehiculo.clear();
         dpFechaInicio.editorProperty().get().clear();
         cbTipo.getSelectionModel().select(0);
     }
@@ -62,13 +73,13 @@ public class VentanaInsertarTrabajoVehiculo extends Controlador {
         coleccionClientes.addAll(clientes);
     }
 
+    public void rellenarCbVehiculos(List<Vehiculo> vehiculos) {
+        coleccionVehiculos.clear();
+        coleccionVehiculos.addAll(vehiculos);
+    }
+
     @FXML
     void aceptar() {
-       /* if (cbTipo.getSelectionModel().getSelectedItem().equals(REVISION)) {
-            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.INSERTAR_REVISION);
-        } else if (cbTipo.getSelectionModel().getSelectedItem().equals(MECANICO)) {
-            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.INSERTAR_MECANICO);
-        }*/
         VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.INSERTAR_MECANICO);
     }
 
@@ -83,14 +94,14 @@ public class VentanaInsertarTrabajoVehiculo extends Controlador {
         ventanaInsertarCliente.getEscenario().show();
     }
 
-    public void setTextTfVehiculo(String textTfVehiculo) {
-        tfVehiculo.setText(textTfVehiculo);
+    @FXML
+    void insertarVehiculo() {
+        ventanaInsertarVehiculo.limpiarCampos();
+        ventanaInsertarVehiculo.getEscenario().show();
     }
 
     @FXML
     void initialize() {
-        tfVehiculo.setEditable(false);
-        tfVehiculo.setDisable(true);
         cbCliente.setItems(coleccionClientes);
         cbCliente.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             cbCliente.getSelectionModel().clearSelection();
@@ -100,8 +111,18 @@ public class VentanaInsertarTrabajoVehiculo extends Controlador {
                 tfCliente.setText(newValue.getDni());
             }
         });
+        cbVehiculo.setItems(coleccionVehiculos);
+        cbVehiculo.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            cbVehiculo.getSelectionModel().clearSelection();
+            if (newValue == null) {
+                tfVehiculo.setText("");
+            } else {
+                tfVehiculo.setText(newValue.matricula());
+            }
+        });
         cbTipo.setItems(FXCollections.observableArrayList(REVISION, MECANICO));
         cbTipo.getSelectionModel().select(0);
         dpFechaInicio.setEditable(false);
     }
+
 }

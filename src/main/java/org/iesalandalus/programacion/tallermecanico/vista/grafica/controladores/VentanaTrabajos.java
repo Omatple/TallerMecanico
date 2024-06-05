@@ -20,17 +20,35 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class VentanaTrabajosCliente extends Controlador {
+public class VentanaTrabajos extends Controlador {
+
+    private final ObservableList<Trabajo> coleccionTrabajos = FXCollections.observableArrayList();
 
     private final VentanaAgregarHoras ventanaAgregarHoras = (VentanaAgregarHoras) Controladores.get("/vistas/VentanaAgregarHoras.fxml", "AÑADIR HORAS", getEscenario());
+
     private final VentanaAgregarPrecioMaterial ventanaAgregarPrecioMaterial = (VentanaAgregarPrecioMaterial) Controladores.get("/vistas/VentanaAgregarPrecioMaterial.fxml", "AÑADIR PRECIO MATERIAL", getEscenario());
-    private final VentanaInsertarTrabajoCliente ventanaInsertarTrabajoCliente = (VentanaInsertarTrabajoCliente) Controladores.get("/vistas/VentanaInsertarTrabajoCliente.fxml", "INSERTAR TRABAJO CLIENTE", getEscenario());
+
+    private final VentanaAcercaDe ventanaAcercaDe = (VentanaAcercaDe) Controladores.get("/vistas/VentanaAcercaDe.fxml", "ACERCA DE ...", getEscenario());
+
+    private final VentanaInsertarTrabajo ventanaInsertarTrabajo = (VentanaInsertarTrabajo) Controladores.get("/vistas/VentanaInsertarTrabajo.fxml", "INSERTAR TRABAJO", getEscenario());
+
+    @FXML
+    private Button btClientes;
+
+    @FXML
+    private Button btTrabajos;
+
+    @FXML
+    private Button btVehiculos;
+
+    @FXML
+    private Button btlistar;
 
     @FXML
     private DatePicker dpFechaInicio;
 
     @FXML
-    private Button btlistar;
+    private TableColumn<Trabajo, String> tcCliente;
 
     @FXML
     private TableColumn<Trabajo, DatePicker> tcFechaFin;
@@ -42,10 +60,10 @@ public class VentanaTrabajosCliente extends Controlador {
     private TableColumn<Trabajo, String> tcHoras;
 
     @FXML
-    private TableColumn<Trabajo, String> tcPrecioMaterial;
+    private TableColumn<Trabajo, String> tcPrecioFinal;
 
     @FXML
-    private TableColumn<Trabajo, String> tcPrecioFinal;
+    private TableColumn<Trabajo, String> tcPrecioMaterial;
 
     @FXML
     private TableColumn<Trabajo, String> tcTipo;
@@ -56,41 +74,44 @@ public class VentanaTrabajosCliente extends Controlador {
     @FXML
     private TableView<Trabajo> tvTrabajos;
 
-    private ObservableList<Trabajo> coleccionTrabajos = FXCollections.observableArrayList();
+    @FXML
+    private TextField tfCliente;
+
+    @FXML
+    private TextField tfVehiculo;
 
     private DatePicker dpFechaFin;
 
-    public VentanaAgregarHoras getVentanaAgregarHoras() {
-        return ventanaAgregarHoras;
+    boolean btBuscarEsPulsado;
+
+    public VentanaInsertarTrabajo getVentanaInsertarTrabajo() {
+        return ventanaInsertarTrabajo;
     }
 
-    public VentanaAgregarPrecioMaterial getVentanaAgregarPrecioMaterial() {
-        return ventanaAgregarPrecioMaterial;
+    public boolean esVisibleListar() {
+        return btlistar.isVisible();
     }
 
-    public VentanaInsertarTrabajoCliente getVentanaInsertarTrabajoCliente() {
-        return ventanaInsertarTrabajoCliente;
-    }
-
-
-    // RESOOLVER PORQUE AL BUSCAR TENIENDO UNO SELECCIONADO ABAJO, NO SE ACTIVA EL DATEPIKER
     public void rellenarTabla(List<Trabajo> trabajos) {
         if (btlistar.isVisible()) {
             btlistar.setVisible(false);
         }
-        coleccionTrabajos.clear();
         tvTrabajos.getItems().clear();
+        coleccionTrabajos.clear();
         coleccionTrabajos.addAll(trabajos);
     }
 
-    @FXML
-    void cancelar() {
-        getEscenario().close();
-    }
-
     public Trabajo getTrabajo() {
-        System.out.println(tvTrabajos.selectionModelProperty().getValue().getSelectedItem());
-        return tvTrabajos.selectionModelProperty().getValue().getSelectedItem();
+        Trabajo trabajo = null;
+        if (esVisibleListar()) {
+            trabajo = tvTrabajos.getSelectionModel().getSelectedItem();
+        } else if (btBuscarEsPulsado) {
+            //otro boton buscar para buscar por cliente, vehiculo y fecha//trabajo = Trabajo.get(ve);
+        } else {
+            trabajo = tvTrabajos.getSelectionModel().getSelectedItem();
+        }
+        btBuscarEsPulsado = false;
+        return trabajo;
     }
 
     public LocalDate getFechaCierre() {
@@ -99,61 +120,8 @@ public class VentanaTrabajosCliente extends Controlador {
 
     @FXML
     void aniadir() {
+        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
         VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_VEHICULOS);
-    }
-
-    @FXML
-    void buscar() {
-        ObservableList<Trabajo> coleccionTrabajosBuscados = FXCollections.observableArrayList();
-        if (dpFechaInicio.getEditor().getText().isBlank()) {
-            Dialogos.mostrarDialogoError("BUSCAR TRABAJO CLIENTE", "ERROR: Debes elegir una fecha de inicio antes de buscar un trabajo.", getEscenario());
-        } else {
-            for (Trabajo trabajo : coleccionTrabajos) {
-                if (trabajo.getFechaInicio().equals(dpFechaInicio.getValue())) {
-                    coleccionTrabajosBuscados.add(trabajo);
-                }
-            }
-            tcFechaFin.setCellValueFactory(c -> {
-                dpFechaFin = new DatePicker();
-                DatePicker datePicker = new DatePicker();
-                datePicker.setEditable(false);
-                if (c.getValue().estaCerrado()) {
-                    datePicker.setDisable(true);
-                    if (c.getValue().estaCerrado()) {
-                        datePicker.setValue(c.getValue().getFechaFin());
-                    }
-                } else {
-                    datePicker.getEditor().textProperty().addListener((observable, oldValue, newValue) -> setFechaFin(newValue));
-                }
-                return new SimpleObjectProperty<>(datePicker);
-            });
-            rellenarTabla(coleccionTrabajosBuscados);
-            btlistar.setVisible(true);
-        }
-    }
-
-    @FXML
-    void borrar() {
-        if (getTrabajo() == null) {
-            Dialogos.mostrarDialogoError("BORRAR TRABAJO", "ERROR: Selecciona un trabajo para borrarlo.", getEscenario());
-        } else {
-            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_TRABAJO);
-        }
-    }
-
-    @FXML
-    void listar() {
-        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
-        btlistar.setVisible(false);
-    }
-
-    @FXML
-    void cerrar() {
-        if (getTrabajo() == null) {
-            Dialogos.mostrarDialogoError("CERRAR TRABAJO", "ERROR: Selecciona un trabajo para cerrarlo.", getEscenario());
-        } else {
-            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.CERRAR_TRABAJO);
-        }
     }
 
     @FXML
@@ -179,6 +147,56 @@ public class VentanaTrabajosCliente extends Controlador {
             Dialogos.mostrarDialogoError("AÑADIR PRECIO MATERIAL", "ERROR: No se puede añadir precio del material, ya que el trabajo mecánico está cerrado.", getEscenario());
         } else {
             ventanaAgregarPrecioMaterial.getEscenario().show();
+        }
+    }
+
+    @FXML
+    void borrar() {
+
+    }
+
+    @FXML
+    void buscar() {
+        btBuscarEsPulsado = true;
+        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BUSCAR_CLIENTE);
+    }
+
+    @FXML
+    void cerrar() {
+
+    }
+
+    @FXML
+    void infoCliente() {
+
+    }
+
+    @FXML
+    void infoVehiculo() {
+
+    }
+
+    @FXML
+    void listar() {
+        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
+        btlistar.setVisible(false);
+    }
+
+    @FXML
+    void miAcercaDe() {
+        ventanaAcercaDe.getEscenario().show();
+    }
+
+    @FXML
+    void miEstadisticasMensuales() {
+
+    }
+
+    @FXML
+    void miSalir() {
+        if (Dialogos.mostrarDialogoConfirmacion("SALIR", "¿Estás seguro de que quieres salir de la aplicación?", getEscenario())) {
+            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.SALIR);
+            getEscenario().close();
         }
     }
 
@@ -225,18 +243,19 @@ public class VentanaTrabajosCliente extends Controlador {
         dpFechaFin.setValue(fechaFin);
     }
 
-    void setStrDniCliente(String dni) {
-        ventanaInsertarTrabajoCliente.setTextTfCliente(dni);
-    }
-
     @FXML
     void initialize() {
         dpFechaInicio.setEditable(false);
         btlistar.setVisible(false);
+        btTrabajos.setDisable(true);
         tvTrabajos.setItems(coleccionTrabajos);
         tcTipo.setCellValueFactory(c -> {
             String tipo = TipoTrabajo.get(c.getValue()).toString();
             return new SimpleObjectProperty<>(tipo);
+        });
+        tcCliente.setCellValueFactory(c -> {
+            String cliente = c.getValue().getCliente().getDni();
+            return new SimpleObjectProperty<>(cliente);
         });
         tcVehiculo.setCellValueFactory(c -> {
             String vehiculo = c.getValue().getVehiculo().matricula();

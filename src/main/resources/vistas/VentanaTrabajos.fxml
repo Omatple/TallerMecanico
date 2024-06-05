@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaTrabajos">
+   <children>
+      <MenuBar>
+         <menus>
+            <Menu mnemonicParsing="false" text="Aplicación">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#miSalir" text="Salir" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Opciones">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#miEstadisticasMensuales" text="Estadisticas Mensuales" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Ayuda">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#miAcercaDe" text="Acerca de..." />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <HBox prefHeight="50.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="btClientes" mnemonicParsing="false" text="Clientes" />
+            <Button fx:id="btVehiculos" mnemonicParsing="false" text="Vehiculos" />
+            <Button fx:id="btTrabajos" mnemonicParsing="false" text="Trabajos" />
+         </children>
+      </HBox>
+      <Label text="LISTA DE TRABAJOS" />
+      <HBox>
+         <children>
+            <TextField fx:id="tfCliente" />
+            <TextField fx:id="tfVehiculo" />
+            <DatePicker fx:id="dpFechaInicio" />
+            <Button mnemonicParsing="false" onAction="#buscar" text="Buscar" />
+            <Button fx:id="btlistar" mnemonicParsing="false" onAction="#listar" text="Listar trabajos" />
+         </children>
+      </HBox>
+      <TableView fx:id="tvTrabajos" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="tcTipo" prefWidth="75.0" text="TIPO" />
+            <TableColumn fx:id="tcCliente" prefWidth="75.0" text="CLIENTE" />
+            <TableColumn fx:id="tcVehiculo" prefWidth="75.0" text="VEHICULO" />
+            <TableColumn fx:id="tcFechaInicio" prefWidth="75.0" text="FECHA INICIO" />
+            <TableColumn fx:id="tcFechaFin" prefWidth="75.0" text="FECHA FIN" />
+            <TableColumn fx:id="tcHoras" prefWidth="75.0" text="Nº HORAS" />
+            <TableColumn fx:id="tcPrecioMaterial" prefWidth="75.0" text="PRECIO MATERIAL" />
+            <TableColumn fx:id="tcPrecioFinal" prefWidth="75.0" text="PRECIO FINAL" />
+        </columns>
+      </TableView>
+      <HBox>
+         <children>
+            <Button mnemonicParsing="false" onAction="#borrar" text="Borrar" />
+            <Button mnemonicParsing="false" onAction="#cerrar" text="Cerrar" />
+            <Button mnemonicParsing="false" onAction="#aniadirHoras" text="Añadir Horas" />
+            <Button mnemonicParsing="false" onAction="#aniadirPrecioMaterial" text="Añadir Precio Material" />
+            <Button mnemonicParsing="false" onAction="#aniadir" text="Añadir Trabajo" />
+            <Button mnemonicParsing="false" onAction="#infoCliente" text="Info Cliente" />
+            <Button mnemonicParsing="false" onAction="#infoVehiculo" text="Info Vehiculo" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

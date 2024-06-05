@@ -54,6 +54,7 @@ public class VentanaInsertarTrabajoCliente extends Controlador {
     public void limpiarVehiculoFechaInicio() {
         tfVehiculo.clear();
         dpFechaInicio.editorProperty().get().clear();
+        cbTipo.getSelectionModel().select(0);
     }
 
     public void rellenarCbVehiculos(List<Vehiculo> vehiculos) {
