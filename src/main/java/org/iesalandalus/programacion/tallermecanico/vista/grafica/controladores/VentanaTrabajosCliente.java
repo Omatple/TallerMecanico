@@ -137,7 +137,9 @@ public class VentanaTrabajosCliente extends Controlador {
         if (getTrabajo() == null) {
             Dialogos.mostrarDialogoError("BORRAR TRABAJO", "ERROR: Selecciona un trabajo para borrarlo.", getEscenario());
         } else {
-            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_TRABAJO);
+            if (Dialogos.mostrarDialogoConfirmacion("BORRAR TRABAJO", "¿Estás seguro de que quieres borrar este trabajo?", getEscenario())) {
+                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_TRABAJO);
+            }
         }
     }
 
@@ -151,8 +153,12 @@ public class VentanaTrabajosCliente extends Controlador {
     void cerrar() {
         if (getTrabajo() == null) {
             Dialogos.mostrarDialogoError("CERRAR TRABAJO", "ERROR: Selecciona un trabajo para cerrarlo.", getEscenario());
+        } else if (tvTrabajos.getSelectionModel().getSelectedItem().estaCerrado()) {
+            Dialogos.mostrarDialogoError("CERRAR TRABAJO", "ERROR: El trabajo ya está cerrado.", getEscenario());
         } else {
-            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.CERRAR_TRABAJO);
+            if (Dialogos.mostrarDialogoConfirmacion("CERRAR TRABAJO", String.format("¿Estás seguro de que quieres cerrar este trabajo con la fecha '%s'?", getFechaCierre()), getEscenario())) {
+                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.CERRAR_TRABAJO);
+            }
         }
     }
 

@@ -59,7 +59,9 @@ public class VistaGrafica implements Vista {
     @Override
     public Cliente leerCliente() {
         Cliente cliente;
-        if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+        if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().getEscenario().isShowing()) {
+            cliente = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().getVentanaInsertarCliente().getCliente();
+        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
             cliente = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInsertarTrabajo().getVentanaInsertarCliente().getCliente();
         } else {
             cliente = ((VentanaClientes) ventanaPrincipal).getVentanaInsertarCliente().getCliente();
@@ -69,7 +71,13 @@ public class VistaGrafica implements Vista {
 
     @Override
     public Cliente leerClienteDni() {
-        return ((VentanaClientes) ventanaPrincipal).getCliente();
+        Cliente cliente;
+        if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+            cliente = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getTrabajo().getCliente();
+        } else {
+            cliente = ((VentanaClientes) ventanaPrincipal).getCliente();
+        }
+        return cliente;
     }
 
     @Override
@@ -89,6 +97,8 @@ public class VistaGrafica implements Vista {
             vehiculo = ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaInsertarVehiculo().getVehiculo();
         } else if (ventanaPrincipal.getEscenario().isShowing()) {
             vehiculo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajoCliente().getVentanaInsertarVehiculo().getVehiculo();
+        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getEscenario().isShowing()) {
+            vehiculo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getVentanaInsertarVehiculo().getVehiculo();
         } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
             vehiculo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInsertarTrabajo().getVentanaInsertarVehiculo().getVehiculo();
         }
@@ -97,7 +107,13 @@ public class VistaGrafica implements Vista {
 
     @Override
     public Vehiculo leerVehiculoMatricula() {
-        return ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVehiculo();
+        Vehiculo vehiculo;
+        if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+            vehiculo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getTrabajo().getVehiculo();
+        } else {
+            vehiculo = ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVehiculo();
+        }
+        return vehiculo;
     }
 
     @Override
@@ -107,6 +123,8 @@ public class VistaGrafica implements Vista {
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getTrabajo();
         } else if (ventanaPrincipal.getEscenario().isShowing()) {
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getTrabajo();
+        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+            trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getTrabajo();
         }
         return trabajo;
     }
@@ -131,6 +149,8 @@ public class VistaGrafica implements Vista {
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getTrabajo();
         } else if (ventanaPrincipal.getEscenario().isShowing()) {
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getTrabajo();
+        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+            trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getTrabajo();
         }
         return trabajo;
     }
@@ -142,6 +162,8 @@ public class VistaGrafica implements Vista {
             horas = ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getVentanaAgregarHoras().getHoras();
         } else if (ventanaPrincipal.getEscenario().isShowing()) {
             horas = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaAgregarHoras().getHoras();
+        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+            horas = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaAgregarHoras().getHoras();
         }
         return horas;
     }
@@ -153,6 +175,8 @@ public class VistaGrafica implements Vista {
             precioMaterial = ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getVentanaAgregarPrecioMaterial().getPrecioMaterial();
         } else if (ventanaPrincipal.getEscenario().isShowing()) {
             precioMaterial = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaAgregarPrecioMaterial().getPrecioMaterial();
+        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+            precioMaterial = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaAgregarPrecioMaterial().getPrecioMaterial();
         }
         return precioMaterial;
     }
@@ -164,6 +188,8 @@ public class VistaGrafica implements Vista {
             fechaCierre = ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getFechaCierre();
         } else if (ventanaPrincipal.getEscenario().isShowing()) {
             fechaCierre = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getFechaCierre();
+        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+            fechaCierre = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getFechaCierre();
         }
         return fechaCierre;
     }
@@ -191,12 +217,24 @@ public class VistaGrafica implements Vista {
 
     @Override
     public void mostrarCliente(Cliente cliente) {
-        ((VentanaClientes) ventanaPrincipal).filaBuscada(cliente);
+        if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().infoCliente(cliente);
+            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getEscenario().show();
+            getGestorEventos().notificar(Evento.LISTAR_VEHICULOS);
+        } else {
+            ((VentanaClientes) ventanaPrincipal).filaBuscada(cliente);
+        }
     }
 
     @Override
     public void mostrarVehiculo(Vehiculo vehiculo) {
-        ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().filaBuscada(vehiculo);
+        if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().infoVehiculo(vehiculo);
+            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().getEscenario().show();
+            getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
+        } else {
+            ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().filaBuscada(vehiculo);
+        }
     }
 
     @Override
@@ -209,6 +247,8 @@ public class VistaGrafica implements Vista {
             ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getVentanaInsertarTrabajoVehiculo().rellenarCbClientes(clientes);
             ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getVentanaInsertarTrabajoVehiculo().limpiarClienteFechaInicio();
             ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getVentanaInsertarTrabajoVehiculo().getEscenario().show();
+        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().getEscenario().isShowing()) {
+            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().rellenarCbClientes(clientes);
         } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
             ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInsertarTrabajo().rellenarCbClientes(clientes);
             ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInsertarTrabajo().limpiarCampos();
@@ -225,6 +265,8 @@ public class VistaGrafica implements Vista {
             ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajoCliente().rellenarCbVehiculos(vehiculos);
             ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajoCliente().limpiarVehiculoFechaInicio();
             ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajoCliente().getEscenario().show();
+        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getEscenario().isShowing()) {
+            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().rellenarCbVehiculos(vehiculos);
         } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
             ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInsertarTrabajo().rellenarCbVehiculos(vehiculos);
             ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInsertarTrabajo().limpiarCampos();
@@ -254,7 +296,9 @@ public class VistaGrafica implements Vista {
         switch (evento) {
             case INSERTAR_CLIENTE -> {
                 getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
-                if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+                if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().getEscenario().isShowing()) {
+                    ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().getVentanaInsertarCliente().getEscenario().close();
+                } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
                     ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInsertarTrabajo().getVentanaInsertarCliente().getEscenario().close();
                 } else {
                     ((VentanaClientes) ventanaPrincipal).getVentanaInsertarCliente().getEscenario().close();
@@ -262,7 +306,9 @@ public class VistaGrafica implements Vista {
             }
             case INSERTAR_VEHICULO -> {
                 gestorEventos.notificar(Evento.LISTAR_VEHICULOS);
-                if (((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getEscenario().isShowing()) {
+                if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getEscenario().isShowing()) {
+                    ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getVentanaInsertarVehiculo().getEscenario().close();
+                } else if (((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getEscenario().isShowing()) {
                     ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaInsertarVehiculo().getEscenario().close();
                 } else if (ventanaPrincipal.getEscenario().isShowing()) {
                     ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajoCliente().getVentanaInsertarVehiculo().getEscenario().close();
@@ -270,13 +316,29 @@ public class VistaGrafica implements Vista {
                     ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInsertarTrabajo().getVentanaInsertarVehiculo().getEscenario().close();
                 }
             }
-            case BORRAR_CLIENTE -> getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
-            case BORRAR_VEHICULO -> getGestorEventos().notificar(Evento.LISTAR_VEHICULOS);
+            case BORRAR_CLIENTE -> {
+                if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+                    getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
+                    ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getEscenario().close();
+                } else {
+                    getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
+                }
+            }
+            case BORRAR_VEHICULO -> {
+                if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+                    getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
+                    ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().getEscenario().close();
+                } else {
+                    getGestorEventos().notificar(Evento.LISTAR_VEHICULOS);
+                }
+            }
             case BORRAR_TRABAJO -> {
                 if (((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getEscenario().isShowing()) {
                     getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_VEHICULO);
                 } else if (ventanaPrincipal.getEscenario().isShowing()) {
                     getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
+                } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+                    getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
                 }
             }
             case ANADIR_HORAS_TRABAJO -> {
@@ -286,6 +348,9 @@ public class VistaGrafica implements Vista {
                 } else if (ventanaPrincipal.getEscenario().isShowing()) {
                     getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
                     ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaAgregarHoras().getEscenario().close();
+                } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+                    getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
+                    ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaAgregarHoras().getEscenario().close();
                 }
             }
             case ANADIR_PRECIO_MATERIAL_TRABAJO -> {
@@ -295,6 +360,9 @@ public class VistaGrafica implements Vista {
                 } else if (ventanaPrincipal.getEscenario().isShowing()) {
                     getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
                     ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaAgregarPrecioMaterial().getEscenario().close();
+                } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+                    getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
+                    ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaAgregarPrecioMaterial().getEscenario().close();
                 }
             }
             case CERRAR_TRABAJO -> {
@@ -302,6 +370,8 @@ public class VistaGrafica implements Vista {
                     getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_VEHICULO);
                 } else if (ventanaPrincipal.getEscenario().isShowing()) {
                     getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
+                } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+                    getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
                 }
             }
             case INSERTAR_MECANICO -> {

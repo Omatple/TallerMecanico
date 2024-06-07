@@ -127,8 +127,12 @@ public class VentanaClientes extends Controlador {
 
     @FXML
     void borrar() {
-        if (Dialogos.mostrarDialogoConfirmacion("BORRAR CLIENTE", "¿Estás seguro de que quieres borrar este cliente?", getEscenario())) {
-            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_CLIENTE);
+        if (tvClientes.getSelectionModel().getSelectedIndex() == -1) {
+            Dialogos.mostrarDialogoError("BORRAR CLIENTE", "ERROR: Selecciona un cliente para poder borrarlo.", getEscenario());
+        } else {
+            if (Dialogos.mostrarDialogoConfirmacion("BORRAR CLIENTE", "¿Estás seguro de que quieres borrar este cliente?", getEscenario())) {
+                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_CLIENTE);
+            }
         }
     }
 
@@ -147,7 +151,7 @@ public class VentanaClientes extends Controlador {
     @FXML
     void listarTrabajos() {
         if (tvClientes.getSelectionModel().getSelectedIndex() == -1) {
-            Dialogos.mostrarDialogoError("LISTAR TRABAJOS CLIENTES", "ERROR: Selecciona un cliente para listar sus trabajos.", getEscenario());
+            Dialogos.mostrarDialogoError("LISTAR TRABAJOS CLIENTE", "ERROR: Selecciona un cliente para listar sus trabajos.", getEscenario());
         } else {
             VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
         }

@@ -112,8 +112,12 @@ public class VentanaVehiculos extends Controlador {
 
     @FXML
     void borrar() {
-        if (Dialogos.mostrarDialogoConfirmacion("BORRAR VEHICULO", "¿Estás seguro de que quieres borrar este vehiculo?", getEscenario())) {
-            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_VEHICULO);
+        if (tvVehiculos.getSelectionModel().getSelectedIndex() == -1) {
+            Dialogos.mostrarDialogoError("BORRAR VEHICULO", "ERROR: Selecciona un vehiculo para poder borrarlo.", getEscenario());
+        } else {
+            if (Dialogos.mostrarDialogoConfirmacion("BORRAR VEHICULO", "¿Estás seguro de que quieres borrar este vehiculo?", getEscenario())) {
+                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_VEHICULO);
+            }
         }
     }
 

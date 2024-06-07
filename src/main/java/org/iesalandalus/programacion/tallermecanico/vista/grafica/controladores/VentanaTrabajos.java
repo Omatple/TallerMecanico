@@ -32,6 +32,10 @@ public class VentanaTrabajos extends Controlador {
 
     private final VentanaInsertarTrabajo ventanaInsertarTrabajo = (VentanaInsertarTrabajo) Controladores.get("/vistas/VentanaInsertarTrabajo.fxml", "INSERTAR TRABAJO", getEscenario());
 
+    private final VentanaInfoCliente ventanaInfoCliente = (VentanaInfoCliente) Controladores.get("/vistas/VentanaInfoCliente.fxml", "INFORMACIÓN CLIENTE", getEscenario());
+
+    private final VentanaInfoVehiculo ventanaInfoVehiculo = (VentanaInfoVehiculo) Controladores.get("/vistas/VentanaInfoVehiculo.fxml", "INFORMACIÓN VEHICULO", getEscenario());
+
     @FXML
     private Button btClientes;
 
@@ -84,8 +88,24 @@ public class VentanaTrabajos extends Controlador {
 
     boolean btBuscarEsPulsado;
 
+    public VentanaInfoCliente getVentanaInfoCliente() {
+        return ventanaInfoCliente;
+    }
+
+    public VentanaInfoVehiculo getVentanaInfoVehiculo() {
+        return ventanaInfoVehiculo;
+    }
+
     public VentanaInsertarTrabajo getVentanaInsertarTrabajo() {
         return ventanaInsertarTrabajo;
+    }
+
+    public VentanaAgregarHoras getVentanaAgregarHoras() {
+        return ventanaAgregarHoras;
+    }
+
+    public VentanaAgregarPrecioMaterial getVentanaAgregarPrecioMaterial() {
+        return ventanaAgregarPrecioMaterial;
     }
 
     public boolean esVisibleListar() {
@@ -152,28 +172,50 @@ public class VentanaTrabajos extends Controlador {
 
     @FXML
     void borrar() {
-
+        if (tvTrabajos.getSelectionModel().getSelectedIndex() == -1) {
+            Dialogos.mostrarDialogoError("BORRAR TRABAJO", "ERROR: Selecciona un trabajo para borrarlo.", getEscenario());
+        } else {
+            if (Dialogos.mostrarDialogoConfirmacion("BORRAR TRABAJO", "¿Estás seguro de que quieres borrar este trabajo?", getEscenario())) {
+                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_TRABAJO);
+            }
+        }
     }
 
     @FXML
     void buscar() {
         btBuscarEsPulsado = true;
-        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BUSCAR_CLIENTE);
+        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BUSCAR_TRABAJO);
     }
 
     @FXML
     void cerrar() {
-
+        if (tvTrabajos.getSelectionModel().getSelectedIndex() == -1) {
+            Dialogos.mostrarDialogoError("CERRAR TRABAJO", "ERROR: Selecciona un trabajo para cerrarlo.", getEscenario());
+        } else if (tvTrabajos.getSelectionModel().getSelectedItem().estaCerrado()) {
+            Dialogos.mostrarDialogoError("CERRAR TRABAJO", "ERROR: El trabajo ya está cerrado.", getEscenario());
+        } else {
+            if (Dialogos.mostrarDialogoConfirmacion("CERRAR TRABAJO", String.format("¿Estás seguro de que quieres cerrar este trabajo con la fecha '%s'?", getFechaCierre()), getEscenario())) {
+                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.CERRAR_TRABAJO);
+            }
+        }
     }
 
     @FXML
     void infoCliente() {
-
+        if (tvTrabajos.getSelectionModel().getSelectedIndex() == -1) {
+            Dialogos.mostrarDialogoError("INFORMACIÓN CLIENTE", "ERROR: Selecciona un trabajo para obtener la información del cliente.", getEscenario());
+        } else {
+            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BUSCAR_CLIENTE);
+        }
     }
 
     @FXML
     void infoVehiculo() {
-
+        if (tvTrabajos.getSelectionModel().getSelectedIndex() == -1) {
+            Dialogos.mostrarDialogoError("INFORMACIÓN VEHICULO", "ERROR: Selecciona un trabajo para obtener la información del vehiculo.", getEscenario());
+        } else {
+            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BUSCAR_VEHICULO);
+        }
     }
 
     @FXML
