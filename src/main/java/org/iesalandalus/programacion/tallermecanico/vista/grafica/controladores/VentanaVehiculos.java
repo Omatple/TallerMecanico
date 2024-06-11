@@ -115,7 +115,7 @@ public class VentanaVehiculos extends Controlador {
         if (tvVehiculos.getSelectionModel().getSelectedIndex() == -1) {
             Dialogos.mostrarDialogoError("BORRAR VEHICULO", "ERROR: Selecciona un vehiculo para poder borrarlo.", getEscenario());
         } else {
-            if (Dialogos.mostrarDialogoConfirmacion("BORRAR VEHICULO", "Â¿EstÃ¡s seguro de que quieres borrar este vehiculo?", getEscenario())) {
+            if (Dialogos.mostrarDialogoConfirmacion("BORRAR VEHICULO", "¿Estás seguro de que quieres borrar este vehiculo?", getEscenario())) {
                 VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_VEHICULO);
             }
         }
@@ -154,7 +154,7 @@ public class VentanaVehiculos extends Controlador {
 
     @FXML
     void miSalir() {
-        if (Dialogos.mostrarDialogoConfirmacion("SALIR", "Â¿EstÃ¡s seguro de que quieres salir de la aplicaciÃ³n?", getEscenario())) {
+        if (Dialogos.mostrarDialogoConfirmacion("SALIR", "¿Estás seguro de que quieres salir de la aplicación?", getEscenario())) {
             VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.SALIR);
             getEscenario().close();
         }

@@ -24,8 +24,8 @@ public class Trabajos implements ITrabajos {
     private static final String FECHA_INICIO = "fechaInicio";
     private static final String FECHA_FIN = "fechaFin";
     private static final String TIPO = "tipo";
-    private static final String REVISION = "RevisiÃ³n";
-    private static final String MECANICO = "MecÃ¡nico";
+    private static final String REVISION = "Revisión";
+    private static final String MECANICO = "Mecánico";
     private static final String HORAS = "horas";
     private static final String PRECIO_MATERIAL = "precioMaterial";
     private static final String DNI_CLIENTE = "cliente.dni";
@@ -193,7 +193,7 @@ public class Trabajos implements ITrabajos {
         }
         filtro = and(getCriterioBusqueda(vehiculo), exists(FECHA_FIN, false));
         if (coleccionTrabajos.find(filtro).first() != null) {
-            throw new OperationNotSupportedException("El vehÃ­culo estÃ¡ actualmente en el taller.");
+            throw new OperationNotSupportedException("El vehículo está actualmente en el taller.");
         }
         filtro = and(getCriterioBusqueda(cliente), exists(FECHA_FIN, true), gte(FECHA_FIN, toDate(fechaAlquiler)));
         if (coleccionTrabajos.find(filtro).first() != null) {
@@ -201,29 +201,29 @@ public class Trabajos implements ITrabajos {
         }
         filtro = and(getCriterioBusqueda(vehiculo), exists(FECHA_FIN, true), gte(FECHA_FIN, toDate(fechaAlquiler)));
         if (coleccionTrabajos.find(filtro).first() != null) {
-            throw new OperationNotSupportedException("El vehÃ­culo tiene otro trabajo posterior.");
+            throw new OperationNotSupportedException("El vehículo tiene otro trabajo posterior.");
         }
     }
 
     @Override
     public void anadirHoras(Trabajo trabajo, int horas) throws OperationNotSupportedException {
-        Objects.requireNonNull(trabajo, "No puedo aÃ±adir horas a un trabajo nulo.");
+        Objects.requireNonNull(trabajo, "No puedo añadir horas a un trabajo nulo.");
         Bson filtro = and(getCriterioBusqueda(trabajo), exists(FECHA_FIN, false));
         UpdateResult resultado = coleccionTrabajos.updateOne(filtro, set(HORAS, horas));
         trabajo.anadirHoras(horas);
         if (resultado.getMatchedCount() == 0) {
-            throw new OperationNotSupportedException("No existe ningÃºn trabajo abierto igual.");
+            throw new OperationNotSupportedException("No existe ningún trabajo abierto igual.");
         }
     }
 
     @Override
     public void anadirPrecioMaterial(Trabajo trabajo, float precioMaterial) throws OperationNotSupportedException {
-        Objects.requireNonNull(trabajo, "No puedo aÃ±adir precio del material a un trabajo nulo.");
+        Objects.requireNonNull(trabajo, "No puedo añadir precio del material a un trabajo nulo.");
         Bson filtro = and(getCriterioBusqueda(trabajo), exists(FECHA_FIN, false), eq(TIPO, MECANICO));
         UpdateResult resultado = coleccionTrabajos.updateOne(filtro, set(PRECIO_MATERIAL, precioMaterial));
         ((Mecanico) trabajo).anadirPrecioMaterial(precioMaterial);
         if (resultado.getMatchedCount() == 0) {
-            throw new OperationNotSupportedException("No existe ningÃºn trabajo abierto igual.");
+            throw new OperationNotSupportedException("No existe ningún trabajo abierto igual.");
         }
     }
 
@@ -234,7 +234,7 @@ public class Trabajos implements ITrabajos {
         UpdateResult resultado = coleccionTrabajos.updateOne(filtro, set(FECHA_FIN, toDate(fechaFin)));
         trabajo.cerrar(fechaFin);
         if (resultado.getMatchedCount() == 0) {
-            throw new OperationNotSupportedException("No existe ningÃºn trabajo abierto igual.");
+            throw new OperationNotSupportedException("No existe ningún trabajo abierto igual.");
         }
     }
 
@@ -249,7 +249,7 @@ public class Trabajos implements ITrabajos {
         Objects.requireNonNull(trabajo, "No se puede borrar un trabajo nulo.");
         DeleteResult resultado = coleccionTrabajos.deleteOne(getCriterioBusqueda(trabajo));
         if (resultado.getDeletedCount() == 0) {
-            throw new OperationNotSupportedException("No existe ningÃºn trabajo igual.");
+            throw new OperationNotSupportedException("No existe ningún trabajo igual.");
         }
     }
 

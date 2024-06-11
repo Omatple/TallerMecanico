@@ -46,7 +46,7 @@ public class MongoDB {
 					.applyConnectionString(new ConnectionString(URI))
 					.applyToClusterSettings(builder -> builder.serverSelectionTimeout(5, TimeUnit.SECONDS)).build());
 			comparbarMongoEstaVivo();
-			System.out.println("ConexiÃ³n a MongoDB realizada correctamente.");
+			System.out.println("Conexión a MongoDB realizada correctamente.");
 		}
 	}
 
@@ -55,7 +55,7 @@ public class MongoDB {
 		try {
 			conexion.getDatabase(BD).runCommand(ping);
 		} catch (MongoException e) {
-			System.out.printf("No se ha podido establecer la conexiÃ³n con MongoDB: %s%n",e.getMessage());
+			System.out.printf("No se ha podido establecer la conexión con MongoDB: %s%n",e.getMessage());
 			System.exit(-1);
 		}
 	}
@@ -64,7 +64,7 @@ public class MongoDB {
 		if (conexion != null) {
 			conexion.close();
 			conexion = null;
-			System.out.println("ConexiÃ³n a MongoDB cerrada.");
+			System.out.println("Conexión a MongoDB cerrada.");
 		}
 	}
 }

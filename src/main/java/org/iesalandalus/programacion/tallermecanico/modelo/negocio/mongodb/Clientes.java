@@ -105,7 +105,7 @@ public class Clientes implements IClientes {
             FindOneAndUpdateOptions opciones = new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
             Document clienteModificado = coleccionClientes.findOneAndUpdate(getCriterioBusqueda(cliente), modificacion, opciones);
             if (clienteModificado == null) {
-                throw new OperationNotSupportedException("No existe ningÃºn cliente con ese DNI.");
+                throw new OperationNotSupportedException("No existe ningún cliente con ese DNI.");
             } else {
                 cliente.setNombre(clienteModificado.getString(NOMBRE));
                 cliente.setTelefono(clienteModificado.getString(TELEFONO));
@@ -126,7 +126,7 @@ public class Clientes implements IClientes {
         Objects.requireNonNull(cliente, "No se puede borrar un cliente nulo.");
         DeleteResult resultado = coleccionClientes.deleteOne(getCriterioBusqueda(cliente));
         if (resultado.getDeletedCount() == 0) {
-            throw new OperationNotSupportedException("No existe ningÃºn cliente con ese DNI.");
+            throw new OperationNotSupportedException("No existe ningún cliente con ese DNI.");
         }
     }
 }

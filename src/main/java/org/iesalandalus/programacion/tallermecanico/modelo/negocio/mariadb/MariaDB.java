@@ -24,9 +24,9 @@ public class MariaDB {
             try {
                 String urlConexion = String.format("jdbc:mariadb://%s/%s?user=%s&password=%s", HOST, ESQUEMA, USUARIO, CONTRASENA);
                 conexion = (Connection) DriverManager.getConnection(urlConexion);
-                System.out.println("ConexiÃ³n a MariaDB realizada correctamente.");
+                System.out.println("Conexión a MariaDB realizada correctamente.");
             } catch (SQLException e) {
-                System.out.printf("ERROR de conexiÃ³n a MariaDB:  %s%n", e);
+                System.out.printf("ERROR de conexión a MariaDB:  %s%n", e);
                 System.exit(-1);
             }
         }
@@ -38,7 +38,7 @@ public class MariaDB {
             try {
                 conexion.close();
                 conexion = null;
-                System.out.println("ConexiÃ³n a MariaDB cerrada correctamente.");
+                System.out.println("Conexión a MariaDB cerrada correctamente.");
             } catch (SQLException e) {
                 System.out.printf("ERROR de MariaDB: %s%n", e);
             }

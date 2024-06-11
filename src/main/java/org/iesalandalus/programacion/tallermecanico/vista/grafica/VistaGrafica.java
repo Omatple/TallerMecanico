@@ -82,12 +82,24 @@ public class VistaGrafica implements Vista {
 
     @Override
     public String leerNuevoNombre() {
-        return ((VentanaClientes) ventanaPrincipal).getNuevoNombre();
+        String nuevoNombre;
+        if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getEscenario().isShowing()) {
+            nuevoNombre = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().nuevoNombre();
+        } else {
+            nuevoNombre = ((VentanaClientes) ventanaPrincipal).getNuevoNombre();
+        }
+        return nuevoNombre;
     }
 
     @Override
     public String leerNuevoTelefono() {
-        return ((VentanaClientes) ventanaPrincipal).getNuevoTelefono();
+        String nuevoTelefono;
+        if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getEscenario().isShowing()) {
+            nuevoTelefono = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().nuevoTelefono();
+        } else {
+            nuevoTelefono = ((VentanaClientes) ventanaPrincipal).getNuevoTelefono();
+        }
+        return nuevoTelefono;
     }
 
     @Override
@@ -123,6 +135,10 @@ public class VistaGrafica implements Vista {
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getTrabajo();
         } else if (ventanaPrincipal.getEscenario().isShowing()) {
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getTrabajo();
+        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getEscenario().isShowing()) {
+            trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getTrabajo();
+        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().getEscenario().isShowing()) {
+            trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().getTrabajo();
         } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getTrabajo();
         }
@@ -205,12 +221,21 @@ public class VistaGrafica implements Vista {
             Dialogos.mostrarDialogoInformacion(String.format("%s", evento.toString()), texto, null);
             cerrarVentana(evento);
         } else {
+            if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getEscenario().isShowing()) {
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().ocultarFormularioTrabajo();
+            } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().getEscenario().isShowing()) {
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().ocultarFormularioTrabajo();
+            }
             Dialogos.mostrarDialogoError(String.format("%s", evento.toString()), String.format("ERROR: %s%n", texto), null);
             if (evento.equals(Evento.MODIFICAR_CLIENTE)) {
-                if (((VentanaClientes) ventanaPrincipal).esVisibleListar()) {
+                if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getEscenario().isShowing()) {
                     getGestorEventos().notificar(Evento.BUSCAR_CLIENTE);
-                } else
-                    getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
+                } else {
+                    if (((VentanaClientes) ventanaPrincipal).esVisibleListar()) {
+                        getGestorEventos().notificar(Evento.BUSCAR_CLIENTE);
+                    } else
+                        getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
+                }
             }
         }
     }
@@ -386,6 +411,16 @@ public class VistaGrafica implements Vista {
                     ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInsertarTrabajo().getEscenario().close();
                 }
             }
+
+            case INSERTAR_REVISION -> {
+                if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getEscenario().isShowing()) {
+                    ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().ocultarFormularioTrabajo();
+                } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().getEscenario().isShowing()) {
+                    ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().ocultarFormularioTrabajo();
+                }
+            }
+
+            case MODIFICAR_CLIENTE -> getGestorEventos().notificar(Evento.BUSCAR_CLIENTE);
         }
     }
 }

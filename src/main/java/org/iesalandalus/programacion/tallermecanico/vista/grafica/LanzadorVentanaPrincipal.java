@@ -16,12 +16,12 @@ public class LanzadorVentanaPrincipal extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Controlador ventanaPrincipal = Controladores.get("/vistas/VentanaClientes.fxml", "TALLER MECÃNICO", null);
+        Controlador ventanaPrincipal = Controladores.get("/vistas/VentanaClientes.fxml", "TALLER MECÁNICO", null);
         VistaGrafica.getInstancia().setVentanaPrincipal(ventanaPrincipal);
         VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
         ventanaPrincipal.getEscenario().show();
         ventanaPrincipal.getEscenario().setOnCloseRequest(e -> {
-            if (Dialogos.mostrarDialogoConfirmacion("SALIR", "Â¿EstÃ¡s seguro de que quieres salir de la aplicaciÃ³n?", ventanaPrincipal.getEscenario())) {
+            if (Dialogos.mostrarDialogoConfirmacion("SALIR", "¿Estás seguro de que quieres salir de la aplicación?", ventanaPrincipal.getEscenario())) {
                 VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.SALIR);
             } else {
                 e.consume();

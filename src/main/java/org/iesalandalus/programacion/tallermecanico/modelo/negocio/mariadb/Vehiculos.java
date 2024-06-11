@@ -67,12 +67,12 @@ public class Vehiculos implements IVehiculos {
 
     @Override
     public void insertar(Vehiculo vehiculo) throws OperationNotSupportedException {
-        Objects.requireNonNull(vehiculo, "No se puede insertar un vehÃ­culo nulo.");
+        Objects.requireNonNull(vehiculo, "No se puede insertar un vehículo nulo.");
         try (PreparedStatement sentencia = conexion.prepareStatement("insert into vehiculos values (?, ?, ?)")) {
             prepararSentencia(sentencia, vehiculo);
             sentencia.execute();
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new OperationNotSupportedException("Ya existe un vehÃ­culo con esa matricula.");
+            throw new OperationNotSupportedException("Ya existe un vehículo con esa matricula.");
         } catch (SQLException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
@@ -80,7 +80,7 @@ public class Vehiculos implements IVehiculos {
 
     @Override
     public Vehiculo buscar(Vehiculo vehiculo) {
-        Objects.requireNonNull(vehiculo, "No se puede buscar un vehÃ­culo nulo.");
+        Objects.requireNonNull(vehiculo, "No se puede buscar un vehículo nulo.");
         Vehiculo vehiculoBuscado = null;
         try (PreparedStatement consulta = conexion.prepareStatement("select * from vehiculos where matricula = ?")) {
             consulta.setString(1, vehiculo.matricula());
@@ -102,7 +102,7 @@ public class Vehiculos implements IVehiculos {
             sentencia.setString(1, vehiculo.matricula());
             int registrosAfectados = sentencia.executeUpdate();
             if (registrosAfectados == 0) {
-                throw new OperationNotSupportedException("No existe ningÃºn vehÃ­culo con ese DNI.");
+                throw new OperationNotSupportedException("No existe ningún vehículo con ese DNI.");
             }
         } catch (SQLException e) {
             throw new IllegalArgumentException(e.getMessage());

@@ -130,7 +130,7 @@ public class VentanaClientes extends Controlador {
         if (tvClientes.getSelectionModel().getSelectedIndex() == -1) {
             Dialogos.mostrarDialogoError("BORRAR CLIENTE", "ERROR: Selecciona un cliente para poder borrarlo.", getEscenario());
         } else {
-            if (Dialogos.mostrarDialogoConfirmacion("BORRAR CLIENTE", "Â¿EstÃ¡s seguro de que quieres borrar este cliente?", getEscenario())) {
+            if (Dialogos.mostrarDialogoConfirmacion("BORRAR CLIENTE", "¿Estás seguro de que quieres borrar este cliente?", getEscenario())) {
                 VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_CLIENTE);
             }
         }
@@ -177,7 +177,7 @@ public class VentanaClientes extends Controlador {
 
     @FXML
     void miSalir() {
-        if (Dialogos.mostrarDialogoConfirmacion("SALIR", "Â¿EstÃ¡s seguro de que quieres salir de la aplicaciÃ³n?", getEscenario())) {
+        if (Dialogos.mostrarDialogoConfirmacion("SALIR", "¿Estás seguro de que quieres salir de la aplicación?", getEscenario())) {
             VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.SALIR);
             getEscenario().close();
         }
@@ -229,7 +229,7 @@ public class VentanaClientes extends Controlador {
             getEscenario().show();
         });
         ventanaVehiculos.getEscenario().setOnCloseRequest(event -> {
-            if (Dialogos.mostrarDialogoConfirmacion("SALIR", "Â¿EstÃ¡s seguro de que quieres salir de la aplicaciÃ³n?", ventanaVehiculos.getEscenario())) {
+            if (Dialogos.mostrarDialogoConfirmacion("SALIR", "¿Estás seguro de que quieres salir de la aplicación?", ventanaVehiculos.getEscenario())) {
                 VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.SALIR);
             } else {
                 event.consume();

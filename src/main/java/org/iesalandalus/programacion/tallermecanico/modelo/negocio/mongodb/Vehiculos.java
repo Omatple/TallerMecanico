@@ -81,17 +81,17 @@ public class Vehiculos implements IVehiculos {
 
     @Override
     public void insertar(Vehiculo vehiculo) throws OperationNotSupportedException {
-        Objects.requireNonNull(vehiculo, "No se puede insertar un vehÃ­culo nulo.");
+        Objects.requireNonNull(vehiculo, "No se puede insertar un vehículo nulo.");
         FindOneAndReplaceOptions opciones = new FindOneAndReplaceOptions().upsert(true);
         Document resultado = coleccionVehiculos.findOneAndReplace(getCriterioBusqueda(vehiculo), getDocumento(vehiculo), opciones);
         if (resultado != null) {
-            throw new OperationNotSupportedException("Ya existe un vehÃ­culo con esa matricula.");
+            throw new OperationNotSupportedException("Ya existe un vehículo con esa matricula.");
         }
     }
 
     @Override
     public Vehiculo buscar(Vehiculo vehiculo) {
-        Objects.requireNonNull(vehiculo, "No se puede buscar un vehÃ­culo nulo.");
+        Objects.requireNonNull(vehiculo, "No se puede buscar un vehículo nulo.");
         return getVehiculo(coleccionVehiculos.find(getCriterioBusqueda(vehiculo)).first());
     }
 
@@ -100,7 +100,7 @@ public class Vehiculos implements IVehiculos {
         Objects.requireNonNull(vehiculo, "No se puede borrar un vehiculo nulo.");
         DeleteResult resultado = coleccionVehiculos.deleteOne(getCriterioBusqueda(vehiculo));
         if (resultado.getDeletedCount() == 0) {
-            throw new OperationNotSupportedException("No existe ningÃºn vehÃ­culo con ese DNI.");
+            throw new OperationNotSupportedException("No existe ningún vehículo con ese DNI.");
         }
     }
 }

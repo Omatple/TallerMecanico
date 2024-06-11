@@ -22,8 +22,8 @@ import java.util.List;
 
 public class VentanaTrabajosCliente extends Controlador {
 
-    private final VentanaAgregarHoras ventanaAgregarHoras = (VentanaAgregarHoras) Controladores.get("/vistas/VentanaAgregarHoras.fxml", "AÃ‘ADIR HORAS", getEscenario());
-    private final VentanaAgregarPrecioMaterial ventanaAgregarPrecioMaterial = (VentanaAgregarPrecioMaterial) Controladores.get("/vistas/VentanaAgregarPrecioMaterial.fxml", "AÃ‘ADIR PRECIO MATERIAL", getEscenario());
+    private final VentanaAgregarHoras ventanaAgregarHoras = (VentanaAgregarHoras) Controladores.get("/vistas/VentanaAgregarHoras.fxml", "AÑADIR HORAS", getEscenario());
+    private final VentanaAgregarPrecioMaterial ventanaAgregarPrecioMaterial = (VentanaAgregarPrecioMaterial) Controladores.get("/vistas/VentanaAgregarPrecioMaterial.fxml", "AÑADIR PRECIO MATERIAL", getEscenario());
     private final VentanaInsertarTrabajoCliente ventanaInsertarTrabajoCliente = (VentanaInsertarTrabajoCliente) Controladores.get("/vistas/VentanaInsertarTrabajoCliente.fxml", "INSERTAR TRABAJO CLIENTE", getEscenario());
 
     @FXML
@@ -137,7 +137,7 @@ public class VentanaTrabajosCliente extends Controlador {
         if (getTrabajo() == null) {
             Dialogos.mostrarDialogoError("BORRAR TRABAJO", "ERROR: Selecciona un trabajo para borrarlo.", getEscenario());
         } else {
-            if (Dialogos.mostrarDialogoConfirmacion("BORRAR TRABAJO", "Â¿EstÃ¡s seguro de que quieres borrar este trabajo?", getEscenario())) {
+            if (Dialogos.mostrarDialogoConfirmacion("BORRAR TRABAJO", "¿Estás seguro de que quieres borrar este trabajo?", getEscenario())) {
                 VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_TRABAJO);
             }
         }
@@ -154,9 +154,9 @@ public class VentanaTrabajosCliente extends Controlador {
         if (getTrabajo() == null) {
             Dialogos.mostrarDialogoError("CERRAR TRABAJO", "ERROR: Selecciona un trabajo para cerrarlo.", getEscenario());
         } else if (tvTrabajos.getSelectionModel().getSelectedItem().estaCerrado()) {
-            Dialogos.mostrarDialogoError("CERRAR TRABAJO", "ERROR: El trabajo ya estÃ¡ cerrado.", getEscenario());
+            Dialogos.mostrarDialogoError("CERRAR TRABAJO", "ERROR: El trabajo ya está cerrado.", getEscenario());
         } else {
-            if (Dialogos.mostrarDialogoConfirmacion("CERRAR TRABAJO", String.format("Â¿EstÃ¡s seguro de que quieres cerrar este trabajo con la fecha '%s'?", getFechaCierre()), getEscenario())) {
+            if (Dialogos.mostrarDialogoConfirmacion("CERRAR TRABAJO", String.format("¿Estás seguro de que quieres cerrar este trabajo con la fecha '%s'?", getFechaCierre()), getEscenario())) {
                 VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.CERRAR_TRABAJO);
             }
         }
@@ -166,9 +166,9 @@ public class VentanaTrabajosCliente extends Controlador {
     void aniadirHoras() {
         Trabajo trabajo = getTrabajo();
         if (trabajo == null) {
-            Dialogos.mostrarDialogoError("AÃ‘ADIR HORAS", "ERROR: Selecciona un trabajo para aÃ±adir horas.", getEscenario());
+            Dialogos.mostrarDialogoError("AÑADIR HORAS", "ERROR: Selecciona un trabajo para añadir horas.", getEscenario());
         } else if (trabajo.estaCerrado()) {
-            Dialogos.mostrarDialogoError("AÃ‘ADIR HORAS", "ERROR: No se puede aÃ±adir horas, ya que el trabajo estÃ¡ cerrado.", getEscenario());
+            Dialogos.mostrarDialogoError("AÑADIR HORAS", "ERROR: No se puede añadir horas, ya que el trabajo está cerrado.", getEscenario());
         } else {
             ventanaAgregarHoras.getEscenario().show();
         }
@@ -178,11 +178,11 @@ public class VentanaTrabajosCliente extends Controlador {
     void aniadirPrecioMaterial() {
         Trabajo trabajo = getTrabajo();
         if (trabajo == null) {
-            Dialogos.mostrarDialogoError("AÃ‘ADIR PRECIO MATERIAL", "ERROR: Selecciona un trabajo para aÃ±adir precio del material.", getEscenario());
+            Dialogos.mostrarDialogoError("AÑADIR PRECIO MATERIAL", "ERROR: Selecciona un trabajo para añadir precio del material.", getEscenario());
         } else if (trabajo instanceof Revision) {
-            Dialogos.mostrarDialogoError("AÃ‘ADIR PRECIO MATERIAL", "ERROR: No se puede aÃ±adir precio del material a un tipo de trabajo distinto a mecÃ¡nico.", getEscenario());
+            Dialogos.mostrarDialogoError("AÑADIR PRECIO MATERIAL", "ERROR: No se puede añadir precio del material a un tipo de trabajo distinto a mecánico.", getEscenario());
         } else if (trabajo.estaCerrado()) {
-            Dialogos.mostrarDialogoError("AÃ‘ADIR PRECIO MATERIAL", "ERROR: No se puede aÃ±adir precio del material, ya que el trabajo mecÃ¡nico estÃ¡ cerrado.", getEscenario());
+            Dialogos.mostrarDialogoError("AÑADIR PRECIO MATERIAL", "ERROR: No se puede añadir precio del material, ya que el trabajo mecánico está cerrado.", getEscenario());
         } else {
             ventanaAgregarPrecioMaterial.getEscenario().show();
         }
@@ -265,12 +265,12 @@ public class VentanaTrabajosCliente extends Controlador {
         tcPrecioMaterial.setCellValueFactory(c -> {
             String precioMaterial = "";
             if (c.getValue() instanceof Mecanico mecanico) {
-                precioMaterial = String.format("%s â‚¬", mecanico.getPrecioMaterial());
+                precioMaterial = String.format("%s €", mecanico.getPrecioMaterial());
             }
             return new SimpleObjectProperty<>(precioMaterial);
         });
         tcPrecioFinal.setCellValueFactory(c -> {
-            String precio = String.format("%s â‚¬", c.getValue().getPrecio());
+            String precio = String.format("%s €", c.getValue().getPrecio());
             return new SimpleObjectProperty<>(precio);
         });
         tvTrabajos.getSelectionModel().selectedIndexProperty().addListener(observable -> activarDatePicker());

@@ -17,7 +17,7 @@ public class ModeloCascada implements Modelo {
     private ITrabajos trabajos;
 
     public ModeloCascada(FabricaFuenteDatos fabricaFuenteDatos) {
-        Objects.requireNonNull(fabricaFuenteDatos, "La factorÃ­a de la fuente de datos no puede ser nula.");
+        Objects.requireNonNull(fabricaFuenteDatos, "La factoría de la fuente de datos no puede ser nula.");
         IFuenteDatos fuenteDatos = fabricaFuenteDatos.crear();
         clientes = fuenteDatos.crearClientes();
         vehiculos = fuenteDatos.crearVehiculos();
@@ -70,7 +70,7 @@ public class ModeloCascada implements Modelo {
 
     @Override
     public Vehiculo buscar(Vehiculo vehiculo) {
-        vehiculo = Objects.requireNonNull(vehiculos.buscar(vehiculo), "No existe un vehÃ­culo igual.");
+        vehiculo = Objects.requireNonNull(vehiculos.buscar(vehiculo), "No existe un vehículo igual.");
         return vehiculo;
     }
 

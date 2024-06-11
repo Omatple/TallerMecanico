@@ -102,7 +102,7 @@ public class Clientes implements IClientes {
                 cliente.setNombre(filas.getString(NOMBRE));
                 cliente.setTelefono(filas.getString(TELEFONO));
             } else {
-                throw new OperationNotSupportedException("No existe ningÃºn cliente con ese DNI.");
+                throw new OperationNotSupportedException("No existe ningún cliente con ese DNI.");
             }
         } catch (SQLException e) {
             throw new IllegalArgumentException(e.getMessage());
@@ -130,7 +130,7 @@ public class Clientes implements IClientes {
             sentencia.setString(1, cliente.getDni());
             int filas = sentencia.executeUpdate();
             if (filas == 0) {
-                throw new OperationNotSupportedException("No existe ningÃºn cliente con ese DNI.");
+                throw new OperationNotSupportedException("No existe ningún cliente con ese DNI.");
             }
         } catch (SQLException e) {
             throw new IllegalArgumentException(e.getMessage());

@@ -34,8 +34,8 @@ public class VentanaInsertarTrabajoVehiculo extends Controlador {
     private DatePicker dpFechaInicio;
 
     private final ObservableList<Cliente> coleccionClientes = FXCollections.observableArrayList();
-    private static final String MECANICO = "Mec√°nico";
-    private static final String REVISION = "Revisi√≥n";
+    private static final String MECANICO = "Mec·nico";
+    private static final String REVISION = "RevisiÛn";
 
     public Trabajo getTrabajo() {
         Trabajo trabajo = null;

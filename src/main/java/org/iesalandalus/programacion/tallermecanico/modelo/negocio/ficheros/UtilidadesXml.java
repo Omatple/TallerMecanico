@@ -36,7 +36,7 @@ public class UtilidadesXml {
         } catch (TransformerConfigurationException | TransformerFactoryConfigurationError e) {
             System.out.println("Imposible crear el conversor.");
         } catch (TransformerException e) {
-            System.out.println("Error irrecuperable en la conversiÃ³n.");
+            System.out.println("Error irrecuperable en la conversión.");
         } catch (IOException e) {
             System.out.printf("No se ha podido escribir el fichero %s.%n", salida);
         }

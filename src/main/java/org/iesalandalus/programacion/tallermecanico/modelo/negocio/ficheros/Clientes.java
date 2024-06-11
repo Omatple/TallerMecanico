@@ -42,7 +42,7 @@ public class Clientes implements IClientes {
         Document documentoXml = UtilidadesXml.leerDocumentoXml(FICHERO_CLIENTES);
         if (documentoXml != null) {
             procesarDocumentoXml(documentoXml);
-            System.out.printf("Fichero %s leÃ­do correctamente.%n", FICHERO_CLIENTES);
+            System.out.printf("Fichero %s leído correctamente.%n", FICHERO_CLIENTES);
         }
     }
 
@@ -114,7 +114,7 @@ public class Clientes implements IClientes {
         Objects.requireNonNull(cliente, "No se puede modificar un cliente nulo.");
         Cliente clienteEncontrado = buscar(cliente);
         if (clienteEncontrado == null) {
-            throw new OperationNotSupportedException("No existe ningÃºn cliente con ese DNI.");
+            throw new OperationNotSupportedException("No existe ningún cliente con ese DNI.");
         }
         boolean modificado = false;
         if (nombre != null && !nombre.isBlank()) {
@@ -139,7 +139,7 @@ public class Clientes implements IClientes {
     public void borrar(Cliente cliente) throws OperationNotSupportedException {
         Objects.requireNonNull(cliente, "No se puede borrar un cliente nulo.");
         if (!coleccionClientes.contains(cliente)) {
-            throw new OperationNotSupportedException("No existe ningÃºn cliente con ese DNI.");
+            throw new OperationNotSupportedException("No existe ningún cliente con ese DNI.");
         }
         coleccionClientes.remove(cliente);
     }

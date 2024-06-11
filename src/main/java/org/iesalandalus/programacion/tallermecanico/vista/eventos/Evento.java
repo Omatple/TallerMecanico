@@ -9,21 +9,21 @@ public enum Evento {
     BORRAR_CLIENTE(13, "Borrar cliente."),
     LISTAR_CLIENTES(14, "Listar clientes."),
     MODIFICAR_CLIENTE(15, "Modificar cliente."),
-    INSERTAR_VEHICULO(21, "Insertar vehÃ­culo."),
-    BUSCAR_VEHICULO(22, "Buscar vehÃ­culo."),
-    BORRAR_VEHICULO(23, "Borrar vehÃ­culo."),
-    LISTAR_VEHICULOS(24, "Listar vehÃ­culos."),
-    INSERTAR_REVISION(31, "Insertar trabajo de revisiÃ³n."),
-    INSERTAR_MECANICO(32, "Insertar trabajo mecÃ¡nico."),
+    INSERTAR_VEHICULO(21, "Insertar vehículo."),
+    BUSCAR_VEHICULO(22, "Buscar vehículo."),
+    BORRAR_VEHICULO(23, "Borrar vehículo."),
+    LISTAR_VEHICULOS(24, "Listar vehículos."),
+    INSERTAR_REVISION(31, "Insertar trabajo de revisión."),
+    INSERTAR_MECANICO(32, "Insertar trabajo mecánico."),
     BUSCAR_TRABAJO(33, "Buscar trabajo."),
     BORRAR_TRABAJO(34, "Borrar trabajo."),
     LISTAR_TRABAJOS(35, "Listar trabajos."),
     LISTAR_TRABAJOS_CLIENTE(36, "Listar trabajos de un cliente."),
-    LISTAR_TRABAJOS_VEHICULO(37, "Listar trabajos de un vehÃ­culo."),
-    ANADIR_HORAS_TRABAJO(38, "AÃ±adir horas a un trabajo."),
-    ANADIR_PRECIO_MATERIAL_TRABAJO(39, "AÃ±adir precio del material a un trabajo."),
+    LISTAR_TRABAJOS_VEHICULO(37, "Listar trabajos de un vehículo."),
+    ANADIR_HORAS_TRABAJO(38, "Añadir horas a un trabajo."),
+    ANADIR_PRECIO_MATERIAL_TRABAJO(39, "Añadir precio del material a un trabajo."),
     CERRAR_TRABAJO(40, "Cerrar trabajo."),
-    MOSTRAR_ESTADISTICAS_MENSUALES(41, "Mostrar estadÃ­sticas mensuales."),
+    MOSTRAR_ESTADISTICAS_MENSUALES(41, "Mostrar estadísticas mensuales."),
     SALIR(0, "Salir.");
 
     private final int codigo;
@@ -51,7 +51,7 @@ public enum Evento {
 
     public static Evento get(int codigo) {
         if (!esValido(codigo)) {
-            throw new IllegalArgumentException("El cÃ³digo no es correcto.");
+            throw new IllegalArgumentException("El código no es correcto.");
         }
         return eventos.get(codigo);
     }

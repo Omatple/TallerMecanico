@@ -42,7 +42,7 @@ public class Vehiculos implements IVehiculos {
         Document documentoXml = UtilidadesXml.leerDocumentoXml(FICHERO_VEHICULOS);
         if (documentoXml != null) {
             procesarDocumentoXml(documentoXml);
-            System.out.printf("Fichero %s leÃ­do correctamente.%n", FICHERO_VEHICULOS);
+            System.out.printf("Fichero %s leído correctamente.%n", FICHERO_VEHICULOS);
         }
     }
 
@@ -55,7 +55,7 @@ public class Vehiculos implements IVehiculos {
                     insertar(getVehiculo((Element) vehiculo));
                 }
             } catch (OperationNotSupportedException|IllegalArgumentException|NullPointerException e) {
-                System.out.printf("Error al leer el vehÃ­culo %d. --> %s%n", i, e.getMessage());
+                System.out.printf("Error al leer el vehículo %d. --> %s%n", i, e.getMessage());
             }
         }
     }
@@ -102,25 +102,25 @@ public class Vehiculos implements IVehiculos {
 
     @Override
     public void insertar(Vehiculo vehiculo) throws OperationNotSupportedException {
-        Objects.requireNonNull(vehiculo, "No se puede insertar un vehÃ­culo nulo.");
+        Objects.requireNonNull(vehiculo, "No se puede insertar un vehículo nulo.");
         if (coleccionVehiculos.contains(vehiculo)) {
-            throw new OperationNotSupportedException("Ya existe un vehÃ­culo con esa matrÃ­cula.");
+            throw new OperationNotSupportedException("Ya existe un vehículo con esa matrícula.");
         }
         coleccionVehiculos.add(vehiculo);
     }
 
     @Override
     public Vehiculo buscar(Vehiculo vehiculo) {
-        Objects.requireNonNull(vehiculo, "No se puede buscar un vehÃ­culo nulo.");
+        Objects.requireNonNull(vehiculo, "No se puede buscar un vehículo nulo.");
         int indice = coleccionVehiculos.indexOf(vehiculo);
         return (indice == -1) ? null : coleccionVehiculos.get(indice);
     }
 
     @Override
     public void borrar(Vehiculo vehiculo) throws OperationNotSupportedException {
-        Objects.requireNonNull(vehiculo, "No se puede borrar un vehÃ­culo nulo.");
+        Objects.requireNonNull(vehiculo, "No se puede borrar un vehículo nulo.");
         if (!coleccionVehiculos.contains(vehiculo)) {
-            throw new OperationNotSupportedException("No existe ningÃºn vehÃ­culo con esa matrÃ­cula.");
+            throw new OperationNotSupportedException("No existe ningún vehículo con esa matrícula.");
         }
         coleccionVehiculos.remove(vehiculo);
     }

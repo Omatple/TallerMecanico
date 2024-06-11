@@ -49,7 +49,7 @@ public class Trabajos implements ITrabajos {
         Document documentoXml = UtilidadesXml.leerDocumentoXml(FICHERO_TRABAJOS);
         if (documentoXml != null) {
             procesarDocumentoXml(documentoXml);
-            System.out.printf("Fichero %s leÃ­do correctamente.%n", FICHERO_TRABAJOS);
+            System.out.printf("Fichero %s leído correctamente.%n", FICHERO_TRABAJOS);
         }
     }
 
@@ -198,13 +198,13 @@ public class Trabajos implements ITrabajos {
                 if (trabajo.getCliente().equals(cliente)) {
                     throw new OperationNotSupportedException("El cliente tiene otro trabajo en curso.");
                 } else if (trabajo.getVehiculo().equals(vehiculo)) {
-                    throw new OperationNotSupportedException("El vehÃ­culo estÃ¡ actualmente en el taller.");
+                    throw new OperationNotSupportedException("El vehículo está actualmente en el taller.");
                 }
             } else {
                 if (trabajo.getCliente().equals(cliente) && !fevchaInicio.isAfter(trabajo.getFechaFin())) {
                     throw new OperationNotSupportedException("El cliente tiene otro trabajo posterior.");
                 } else if (trabajo.getVehiculo().equals(vehiculo) && !fevchaInicio.isAfter(trabajo.getFechaFin())) {
-                    throw new OperationNotSupportedException("El vehÃ­culo tiene otro trabajo posterior.");
+                    throw new OperationNotSupportedException("El vehículo tiene otro trabajo posterior.");
                 }
             }
         }
@@ -212,13 +212,13 @@ public class Trabajos implements ITrabajos {
 
     @Override
     public void anadirHoras(Trabajo trabajo, int horas) throws OperationNotSupportedException {
-        Objects.requireNonNull(trabajo, "No puedo aÃ±adir horas a un trabajo nulo.");
+        Objects.requireNonNull(trabajo, "No puedo añadir horas a un trabajo nulo.");
         Trabajo trabajoEncontrado = getTrabajoAbierto(trabajo.getVehiculo());
         trabajoEncontrado.anadirHoras(horas);
     }
 
     private Trabajo getTrabajoAbierto(Vehiculo vehiculo) throws OperationNotSupportedException {
-        Objects.requireNonNull(vehiculo, "No puedo operar sobre un vehÃ­culo nulo.");
+        Objects.requireNonNull(vehiculo, "No puedo operar sobre un vehículo nulo.");
         Trabajo trabajoEncontrado = null;
         Iterator<Trabajo> iteradorTrabajos = coleccionTrabajos.iterator();
         while (iteradorTrabajos.hasNext() && trabajoEncontrado == null) {
@@ -228,19 +228,19 @@ public class Trabajos implements ITrabajos {
             }
         }
         if (trabajoEncontrado == null) {
-            throw new OperationNotSupportedException("No existe ningÃºn trabajo abierto para dicho vehÃ­culo.");
+            throw new OperationNotSupportedException("No existe ningún trabajo abierto para dicho vehículo.");
         }
         return trabajoEncontrado;
     }
 
     @Override
     public void anadirPrecioMaterial(Trabajo trabajo, float precioMaterial) throws OperationNotSupportedException {
-        Objects.requireNonNull(trabajo, "No puedo aÃ±adir precio del material a un trabajo nulo.");
+        Objects.requireNonNull(trabajo, "No puedo añadir precio del material a un trabajo nulo.");
         Trabajo trabajoEncontrado = getTrabajoAbierto(trabajo.getVehiculo());
         if (trabajoEncontrado instanceof Mecanico mecanico) {
             mecanico.anadirPrecioMaterial(precioMaterial);
         } else {
-            throw new OperationNotSupportedException("No se puede aÃ±adir precio al material para este tipo de trabajos.");
+            throw new OperationNotSupportedException("No se puede añadir precio al material para este tipo de trabajos.");
         }
     }
 
@@ -262,7 +262,7 @@ public class Trabajos implements ITrabajos {
     public void borrar(Trabajo trabajo) throws OperationNotSupportedException {
         Objects.requireNonNull(trabajo, "No se puede borrar un trabajo nulo.");
         if (!coleccionTrabajos.contains(trabajo)) {
-            throw new OperationNotSupportedException("No existe ningÃºn trabajo igual.");
+            throw new OperationNotSupportedException("No existe ningún trabajo igual.");
         }
         coleccionTrabajos.remove(trabajo);
     }

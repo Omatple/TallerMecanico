@@ -25,10 +25,10 @@ public class Mecanico extends Trabajo {
 
     public void anadirPrecioMaterial(float precioMaterial) throws OperationNotSupportedException {
         if (precioMaterial <= 0) {
-            throw new IllegalArgumentException("El precio del material a aÃ±adir debe ser mayor que cero.");
+            throw new IllegalArgumentException("El precio del material a añadir debe ser mayor que cero.");
         }
         if (estaCerrado()) {
-            throw new OperationNotSupportedException("No se puede aÃ±adir precio del material, ya que el trabajo mecÃ¡nico estÃ¡ cerrado.");
+            throw new OperationNotSupportedException("No se puede añadir precio del material, ya que el trabajo mecánico está cerrado.");
         }
         this.precioMaterial += precioMaterial;
     }
@@ -42,9 +42,9 @@ public class Mecanico extends Trabajo {
     public String toString() {
         String cadena;
         if (!estaCerrado()) {
-            cadena = String.format("MecÃ¡nico -> %s - %s (%s - ): %d horas, %.2f â‚¬ en material", getCliente(), getVehiculo(), getFechaInicio().format(FORMATO_FECHA), getHoras(), precioMaterial);
+            cadena = String.format("Mecánico -> %s - %s (%s - ): %d horas, %.2f € en material", getCliente(), getVehiculo(), getFechaInicio().format(FORMATO_FECHA), getHoras(), precioMaterial);
         } else {
-            cadena = String.format("MecÃ¡nico -> %s - %s (%s - %s): %d horas, %.2f â‚¬ en material, %.2f â‚¬ total", getCliente(), getVehiculo(), getFechaInicio().format(FORMATO_FECHA), getFechaFin().format(FORMATO_FECHA), getHoras(), precioMaterial, getPrecio());
+            cadena = String.format("Mecánico -> %s - %s (%s - %s): %d horas, %.2f € en material, %.2f € total", getCliente(), getVehiculo(), getFechaInicio().format(FORMATO_FECHA), getFechaFin().format(FORMATO_FECHA), getHoras(), precioMaterial, getPrecio());
         }
         return cadena;
     }

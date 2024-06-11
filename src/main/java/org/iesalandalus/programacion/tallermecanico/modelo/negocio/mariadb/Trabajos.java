@@ -17,8 +17,8 @@ public class Trabajos implements ITrabajos {
     private static final String FECHA_INICIO = "fechaInicio";
     private static final String FECHA_FIN = "fechaFin";
     private static final String TIPO = "tipo";
-    private static final String REVISION = "RevisiÃ³n";
-    private static final String MECANICO = "MecÃ¡nico";
+    private static final String REVISION = "Revisión";
+    private static final String MECANICO = "Mecánico";
     private static final String HORAS = "horas";
     private static final String PRECIO_MATERIAL = "precioMaterial";
 
@@ -181,7 +181,7 @@ public class Trabajos implements ITrabajos {
             ResultSet filas = sentencia.executeQuery();
             filas.first();
             if (filas.getInt(1) == 1) {
-                throw new OperationNotSupportedException("El vehÃ­culo estÃ¡ actualmente en el taller.");
+                throw new OperationNotSupportedException("El vehículo está actualmente en el taller.");
             }
         } catch (SQLException e) {
             throw new IllegalArgumentException(e.getMessage());
@@ -203,7 +203,7 @@ public class Trabajos implements ITrabajos {
             ResultSet filas = sentencia.executeQuery();
             filas.first();
             if (filas.getInt(1) == 1) {
-                throw new OperationNotSupportedException("El vehÃ­culo tiene otro trabajo posterior.");
+                throw new OperationNotSupportedException("El vehículo tiene otro trabajo posterior.");
             }
         } catch (SQLException e) {
             throw new IllegalArgumentException(e.getMessage());
@@ -212,7 +212,7 @@ public class Trabajos implements ITrabajos {
 
     @Override
     public void anadirHoras(Trabajo trabajo, int horas) throws OperationNotSupportedException {
-        Objects.requireNonNull(trabajo, "No puedo aÃ±adir horas a un trabajo nulo.");
+        Objects.requireNonNull(trabajo, "No puedo añadir horas a un trabajo nulo.");
         try (PreparedStatement sentencia = conexion.prepareStatement("select * from trabajos where cliente = ? and vehiculo = ? and fechaFin is null", ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE)) {
             sentencia.setString(1, trabajo.getCliente().getDni());
             sentencia.setString(2, trabajo.getVehiculo().matricula());
@@ -222,7 +222,7 @@ public class Trabajos implements ITrabajos {
                 filas.updateRow();
                 trabajo.anadirHoras(horas);
             } else {
-                throw new OperationNotSupportedException("No existe ningÃºn trabajo abierto igual.");
+                throw new OperationNotSupportedException("No existe ningún trabajo abierto igual.");
             }
         } catch (SQLException e) {
             throw new IllegalArgumentException(e.getMessage());
@@ -231,7 +231,7 @@ public class Trabajos implements ITrabajos {
 
     @Override
     public void anadirPrecioMaterial(Trabajo trabajo, float precioMaterial) throws OperationNotSupportedException {
-        Objects.requireNonNull(trabajo, "No puedo aÃ±adir precio del material a un trabajo nulo.");
+        Objects.requireNonNull(trabajo, "No puedo añadir precio del material a un trabajo nulo.");
         try (PreparedStatement sentencia = conexion.prepareStatement("select * from trabajos where cliente = ? and vehiculo = ? and tipo = ? and fechaFin is null", ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE)) {
             sentencia.setString(1, trabajo.getCliente().getDni());
             sentencia.setString(2, trabajo.getVehiculo().matricula());
@@ -242,7 +242,7 @@ public class Trabajos implements ITrabajos {
                 filas.updateRow();
                 ((Mecanico)trabajo).anadirPrecioMaterial(precioMaterial);
             } else {
-                throw new OperationNotSupportedException("No existe ningÃºn trabajo mecÃ¡nico abierto igual.");
+                throw new OperationNotSupportedException("No existe ningún trabajo mecánico abierto igual.");
             }
         } catch (SQLException e) {
             throw new IllegalArgumentException(e.getMessage());
@@ -261,7 +261,7 @@ public class Trabajos implements ITrabajos {
                 filas.updateRow();
                 trabajo.cerrar(fechaFin);
             } else {
-                throw new OperationNotSupportedException("No existe ningÃºn trabajo abierto igual.");
+                throw new OperationNotSupportedException("No existe ningún trabajo abierto igual.");
             }
         } catch (SQLException e) {
             throw new IllegalArgumentException(e.getMessage());
@@ -292,7 +292,7 @@ public class Trabajos implements ITrabajos {
             sentencia.setDate(3,  Date.valueOf(trabajo.getFechaInicio()));
             int filas = sentencia.executeUpdate();
             if (filas == 0) {
-                throw new OperationNotSupportedException("No existe ningÃºn trabajo igual.");
+                throw new OperationNotSupportedException("No existe ningún trabajo igual.");
             }
         } catch (SQLException | OperationNotSupportedException e) {
             throw new IllegalArgumentException(e.getMessage());
