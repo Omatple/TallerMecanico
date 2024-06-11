@@ -6,10 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Mecanico;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Revision;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.TipoTrabajo;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.VistaGrafica;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controlador;
@@ -88,6 +85,10 @@ public class VentanaTrabajos extends Controlador {
 
     boolean btBuscarEsPulsado;
 
+    boolean dpFechaInicioEstaVacio;
+
+    boolean btListarYaEraVisible;
+
     public VentanaInfoCliente getVentanaInfoCliente() {
         return ventanaInfoCliente;
     }
@@ -113,20 +114,15 @@ public class VentanaTrabajos extends Controlador {
     }
 
     public void rellenarTabla(List<Trabajo> trabajos) {
-        if (btlistar.isVisible()) {
-            btlistar.setVisible(false);
-        }
         tvTrabajos.getItems().clear();
         coleccionTrabajos.clear();
         coleccionTrabajos.addAll(trabajos);
     }
 
     public Trabajo getTrabajo() {
-        Trabajo trabajo = null;
-        if (esVisibleListar()) {
-            trabajo = tvTrabajos.getSelectionModel().getSelectedItem();
-        } else if (btBuscarEsPulsado) {
-            //otro boton buscar para buscar por cliente, vehiculo y fecha//trabajo = Trabajo.get(ve);
+        Trabajo trabajo;
+        if (btBuscarEsPulsado) {
+            trabajo = new Revision(Cliente.get(getStringTfCliente()), Vehiculo.get(getStringTfVehiculo()), dpFechaInicio.getValue());
         } else {
             trabajo = tvTrabajos.getSelectionModel().getSelectedItem();
         }
@@ -184,7 +180,76 @@ public class VentanaTrabajos extends Controlador {
     @FXML
     void buscar() {
         btBuscarEsPulsado = true;
-        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BUSCAR_TRABAJO);
+        dpFechaInicioEstaVacio = dpFechaInicio.editorProperty().get().getText().isBlank();
+        if (tfCliente.getText().isBlank() && tfVehiculo.getText().isBlank()) {
+            if (dpFechaInicioEstaVacio) {
+                Dialogos.mostrarDialogoError("BUSCAR TRABAJO", "ERROR: Ingrese algún criterio para realizar la búsqueda.", getEscenario());
+            } else {
+                if (esVisibleListar()) {
+                    btListarYaEraVisible = true;
+                } else {
+                    btListarYaEraVisible = false;
+                    btlistar.setVisible(true);
+                }
+                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
+            }
+        } else if (tfCliente.getText().isBlank() && !tfVehiculo.getText().isBlank()) {
+            if (esVisibleListar()) {
+                btListarYaEraVisible = true;
+            } else {
+                btListarYaEraVisible = false;
+                btlistar.setVisible(true);
+            }
+            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_VEHICULO);
+        } else if (!tfCliente.getText().isBlank() && tfVehiculo.getText().isBlank()) {
+            if (esVisibleListar()) {
+                btListarYaEraVisible = true;
+            } else {
+                btListarYaEraVisible = false;
+                btlistar.setVisible(true);
+            }
+            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
+        } else if (!tfCliente.getText().isBlank() && !tfVehiculo.getText().isBlank()) {
+            if (esVisibleListar()) {
+                btListarYaEraVisible = true;
+            } else {
+                btListarYaEraVisible = false;
+                btlistar.setVisible(true);
+            }
+            if (dpFechaInicioEstaVacio) {
+                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
+            } else {
+                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BUSCAR_TRABAJO);
+            }
+        }
+    }
+
+    public boolean isBtListarYaEraVisible() {
+        return btListarYaEraVisible;
+    }
+
+    public boolean isBtBuscarEsPulsado() {
+        return btBuscarEsPulsado;
+    }
+
+    public void setVisibleBtlistar(boolean esVisible) {
+        btlistar.setVisible(esVisible);
+    }
+
+    public LocalDate getLocalDateDpFechaInicio() {
+        return dpFechaInicio.getValue();
+    }
+
+    public String getStringTfCliente() {
+        return tfCliente.getText();
+    }
+
+    public String getStringTfVehiculo() {
+        return tfVehiculo.getText();
+    }
+
+    public boolean isDpFechaInicioEstaVacio() {
+        return dpFechaInicioEstaVacio;
     }
 
     @FXML
@@ -220,8 +285,8 @@ public class VentanaTrabajos extends Controlador {
 
     @FXML
     void listar() {
-        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
         btlistar.setVisible(false);
+        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
     }
 
     @FXML
