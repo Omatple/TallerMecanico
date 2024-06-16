@@ -74,9 +74,12 @@ public class VistaGrafica implements Vista {
     @Override
     public Cliente leerClienteDni() {
         Cliente cliente;
-        if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
+        if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().isBtBuscarEsPulsado()) {
             cliente = Cliente.get(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente());
         } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+            if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setBtBuscarPulsadoDesdeFuera(true);
+            }
             cliente = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getTrabajo().getCliente();
         } else {
             cliente = ((VentanaClientes) ventanaPrincipal).getCliente();
@@ -124,9 +127,12 @@ public class VistaGrafica implements Vista {
     @Override
     public Vehiculo leerVehiculoMatricula() {
         Vehiculo vehiculo;
-        if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
+        if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().isBtBuscarEsPulsado()) {
             vehiculo = Vehiculo.get(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo());
         } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+            if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setBtBuscarPulsadoDesdeFuera(true);
+            }
             vehiculo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getTrabajo().getVehiculo();
         } else {
             vehiculo = ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVehiculo();
@@ -142,12 +148,24 @@ public class VistaGrafica implements Vista {
         } else if (ventanaPrincipal.getEscenario().isShowing()) {
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getTrabajo();
         } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getEscenario().isShowing()) {
+            if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setBtBuscarPulsadoDesdeFuera(true);
+            }
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getTrabajo();
         } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().getEscenario().isShowing()) {
+            if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setBtBuscarPulsadoDesdeFuera(true);
+            }
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().getTrabajo();
-        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
+        } /*else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
+//            if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
+//                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setBtBuscarPulsadoDesdeFuera(true);
+//            }
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getTrabajo();
-        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+        }*/ else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+            if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setBtBuscarPulsadoDesdeFuera(true);
+            }
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getTrabajo();
         }
         return trabajo;
@@ -161,6 +179,9 @@ public class VistaGrafica implements Vista {
         } else if (ventanaPrincipal.getEscenario().isShowing()) {
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getVentanaInsertarTrabajoCliente().getTrabajo();
         } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+            if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setBtBuscarPulsadoDesdeFuera(true);
+            }
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInsertarTrabajo().getTrabajo();
         }
         return trabajo;
@@ -174,6 +195,9 @@ public class VistaGrafica implements Vista {
         } else if (ventanaPrincipal.getEscenario().isShowing()) {
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getTrabajo();
         } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+            if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setBtBuscarPulsadoDesdeFuera(true);
+            }
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getTrabajo();
         }
         return trabajo;
@@ -314,37 +338,49 @@ public class VistaGrafica implements Vista {
 
     @Override
     public void mostrarTrabajos(List<Trabajo> trabajos) {
-        if (((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getEscenario().isShowing()) {
-            ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().rellenarTabla(trabajos);
-            ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getEscenario().show();
-        } else if (ventanaPrincipal.getEscenario().isShowing()) {
-            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().rellenarTabla(trabajos);
-            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getEscenario().show();
-        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
-            if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
-                List<Trabajo> trabajosBuscados = new ArrayList<>();
-                if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().isDpFechaInicioEstaVacio()) {
-                    if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente().isBlank() || ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo().isBlank()) {
-                        for (Trabajo trabajo : trabajos) {
-                            trabajosBuscados.add(trabajo);
+        if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().isBtBuscarPulsadoDesdeFuera()) {
+            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setCogerUltimosDatosBuscados(true);
+            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().buscar();
+            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setCogerUltimosDatosBuscados(false);
+        } else {
+            if (((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getEscenario().isShowing()) {
+                ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().rellenarTabla(trabajos);
+                ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getEscenario().show();
+            } else if (ventanaPrincipal.getEscenario().isShowing()) {
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().rellenarTabla(trabajos);
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getEscenario().show();
+            } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+                if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
+                    List<Trabajo> trabajosBuscados = new ArrayList<>();
+                    if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().isDpFechaInicioEstaVacio()) {
+                        if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente().isBlank() || ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo().isBlank()) {
+                            for (Trabajo trabajo : trabajos) {
+                                trabajosBuscados.add(trabajo);
+                            }
+                            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().guardarUltimaBusquedaValida(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getLocalDateDpFechaInicio());
+                            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().guardarUltimaBusquedaValidaTfsEnBlanco(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getLocalDateDpFechaInicio());
+                        } else {
+                            for (Trabajo trabajo : trabajos) {
+                                if (trabajo.getCliente().equals(Cliente.get(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente())) && trabajo.getVehiculo().equals(Vehiculo.get(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo()))) {
+                                    trabajosBuscados.add(trabajo);
+                                }
+                                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().guardarUltimaBusquedaValida(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getLocalDateDpFechaInicio());
+                                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().guardarUltimaBusquedaValidaTfsEnBlanco(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getLocalDateDpFechaInicio());
+                            }
                         }
                     } else {
                         for (Trabajo trabajo : trabajos) {
-                            if (trabajo.getCliente().getDni().equals(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente()) && trabajo.getVehiculo().matricula().equals(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo())) {
+                            if (trabajo.getFechaInicio().equals(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getLocalDateDpFechaInicio())) {
                                 trabajosBuscados.add(trabajo);
                             }
+                            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().guardarUltimaBusquedaValida(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getLocalDateDpFechaInicio());
+                            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().guardarUltimaBusquedaValidaTfsEnBlanco(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getLocalDateDpFechaInicio());
                         }
                     }
+                    ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().rellenarTabla(trabajosBuscados);
                 } else {
-                    for (Trabajo trabajo : trabajos) {
-                        if (trabajo.getFechaInicio().equals(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getLocalDateDpFechaInicio())) {
-                            trabajosBuscados.add(trabajo);
-                        }
-                    }
+                    ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().rellenarTabla(trabajos);
                 }
-                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().rellenarTabla(trabajosBuscados);
-            } else {
-                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().rellenarTabla(trabajos);
             }
         }
     }
