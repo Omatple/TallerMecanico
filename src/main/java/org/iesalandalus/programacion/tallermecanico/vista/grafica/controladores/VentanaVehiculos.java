@@ -5,7 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
+import javafx.scene.input.MouseEvent;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.VistaGrafica;
@@ -29,6 +29,9 @@ public class VentanaVehiculos extends Controlador {
     private Button btVehiculos;
 
     @FXML
+    private MenuItem miEstadisticasMensuales;
+
+    @FXML
     private TableView<Vehiculo> tvVehiculos;
 
     @FXML
@@ -49,10 +52,13 @@ public class VentanaVehiculos extends Controlador {
     @FXML
     private Button btClientes;
 
+    @FXML
+    private Button btTrabajos;
+
     boolean btBuscarEsPulsado;
 
-    @FXML
-    void ventanaTrabajos() {
+    Button getBtTrabajos() {
+        return btTrabajos;
     }
 
     Button getBtClientes() {
@@ -88,6 +94,10 @@ public class VentanaVehiculos extends Controlador {
         tvVehiculos.getItems().clear();
         coleccionVehiculos.clear();
         coleccionVehiculos.addAll(vehiculos);
+    }
+
+    MenuItem getMiEstadisticasMensuales() {
+        return miEstadisticasMensuales;
     }
 
     public Vehiculo getVehiculo() {
@@ -148,11 +158,6 @@ public class VentanaVehiculos extends Controlador {
     }
 
     @FXML
-    void miEstadisticasMensuales() {
-
-    }
-
-    @FXML
     void miSalir() {
         if (Dialogos.mostrarDialogoConfirmacion("SALIR", "¿Estás seguro de que quieres salir de la aplicación?", getEscenario())) {
             VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.SALIR);
@@ -171,5 +176,6 @@ public class VentanaVehiculos extends Controlador {
         tcMarca.setCellValueFactory(c -> new SimpleObjectProperty<>(c.getValue().marca()));
         tcModelo.setCellValueFactory(c -> new SimpleObjectProperty<>(c.getValue().modelo()));
         tvVehiculos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> ventanaTrabajosVehiculo.setStrMatriculaVehiculo(newValue.matricula()));
+        tvVehiculos.addEventFilter(MouseEvent.MOUSE_DRAGGED, MouseEvent::consume);
     }
 }

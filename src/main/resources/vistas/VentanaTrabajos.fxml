@@ -23,7 +23,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Opciones">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#miEstadisticasMensuales" text="Estadisticas Mensuales" />
+                  <MenuItem fx:id="miEstadisticasMensuales" mnemonicParsing="false" text="Estadisticas Mensuales" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Ayuda">

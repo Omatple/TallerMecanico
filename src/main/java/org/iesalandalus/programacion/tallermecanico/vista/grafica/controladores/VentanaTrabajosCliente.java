@@ -56,9 +56,13 @@ public class VentanaTrabajosCliente extends Controlador {
     @FXML
     private TableView<Trabajo> tvTrabajos;
 
-    private ObservableList<Trabajo> coleccionTrabajos = FXCollections.observableArrayList();
+    private final ObservableList<Trabajo> coleccionTrabajos = FXCollections.observableArrayList();
 
     private DatePicker dpFechaFin;
+
+    private LocalDate ultimaFechaBuscadaValida;
+
+    private boolean esPulsadoBtBuscar;
 
     public VentanaAgregarHoras getVentanaAgregarHoras() {
         return ventanaAgregarHoras;
@@ -75,9 +79,6 @@ public class VentanaTrabajosCliente extends Controlador {
 
     // RESOOLVER PORQUE AL BUSCAR TENIENDO UNO SELECCIONADO ABAJO, NO SE ACTIVA EL DATEPIKER
     public void rellenarTabla(List<Trabajo> trabajos) {
-        if (btlistar.isVisible()) {
-            btlistar.setVisible(false);
-        }
         coleccionTrabajos.clear();
         tvTrabajos.getItems().clear();
         coleccionTrabajos.addAll(trabajos);
@@ -102,34 +103,51 @@ public class VentanaTrabajosCliente extends Controlador {
         VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_VEHICULOS);
     }
 
+    public LocalDate getLocalDateDpFechaInicio() {
+        return dpFechaInicio.getValue();
+    }
+
+    public boolean isEsPulsadoBtBuscar() {
+        return esPulsadoBtBuscar;
+    }
+
+    public DatePicker getDpFechaInicio() {
+        return dpFechaInicio;
+    }
+
+    public boolean isVisibleBtListar() {
+        return btlistar.isVisible();
+    }
+
+    public void setEsPulsadoBtBuscar(boolean esPulsadoBtBuscar) {
+        this.esPulsadoBtBuscar = esPulsadoBtBuscar;
+    }
+
+    public void limpiarDpFechaInicio() {
+        dpFechaInicio.setValue(null);
+    }
+
     @FXML
-    void buscar() {
-        ObservableList<Trabajo> coleccionTrabajosBuscados = FXCollections.observableArrayList();
+    public void buscar() {
         if (dpFechaInicio.getEditor().getText().isBlank()) {
             Dialogos.mostrarDialogoError("BUSCAR TRABAJO CLIENTE", "ERROR: Debes elegir una fecha de inicio antes de buscar un trabajo.", getEscenario());
         } else {
-            for (Trabajo trabajo : coleccionTrabajos) {
-                if (trabajo.getFechaInicio().equals(dpFechaInicio.getValue())) {
-                    coleccionTrabajosBuscados.add(trabajo);
-                }
+            if (dpFechaInicio.getValue().isAfter(LocalDate.now())) {
+                Dialogos.mostrarDialogoError("BUSCAR TRABAJO CLIENTE", "ERROR: No es posible buscar un trabajo en el futuro.", getEscenario());
+            } else {
+                esPulsadoBtBuscar = true;
+                btlistar.setVisible(true);
+                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
             }
-            tcFechaFin.setCellValueFactory(c -> {
-                dpFechaFin = new DatePicker();
-                DatePicker datePicker = new DatePicker();
-                datePicker.setEditable(false);
-                if (c.getValue().estaCerrado()) {
-                    datePicker.setDisable(true);
-                    if (c.getValue().estaCerrado()) {
-                        datePicker.setValue(c.getValue().getFechaFin());
-                    }
-                } else {
-                    datePicker.getEditor().textProperty().addListener((observable, oldValue, newValue) -> setFechaFin(newValue));
-                }
-                return new SimpleObjectProperty<>(datePicker);
-            });
-            rellenarTabla(coleccionTrabajosBuscados);
-            btlistar.setVisible(true);
         }
+    }
+
+    public void setUltimaFechaBuscadaValida(LocalDate fechaValida) {
+        ultimaFechaBuscadaValida = fechaValida;
+    }
+
+    public LocalDate getUltimaFechaBuscadaValida() {
+        return ultimaFechaBuscadaValida;
     }
 
     @FXML
@@ -145,8 +163,8 @@ public class VentanaTrabajosCliente extends Controlador {
 
     @FXML
     void listar() {
-        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
         btlistar.setVisible(false);
+        VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
     }
 
     @FXML
@@ -156,8 +174,12 @@ public class VentanaTrabajosCliente extends Controlador {
         } else if (tvTrabajos.getSelectionModel().getSelectedItem().estaCerrado()) {
             Dialogos.mostrarDialogoError("CERRAR TRABAJO", "ERROR: El trabajo ya está cerrado.", getEscenario());
         } else {
-            if (Dialogos.mostrarDialogoConfirmacion("CERRAR TRABAJO", String.format("¿Estás seguro de que quieres cerrar este trabajo con la fecha '%s'?", getFechaCierre()), getEscenario())) {
-                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.CERRAR_TRABAJO);
+            if (getFechaCierre() == null) {
+                Dialogos.mostrarDialogoError("CERRAR TRABAJO", "ERROR: Debes seleccionar una fecha para cerrar el trabajo.", getEscenario());
+            } else {
+                if (Dialogos.mostrarDialogoConfirmacion("CERRAR TRABAJO", String.format("¿Estás seguro de que quieres cerrar este trabajo con la fecha '%s'?", getFechaCierre()), getEscenario())) {
+                    VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.CERRAR_TRABAJO);
+                }
             }
         }
     }
@@ -189,22 +211,24 @@ public class VentanaTrabajosCliente extends Controlador {
     }
 
     void activarDatePicker() {
-        if (!btlistar.isVisible()) {
-            tcFechaFin.setCellValueFactory(c -> {
-                dpFechaFin = new DatePicker();
-                DatePicker datePicker = new DatePicker();
-                datePicker.setEditable(false);
-                if (!c.getValue().equals(getTrabajo()) || c.getValue().estaCerrado()) {
-                    datePicker.setDisable(true);
-                    if (c.getValue().estaCerrado()) {
-                        datePicker.setValue(c.getValue().getFechaFin());
-                    }
-                } else {
-                    datePicker.getEditor().textProperty().addListener((observable, oldValue, newValue) -> setFechaFin(newValue));
+        tcFechaFin.setCellValueFactory(c -> {
+            dpFechaFin = new DatePicker();
+            DatePicker datePicker = new DatePicker();
+            datePicker.setEditable(false);
+            if (!c.getValue().equals(getTrabajo()) || c.getValue().estaCerrado()) {
+                datePicker.setDisable(true);
+                if (c.getValue().estaCerrado()) {
+                    datePicker.setValue(c.getValue().getFechaFin());
                 }
-                return new SimpleObjectProperty<>(datePicker);
-            });
+            } else {
+                datePicker.getEditor().textProperty().addListener((observable, oldValue, newValue) -> setFechaFin(newValue));
+            }
+            return new SimpleObjectProperty<>(datePicker);
+        });
+        if (!btlistar.isVisible()) {
             listar();
+        } else {
+            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
         }
     }
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaEstadisticasMensuales">
+   <children>
+      <Label text="ESTADÍSTICAS MENSUALES" />
+      <HBox>
+         <children>
+            <Label />
+            <DatePicker fx:id="dpFecha" prefHeight="26.0" prefWidth="190.0" promptText="FECHA MES ESTADÍSTICAS" />
+            <Button mnemonicParsing="false" onAction="#verEstadisticas" text="Ver estadisticas" />
+            <Button mnemonicParsing="false" onAction="#estadisticasMesActual" text="Estadisticas del mes actual" />
+         </children>
+      </HBox>
+      <StackPane>
+         <children>
+            <PieChart fx:id="pcTrabajos" title="TIPOS DE TRABAJO" />
+            <Label fx:id="lbInicial" text="AÚN NO SE HA SELECCIONADO NINGUNA FECHA PARA VISUALIZAR LAS ESTADÍSTICAS DE ESE MES" />
+            <Label fx:id="lbSinEstadisticas" text="NO HAY ESTADISTICAS QUE MOSTRAR: NO SE HA REGISTRADO NINGUN TIPO DE TRABAJO EN ESE MES" />
+            <Label fx:id="lbSinEstadisticasMesActual" text="AÚN NO SE HA REGISTRADO NINGÚN TIPO DE TRABAJO EN EL MES ACTUAL" />
+         </children>
+      </StackPane>
+   </children>
+</VBox>

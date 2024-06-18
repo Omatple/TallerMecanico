@@ -4,7 +4,6 @@ import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.TipoTrabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ficheros.Trabajos;
 import org.iesalandalus.programacion.tallermecanico.vista.Vista;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.GestorEventos;
@@ -157,17 +156,17 @@ public class VistaGrafica implements Vista {
                 ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setBtBuscarPulsadoDesdeFuera(true);
             }
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().getTrabajo();
-        } /*else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
-//            if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
-//                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setBtBuscarPulsadoDesdeFuera(true);
-//            }
+        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().isBtBuscarEsPulsado()) {
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getTrabajo();
-        }*/ else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
+            System.out.println("trabajo valisoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().guardarUltimaBusquedaValida(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getLocalDateDpFechaInicio());
+            ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().guardarUltimaBusquedaValidaTfsEnBlanco(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getLocalDateDpFechaInicio());
+        } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
             if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
                 ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setBtBuscarPulsadoDesdeFuera(true);
             }
             trabajo = ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getTrabajo();
-        }
+        }//EL IF DE SI ES VISIBLE LISTAR ESTA PARA QUE CUANDO SE BORRAR TRABAJO Y ESTE VISIBLE LISTAR LISTE LOS TRABAJOS SEGN CRITERIO DE BUSQUEDA
         return trabajo;
     }
 
@@ -244,7 +243,14 @@ public class VistaGrafica implements Vista {
 
     @Override
     public LocalDate leerMes() {
-        return null;
+        LocalDate mes;
+        if (((VentanaClientes) ventanaPrincipal).getVentanaEstadisticasMensuales().isEstadisticasMesActual()) {
+            System.out.println(LocalDate.now());
+            mes = LocalDate.now();
+        } else {
+            mes = ((VentanaClientes) ventanaPrincipal).getVentanaEstadisticasMensuales().leerMes();
+        }
+        return mes;
     }
 
     @Override
@@ -257,10 +263,18 @@ public class VistaGrafica implements Vista {
                 ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().ocultarFormularioTrabajo();
             } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().getEscenario().isShowing()) {
                 ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoVehiculo().ocultarFormularioTrabajo();
+            } else if (evento.equals(Evento.BUSCAR_TRABAJO)) {
+                if (!((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().isBtListarYaEraVisible()) {
+                    ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setVisibleBtlistar(false);
+                }
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().limpiarDpFechaInicio();
             } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().isBtBuscarEsPulsado() && ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar() && !((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().isBtListarYaEraVisible()) {
                 ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setVisibleBtlistar(false);
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().limpiarDpFechaInicio();
+            } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().isBtBuscarEsPulsado()) {
+                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().limpiarDpFechaInicio();
             }
-            Dialogos.mostrarDialogoError(String.format("%s", evento.toString()), String.format("ERROR: %s%n", texto), null);
+            Dialogos.mostrarDialogoError(String.format("%s", evento.toString().toUpperCase()), String.format("ERROR: %s%n", texto), null);
             if (evento.equals(Evento.MODIFICAR_CLIENTE)) {
                 if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getVentanaInfoCliente().getEscenario().isShowing()) {
                     getGestorEventos().notificar(Evento.BUSCAR_CLIENTE);
@@ -300,6 +314,7 @@ public class VistaGrafica implements Vista {
     public void mostrarTrabajo(Trabajo trabajo) {
         List<Trabajo> trabajoBuscado = new ArrayList<>();
         trabajoBuscado.add(trabajo);
+        System.out.println("mostrar trabajooooooooooooooooooooooooo");
         ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().rellenarTabla(trabajoBuscado);
     }
 
@@ -344,19 +359,59 @@ public class VistaGrafica implements Vista {
             ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setCogerUltimosDatosBuscados(false);
         } else {
             if (((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getEscenario().isShowing()) {
-                ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().rellenarTabla(trabajos);
-                ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getEscenario().show();
+                if (((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().isVisibleBtListar()) {
+                    List<Trabajo> trabajosBuscados = new ArrayList<>();
+                    if (!((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().isEsPulsadoBtBuscar()) {
+                        for (Trabajo trabajo : trabajos) {
+                            if (trabajo.getFechaInicio().equals(((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getUltimaFechaBuscadaValida())) {
+                                trabajosBuscados.add(trabajo);
+                            }
+                        }
+                    } else {
+                        for (Trabajo trabajo : trabajos) {
+                            if (trabajo.getFechaInicio().equals(((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getLocalDateDpFechaInicio())) {
+                                trabajosBuscados.add(trabajo);
+                            }
+                        }
+                        ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().setUltimaFechaBuscadaValida(((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getLocalDateDpFechaInicio());
+                        ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().setEsPulsadoBtBuscar(false);
+                        ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().limpiarDpFechaInicio();
+                    }
+                    ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().rellenarTabla(trabajosBuscados);
+                } else {
+                    ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().rellenarTabla(trabajos);
+                    ((VentanaClientes) ventanaPrincipal).getVentanaVehiculos().getVentanaTrabajosVehiculo().getEscenario().show();
+                }
             } else if (ventanaPrincipal.getEscenario().isShowing()) {
-                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().rellenarTabla(trabajos);
-                ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getEscenario().show();
+                if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().isVisibleBtListar()) {
+                    List<Trabajo> trabajosBuscados = new ArrayList<>();
+                    if (!((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().isEsPulsadoBtBuscar()) {
+                        for (Trabajo trabajo : trabajos) {
+                            if (trabajo.getFechaInicio().equals(((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getUltimaFechaBuscadaValida())) {
+                                trabajosBuscados.add(trabajo);
+                            }
+                        }
+                    } else {
+                        for (Trabajo trabajo : trabajos) {
+                            if (trabajo.getFechaInicio().equals(((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getLocalDateDpFechaInicio())) {
+                                trabajosBuscados.add(trabajo);
+                            }
+                        }
+                        ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().setUltimaFechaBuscadaValida(((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getLocalDateDpFechaInicio());
+                        ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().setEsPulsadoBtBuscar(false);
+                        ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().limpiarDpFechaInicio();
+                    }
+                    ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().rellenarTabla(trabajosBuscados);
+                } else {
+                    ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().rellenarTabla(trabajos);
+                    ((VentanaClientes) ventanaPrincipal).getVentanaTrabajosCliente().getEscenario().show();
+                }
             } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
                 if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
                     List<Trabajo> trabajosBuscados = new ArrayList<>();
                     if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().isDpFechaInicioEstaVacio()) {
                         if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente().isBlank() || ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo().isBlank()) {
-                            for (Trabajo trabajo : trabajos) {
-                                trabajosBuscados.add(trabajo);
-                            }
+                            trabajosBuscados.addAll(trabajos);
                             ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().guardarUltimaBusquedaValida(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getLocalDateDpFechaInicio());
                             ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().guardarUltimaBusquedaValidaTfsEnBlanco(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getLocalDateDpFechaInicio());
                         } else {
@@ -370,6 +425,7 @@ public class VistaGrafica implements Vista {
                         }
                     } else {
                         for (Trabajo trabajo : trabajos) {
+                            System.out.println("FECHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                             if (trabajo.getFechaInicio().equals(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getLocalDateDpFechaInicio())) {
                                 trabajosBuscados.add(trabajo);
                             }
@@ -377,7 +433,9 @@ public class VistaGrafica implements Vista {
                             ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().guardarUltimaBusquedaValidaTfsEnBlanco(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfVehiculo(), ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getLocalDateDpFechaInicio());
                         }
                     }
+                    ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().limpiarDpFechaInicio();
                     ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().rellenarTabla(trabajosBuscados);
+
                 } else {
                     ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().rellenarTabla(trabajos);
                 }
@@ -387,7 +445,7 @@ public class VistaGrafica implements Vista {
 
     @Override
     public void mostrarEstadisticasMensuales(Map<TipoTrabajo, Integer> estadisticas) {
-
+        ((VentanaClientes) ventanaPrincipal).getVentanaEstadisticasMensuales().rellenarPieChart(estadisticas);
     }
 
     private void cerrarVentana(Evento evento) {

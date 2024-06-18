@@ -29,6 +29,8 @@ public class VentanaClientes extends Controlador {
 
     private final VentanaAcercaDe ventanaAcercaDe = (VentanaAcercaDe) Controladores.get("/vistas/VentanaAcercaDe.fxml", "ACERCA DE ...", getEscenario());
 
+    private final VentanaEstadisticasMensuales ventanaEstadisticasMensuales = (VentanaEstadisticasMensuales) Controladores.get("/vistas/VentanaEstadisticasMensuales.fxml", "ESTADÍSTICAS MENSUALES", getEscenario());
+
     private String nuevoNombre;
 
     private String nuevoTelefono;
@@ -72,6 +74,10 @@ public class VentanaClientes extends Controlador {
 
     public VentanaTrabajos getVentanaTrabajos() {
         return ventanaTrabajos;
+    }
+
+    public VentanaEstadisticasMensuales getVentanaEstadisticasMensuales() {
+        return ventanaEstadisticasMensuales;
     }
 
     public VentanaVehiculos getVentanaVehiculos() {
@@ -172,7 +178,8 @@ public class VentanaClientes extends Controlador {
 
     @FXML
     void miEstadisticasMensuales() {
-
+        ventanaEstadisticasMensuales.limpiarVentana();
+        ventanaEstadisticasMensuales.getEscenario().show();
     }
 
     @FXML
@@ -227,8 +234,33 @@ public class VentanaClientes extends Controlador {
         ventanaVehiculos.getBtClientes().setOnAction(e -> {
             ventanaVehiculos.getEscenario().close();
             getEscenario().show();
+            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
         });
         ventanaVehiculos.getEscenario().setOnCloseRequest(event -> {
+            if (Dialogos.mostrarDialogoConfirmacion("SALIR", "¿Estás seguro de que quieres salir de la aplicación?", ventanaVehiculos.getEscenario())) {
+                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.SALIR);
+            } else {
+                event.consume();
+            }
+        });
+        ventanaVehiculos.getBtTrabajos().setOnAction(e -> {
+            ventanaVehiculos.getEscenario().close();
+            ventanaTrabajos.getEscenario().show();
+            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
+        });
+        ventanaVehiculos.getMiEstadisticasMensuales().setOnAction(e -> miEstadisticasMensuales());
+        ventanaTrabajos.getBtClientes().setOnAction(e -> {
+            ventanaTrabajos.getEscenario().close();
+            getEscenario().show();
+            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
+        });
+        ventanaTrabajos.getBtVehiculos().setOnAction(e -> {
+            ventanaTrabajos.getEscenario().close();
+            ventanaVehiculos.getEscenario().show();
+            VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_VEHICULOS);
+        });
+        ventanaTrabajos.getMiEstadisticasMensuales().setOnAction(e -> miEstadisticasMensuales());
+        ventanaTrabajos.getEscenario().setOnCloseRequest(event -> {
             if (Dialogos.mostrarDialogoConfirmacion("SALIR", "¿Estás seguro de que quieres salir de la aplicación?", ventanaVehiculos.getEscenario())) {
                 VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.SALIR);
             } else {

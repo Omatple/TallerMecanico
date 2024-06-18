@@ -81,11 +81,12 @@ public class VentanaTrabajos extends Controlador {
     @FXML
     private TextField tfVehiculo;
 
+    @FXML
+    private MenuItem miEstadisticasMensuales;
+
     private DatePicker dpFechaFin;
 
     private boolean btBuscarEsPulsado;
-
-    private boolean dpFechaInicioEstaVacio;
 
     private boolean btListarYaEraVisible;
 
@@ -123,6 +124,14 @@ public class VentanaTrabajos extends Controlador {
 
     public VentanaAgregarPrecioMaterial getVentanaAgregarPrecioMaterial() {
         return ventanaAgregarPrecioMaterial;
+    }
+
+    public Button getBtClientes() {
+        return btClientes;
+    }
+
+    public Button getBtVehiculos() {
+        return btVehiculos;
     }
 
     public boolean esVisibleListar() {
@@ -209,10 +218,8 @@ public class VentanaTrabajos extends Controlador {
         // HE REALIZADO UN POSIBLE ARREGLO, REVISAR MINUCIOSAMENTE EL ARREGLO SE LLAMA guardarUltimaBusquedaValida()
         btBuscarEsPulsado = true;
         if (!btBuscarPulsadoDesdeFuera) {
-            btBuscarPulsadoDesdeFuera = false;
-            dpFechaInicioEstaVacio = dpFechaInicio.editorProperty().get().getText().isBlank();
             if (tfCliente.getText().isBlank() && tfVehiculo.getText().isBlank()) {
-                if (dpFechaInicioEstaVacio) {
+                if (isDpFechaInicioEstaVacio()) {
                     Dialogos.mostrarDialogoError("BUSCAR TRABAJO", "ERROR: Ingrese algún criterio para realizar la búsqueda.", getEscenario());
                 } else {
                     if (esVisibleListar()) {
@@ -246,15 +253,17 @@ public class VentanaTrabajos extends Controlador {
                     btListarYaEraVisible = false;
                     btlistar.setVisible(true);
                 }
-                if (dpFechaInicioEstaVacio) {
+                if (isDpFechaInicioEstaVacio()) {
                     VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
                 } else {
                     VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BUSCAR_TRABAJO);
                 }
             }
         } else {
+            System.out.println("ENTRADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             btBuscarPulsadoDesdeFuera = false;
             if (ultimoBuscadaValidaTfClienteEsBlanco && ultimoBuscadaValidaTfVehiculoEsBlanco && !ultimoBuscadaValidaDpFechaInicioEsBlanco) {
+                System.out.println("ENTRADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1");
                 if (esVisibleListar()) {
                     btListarYaEraVisible = true;
                 } else {
@@ -263,6 +272,7 @@ public class VentanaTrabajos extends Controlador {
                 }
                 VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
             } else if (ultimoBuscadaValidaTfClienteEsBlanco && !ultimoBuscadaValidaTfVehiculoEsBlanco) {
+                System.out.println("ENTRADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2");
                 if (esVisibleListar()) {
                     btListarYaEraVisible = true;
                 } else {
@@ -271,6 +281,7 @@ public class VentanaTrabajos extends Controlador {
                 }
                 VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_VEHICULO);
             } else if (!ultimoBuscadaValidaTfClienteEsBlanco && ultimoBuscadaValidaTfVehiculoEsBlanco) {
+                System.out.println("ENTRADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3");
                 if (esVisibleListar()) {
                     btListarYaEraVisible = true;
                 } else {
@@ -279,6 +290,7 @@ public class VentanaTrabajos extends Controlador {
                 }
                 VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS_CLIENTE);
             } else if (!ultimoBuscadaValidaTfClienteEsBlanco && !ultimoBuscadaValidaTfVehiculoEsBlanco) {
+                System.out.println("ENTRADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4");
                 if (esVisibleListar()) {
                     btListarYaEraVisible = true;
                 } else {
@@ -325,18 +337,23 @@ public class VentanaTrabajos extends Controlador {
     }
 
     public void guardarUltimaBusquedaValidaTfsEnBlanco(String dni, String matricula, LocalDate fechaInicio) {
-        ultimoBuscadaValidaTfClienteEsBlanco = (dni == null) ? true : false;
-        ultimoBuscadaValidaTfVehiculoEsBlanco = (matricula == null) ? true : false;
-        ultimoBuscadaValidaDpFechaInicioEsBlanco = (fechaInicio == null) ? true : false;
+        ultimoBuscadaValidaTfClienteEsBlanco = dni.isBlank();
+        ultimoBuscadaValidaTfVehiculoEsBlanco = matricula.isBlank();
+        ultimoBuscadaValidaDpFechaInicioEsBlanco = fechaInicio == null;
     }
 
     public LocalDate getLocalDateDpFechaInicio() {
         LocalDate fechaInicio;
         if (!cogerUltimosDatosBuscados) {
-            fechaInicio = dpFechaInicio.getValue();
+            if (dpFechaInicio.getEditor().getText().isBlank()) {
+                fechaInicio = null;
+            } else {
+                fechaInicio = dpFechaInicio.getValue();
+            }
+            System.out.println("Fecha textfield: " + fechaInicio);
         } else {
             fechaInicio = ultimaBusquedaValidaFechaInicio;
-            System.out.println("ultimo" + fechaInicio);
+            System.out.println("ultima Fecha: " + fechaInicio);
 
         }
         System.out.println(fechaInicio);
@@ -347,10 +364,11 @@ public class VentanaTrabajos extends Controlador {
         String dni;
         if (!cogerUltimosDatosBuscados) {
             dni = tfCliente.getText();
+            System.out.println("Dni textfield: " + dni);
         } else {
             dni = ultimaBusquedaValidaDni;
+            System.out.println("ultimo Dni: " + dni);
         }
-        System.out.println(dni);
         return dni;
     }
 
@@ -358,15 +376,16 @@ public class VentanaTrabajos extends Controlador {
         String matricula;
         if (!cogerUltimosDatosBuscados) {
             matricula = tfVehiculo.getText();
+            System.out.println("Matricula textfield: " + matricula);
         } else {
             matricula = ultimaBusquedaValidaMatricula;
+            System.out.println("ultima Matricula: " + matricula);
         }
-        System.out.println(matricula);
         return matricula;
     }
 
     public boolean isDpFechaInicioEstaVacio() {
-        return dpFechaInicioEstaVacio;
+        return dpFechaInicio.getEditor().getText().isBlank();
     }
 
     @FXML
@@ -377,8 +396,12 @@ public class VentanaTrabajos extends Controlador {
         } else if (tvTrabajos.getSelectionModel().getSelectedItem().estaCerrado()) {
             Dialogos.mostrarDialogoError("CERRAR TRABAJO", "ERROR: El trabajo ya está cerrado.", getEscenario());
         } else {
-            if (Dialogos.mostrarDialogoConfirmacion("CERRAR TRABAJO", String.format("¿Estás seguro de que quieres cerrar este trabajo con la fecha '%s'?", getFechaCierre()), getEscenario())) {
-                VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.CERRAR_TRABAJO);
+            if (getFechaCierre() == null) {
+                Dialogos.mostrarDialogoError("CERRAR TRABAJO", "ERROR: Debes seleccionar una fecha para cerrar el trabajo.", getEscenario());
+            } else {
+                if (Dialogos.mostrarDialogoConfirmacion("CERRAR TRABAJO", String.format("¿Estás seguro de que quieres cerrar este trabajo con la fecha '%s'?", getFechaCierre()), getEscenario())) {
+                    VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.CERRAR_TRABAJO);
+                }
             }
         }
     }
@@ -412,11 +435,6 @@ public class VentanaTrabajos extends Controlador {
     @FXML
     void miAcercaDe() {
         ventanaAcercaDe.getEscenario().show();
-    }
-
-    @FXML
-    void miEstadisticasMensuales() {
-
     }
 
     @FXML
@@ -471,6 +489,14 @@ public class VentanaTrabajos extends Controlador {
             }
         }
         dpFechaFin.setValue(fechaFin);
+    }
+
+    public MenuItem getMiEstadisticasMensuales() {
+        return miEstadisticasMensuales;
+    }
+
+    public void limpiarDpFechaInicio() {
+        dpFechaInicio.getEditor().clear();
     }
 
     @FXML
