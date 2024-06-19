@@ -450,6 +450,9 @@ public class VentanaTrabajos extends Controlador {
         tcFechaFin.setCellValueFactory(c -> {
             dpFechaFin = new DatePicker();
             DatePicker datePicker = new DatePicker();
+            datePicker.setMinSize(168, 10);
+            datePicker.getEditor().setMinSize(168, 10);
+            datePicker.setPromptText("Selecciona fecha");
             datePicker.setEditable(false);
             if (!c.getValue().equals(tvTrabajos.getSelectionModel().getSelectedItem()) || c.getValue().estaCerrado()) {
                 datePicker.setDisable(true);
@@ -524,6 +527,9 @@ public class VentanaTrabajos extends Controlador {
         });
         tcFechaFin.setCellValueFactory(c -> {
             DatePicker datePicker = new DatePicker();
+            datePicker.setMinSize(168, 10);
+            datePicker.getEditor().setMinSize(168, 10);
+            datePicker.setPromptText("Selecciona fecha");
             datePicker.setEditable(false);
             datePicker.setDisable(true);
             if (c.getValue().estaCerrado()) {

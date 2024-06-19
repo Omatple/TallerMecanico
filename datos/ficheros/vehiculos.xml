@@ -23,4 +23,5 @@
     <vehiculo marca="Mitsubishi" matricula="7481KLM" modelo="Outlander 2016"/>
     <vehiculo marca="Lexus" matricula="5937ZRW" modelo="RX 2020"/>
     <vehiculo marca="Skoda" matricula="8275GMX" modelo="Octavia 2014"/>
+    <vehiculo marca="SEAT" matricula="8888WWW" modelo="Ibiza"/>
 </vehiculos>

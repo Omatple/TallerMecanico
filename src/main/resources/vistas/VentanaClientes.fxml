@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -8,10 +9,12 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaClientes">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1100.0" spacing="20.0" stylesheets="@../estilos/hojaDeEstilo.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaClientes">
    <children>
       <MenuBar>
         <menus>
@@ -32,35 +35,122 @@
           </Menu>
         </menus>
       </MenuBar>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
          <children>
-            <Button fx:id="btClientes" mnemonicParsing="false" text="Clientes" />
-            <Button mnemonicParsing="false" onAction="#ventanaVehiculos" text="Vehiculos" />
-            <Button mnemonicParsing="false" onAction="#ventanaTrabajos" text="Trabajos" />
+            <VBox alignment="CENTER" spacing="4.0">
+               <children>
+                  <ImageView fitHeight="130.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/cliente-taller-mecanico.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="btClientes" mnemonicParsing="false" text="CLIENTES" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="134.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/vehiculo-taller-mecanico.png" />
+                     </image>
+                  </ImageView>
+                  <Button mnemonicParsing="false" onAction="#ventanaVehiculos" text="VEHÍCULOS" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="154.0" prefWidth="200.0" spacing="14.0">
+               <children>
+                  <ImageView fitHeight="121.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/trabajo-taller-mecanico.png" />
+                     </image>
+                  </ImageView>
+                  <Button mnemonicParsing="false" onAction="#ventanaTrabajos" text="TRABAJOS" />
+               </children>
+            </VBox>
          </children>
       </HBox>
-      <Label text="LISTADO DE CLIENTES" />
-      <HBox>
+      <Label style="-fx-font-size: 35;" text="LISTADO DE CLIENTES" textAlignment="CENTER" />
+      <HBox alignment="CENTER" prefHeight="51.0" prefWidth="700.0" spacing="35.0">
          <children>
-            <Label text="DNI:" />
-            <TextField fx:id="tfDni" />
-            <Button mnemonicParsing="false" onAction="#buscar" text="BUSCAR" />
-            <Button fx:id="btlistar" mnemonicParsing="false" onAction="#listar" text="LISTAR CLIENTES" />
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="DNI:">
+                     <HBox.margin>
+                        <Insets right="-10.0" />
+                     </HBox.margin></Label>
+                  <TextField fx:id="tfDni" style="-fx-alignment: CENTER;" />
+                  <Button graphicTextGap="11.0" maxHeight="48.0" maxWidth="200.0" minHeight="48.0" minWidth="200.0" mnemonicParsing="false" onAction="#buscar" prefHeight="48.0" prefWidth="200.0" text="BUSCAR">
+                     <HBox.margin>
+                        <Insets top="1.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="34.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/buscar-taller-mecanico.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <Button fx:id="btlistar" graphicTextGap="7.0" maxHeight="48.0" maxWidth="-Infinity" minHeight="48.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#listar" prefHeight="48.0" prefWidth="226.0" style="-fx-pref-width: 271;" text="LISTAR CLIENTES">
+               <HBox.margin>
+                  <Insets bottom="2.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="47.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/listarClientes-taller-mecanico.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </HBox>
-      <TableView fx:id="tvClientes" prefHeight="200.0" prefWidth="200.0">
-        <columns>
-          <TableColumn fx:id="tcDni" prefWidth="75.0" text="DNI" />
-          <TableColumn fx:id="tcNombre" prefWidth="75.0" text="NOMBRE" />
-            <TableColumn fx:id="tcTelefono" prefWidth="75.0" text="TELEFONO" />
-        </columns>
-      </TableView>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="CENTER" prefHeight="256.0" prefWidth="1000.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#borrar" text="Borrar" />
-            <Button mnemonicParsing="false" onAction="#listarTrabajos" text="Listar Trabajos" />
-            <Button mnemonicParsing="false" onAction="#insertar" text="Insertar" />
+            <TableView fx:id="tvClientes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="214.4" prefWidth="612.0">
+              <columns>
+                <TableColumn fx:id="tcDni" prefWidth="185.33" text="DNI" />
+                <TableColumn fx:id="tcNombre" prefWidth="185.33" text="NOMBRE" />
+                  <TableColumn fx:id="tcTelefono" prefWidth="185.33" text="TELÉFONO" />
+              </columns>
+            </TableView>
          </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Button graphicTextGap="12.0" mnemonicParsing="false" onAction="#borrar" text="BORRAR">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/borrar-taller-mecanico.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button graphicTextGap="14.0" maxHeight="48.0" maxWidth="-Infinity" minHeight="48.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#listarTrabajos" prefHeight="48.0" style="-fx-pref-width: 261;" text="LISTAR TRABAJOS">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/listarTrabajos-taller-mecanico.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#insertar" text="INSERTAR">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/insertar-taller-mecanico.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets bottom="30.0" />
+         </VBox.margin>
       </HBox>
    </children>
 </VBox>
