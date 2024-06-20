@@ -105,6 +105,7 @@ public class VentanaInsertarTrabajo extends Controlador {
         cbCliente.setItems(coleccionClientes);
         cbCliente.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             cbCliente.getSelectionModel().clearSelection();
+            cbCliente.setPromptText("--- L. CLIENTES ---");
             if (newValue == null) {
                 tfCliente.setText("");
             } else {
@@ -114,6 +115,7 @@ public class VentanaInsertarTrabajo extends Controlador {
         cbVehiculo.setItems(coleccionVehiculos);
         cbVehiculo.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             cbVehiculo.getSelectionModel().clearSelection();
+            cbVehiculo.setPromptText("-- L.VEHÍCULOS --");
             if (newValue == null) {
                 tfVehiculo.setText("");
             } else {

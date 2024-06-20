@@ -11,7 +11,6 @@ import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Con
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controladores;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Dialogos;
 
-import javax.swing.plaf.PanelUI;
 import java.util.List;
 
 public class VentanaInfoCliente extends Controlador {
@@ -26,15 +25,6 @@ public class VentanaInfoCliente extends Controlador {
 
     @FXML
     private Button btInsertar;
-
-    @FXML
-    private Label lbFechaInicio;
-
-    @FXML
-    private Label lbTipo;
-
-    @FXML
-    private Label lbVehiculo;
 
     @FXML
     private ComboBox<Vehiculo> cbVehiculos;
@@ -159,26 +149,20 @@ public class VentanaInfoCliente extends Controlador {
 
     private void mostrarFormularioTrabajo() {
         limpiarCamposTrabajo();
-        lbVehiculo.setVisible(true);
         tfVehiculo.setVisible(true);
         cbVehiculos.setVisible(true);
         btInsertar.setVisible(true);
-        lbFechaInicio.setVisible(true);
         dpFechaInicio.setVisible(true);
-        lbTipo.setVisible(true);
         cbTipo.setVisible(true);
         btCancelarTrabajo.setVisible(true);
         btAceptar.setVisible(true);
     }
 
     public void ocultarFormularioTrabajo() {
-        lbVehiculo.setVisible(false);
         tfVehiculo.setVisible(false);
         cbVehiculos.setVisible(false);
         btInsertar.setVisible(false);
-        lbFechaInicio.setVisible(false);
         dpFechaInicio.setVisible(false);
-        lbTipo.setVisible(false);
         cbTipo.setVisible(false);
         btCancelarTrabajo.setVisible(false);
         btAceptar.setVisible(false);

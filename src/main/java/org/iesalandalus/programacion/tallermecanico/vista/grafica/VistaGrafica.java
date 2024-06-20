@@ -243,14 +243,7 @@ public class VistaGrafica implements Vista {
 
     @Override
     public LocalDate leerMes() {
-        LocalDate mes;
-        if (((VentanaClientes) ventanaPrincipal).getVentanaEstadisticasMensuales().isEstadisticasMesActual()) {
-            System.out.println(LocalDate.now());
-            mes = LocalDate.now();
-        } else {
-            mes = ((VentanaClientes) ventanaPrincipal).getVentanaEstadisticasMensuales().leerMes();
-        }
-        return mes;
+        return ((VentanaClientes) ventanaPrincipal).getVentanaEstadisticasMensuales().leerMes();
     }
 
     @Override
@@ -445,7 +438,9 @@ public class VistaGrafica implements Vista {
 
     @Override
     public void mostrarEstadisticasMensuales(Map<TipoTrabajo, Integer> estadisticas) {
-        ((VentanaClientes) ventanaPrincipal).getVentanaEstadisticasMensuales().rellenarPieChart(estadisticas);
+        if (!((VentanaClientes) ventanaPrincipal).getVentanaEstadisticasMensuales().rellenarPieChart(estadisticas)) {
+            Dialogos.mostrarDialogoInformacion("MOSTRAR ESTADÍSTICAS MENSUALES", "¡Vaya! Parece que no tienes estadísticas de trabajo para este mes.", ((VentanaClientes) ventanaPrincipal).getVentanaEstadisticasMensuales().getEscenario());
+        }
     }
 
     private void cerrarVentana(Evento evento) {

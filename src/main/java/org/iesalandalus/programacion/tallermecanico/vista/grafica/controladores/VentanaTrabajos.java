@@ -208,14 +208,6 @@ public class VentanaTrabajos extends Controlador {
 
     @FXML
     public void buscar() {
-        //nuevo problema, cuando se ha equivocado uno en un tf y clicka en la una fila
-        // se manda el evento de buscar pensando en que antes de eso habia realizado
-        // una busqueda valida, sin embargo lo que ocurre es que al tener texto el coge
-        // y envia segun lo que haya escrito. Posible solucion poner en blanco los tf
-        // una vez se busque, y en buscar hacer un donde segun si ha sido pulsadodesdefuera
-        // y con el registro de los tfque habia rellenos, haciendoi un metedo donde con
-        // variables los cambie desde vistaGrafica cuando se sepa que es valida la busqueda
-        // HE REALIZADO UN POSIBLE ARREGLO, REVISAR MINUCIOSAMENTE EL ARREGLO SE LLAMA guardarUltimaBusquedaValida()
         btBuscarEsPulsado = true;
         if (!btBuscarPulsadoDesdeFuera) {
             if (tfCliente.getText().isBlank() && tfVehiculo.getText().isBlank()) {

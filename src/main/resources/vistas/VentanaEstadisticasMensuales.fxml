@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaEstadisticasMensuales">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="698.0" prefWidth="636.0" spacing="20.0" style="-fx-border-color: e50914;" stylesheets="@../estilos/hojaDeEstilo.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaEstadisticasMensuales">
    <children>
-      <Label text="ESTADÍSTICAS MENSUALES" />
-      <HBox>
+      <Label alignment="CENTER" style="-fx-font-size: 35;" text="ESTADÍSTICAS MENSUALES">
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin></Label>
+      <HBox alignment="CENTER" spacing="30.0">
          <children>
-            <Label />
-            <DatePicker fx:id="dpFecha" prefHeight="26.0" prefWidth="190.0" promptText="FECHA MES ESTADÍSTICAS" />
-            <Button mnemonicParsing="false" onAction="#verEstadisticas" text="Ver estadisticas" />
-            <Button mnemonicParsing="false" onAction="#estadisticasMesActual" text="Estadisticas del mes actual" />
+            <DatePicker fx:id="dpFecha" prefHeight="26.0" prefWidth="190.0" promptText="- FCH MES -" />
+            <Button graphicTextGap="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#verEstadisticas" style="-fx-pref-width: 263;" text="VER ESTADISTICAS">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/estadisticasMensuales-taller-mecanico.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
          </children>
       </HBox>
       <StackPane>
          <children>
             <PieChart fx:id="pcTrabajos" title="TIPOS DE TRABAJO" />
-            <Label fx:id="lbInicial" text="AÚN NO SE HA SELECCIONADO NINGUNA FECHA PARA VISUALIZAR LAS ESTADÍSTICAS DE ESE MES" />
-            <Label fx:id="lbSinEstadisticas" text="NO HAY ESTADISTICAS QUE MOSTRAR: NO SE HA REGISTRADO NINGUN TIPO DE TRABAJO EN ESE MES" />
-            <Label fx:id="lbSinEstadisticasMesActual" text="AÚN NO SE HA REGISTRADO NINGÚN TIPO DE TRABAJO EN EL MES ACTUAL" />
          </children>
       </StackPane>
+      <Button graphicTextGap="16.0" mnemonicParsing="false" onAction="#cancelar" text="CANCELAR">
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/cancelar-taller-mecanico.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
+      </Button>
    </children>
 </VBox>

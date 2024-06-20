@@ -78,7 +78,7 @@
                      <HBox.margin>
                         <Insets right="-10.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="tfDni" style="-fx-alignment: CENTER;" />
+                  <TextField fx:id="tfDni" promptText="--- DNI ---" style="-fx-alignment: CENTER;" />
                   <Button graphicTextGap="11.0" maxHeight="48.0" maxWidth="200.0" minHeight="48.0" minWidth="200.0" mnemonicParsing="false" onAction="#buscar" prefHeight="48.0" prefWidth="200.0" text="BUSCAR">
                      <HBox.margin>
                         <Insets top="1.0" />
@@ -109,7 +109,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="256.0" prefWidth="1000.0">
          <children>
-            <TableView fx:id="tvClientes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="214.4" prefWidth="612.0">
+            <TableView fx:id="tvClientes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="214.4" prefWidth="614.0">
               <columns>
                 <TableColumn fx:id="tcDni" prefWidth="185.33" text="DNI" />
                 <TableColumn fx:id="tcNombre" prefWidth="185.33" text="NOMBRE" />

@@ -79,7 +79,7 @@
                         <Insets right="-10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="tfMatricula" style="-fx-alignment: center;" />
+                  <TextField fx:id="tfMatricula" promptText="--- MATRÍCULA ---" style="-fx-alignment: center;" />
                   <Button graphicTextGap="11.0" maxHeight="48.0" maxWidth="200.0" minHeight="48.0" minWidth="200.0" mnemonicParsing="false" onAction="#buscar" prefHeight="48.0" prefWidth="200.0" text="BUSCAR">
                      <HBox.margin>
                         <Insets top="1.0" />
@@ -109,7 +109,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="256.0" prefWidth="1000.0">
          <children>
-            <TableView fx:id="tvVehiculos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="214.4" prefWidth="611.0">
+            <TableView fx:id="tvVehiculos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="214.4" prefWidth="614.0">
               <columns>
                 <TableColumn fx:id="tcMatricula" prefWidth="185.33" text="MATRÍCULA" />
                 <TableColumn fx:id="tcMarca" prefWidth="185.33" text="MARCA" />

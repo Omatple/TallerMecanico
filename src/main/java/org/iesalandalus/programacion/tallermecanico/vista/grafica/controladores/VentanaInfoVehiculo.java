@@ -27,15 +27,6 @@ public class VentanaInfoVehiculo extends Controlador {
     private Button btInsertar;
 
     @FXML
-    private Label lbCliente;
-
-    @FXML
-    private Label lbFechaInicio;
-
-    @FXML
-    private Label lbTipo;
-
-    @FXML
     private ComboBox<Cliente> cbClientes;
 
     @FXML
@@ -101,26 +92,20 @@ public class VentanaInfoVehiculo extends Controlador {
 
     private void mostrarFormularioTrabajo() {
         limpiarCamposTrabajo();
-        lbCliente.setVisible(true);
         tfCliente.setVisible(true);
         cbClientes.setVisible(true);
         btInsertar.setVisible(true);
-        lbFechaInicio.setVisible(true);
         dpFechaInicio.setVisible(true);
-        lbTipo.setVisible(true);
         cbTipo.setVisible(true);
         btCancelarTrabajo.setVisible(true);
         btAceptar.setVisible(true);
     }
 
     public void ocultarFormularioTrabajo() {
-        lbCliente.setVisible(false);
         tfCliente.setVisible(false);
         cbClientes.setVisible(false);
         btInsertar.setVisible(false);
-        lbFechaInicio.setVisible(false);
         dpFechaInicio.setVisible(false);
-        lbTipo.setVisible(false);
         cbTipo.setVisible(false);
         btCancelarTrabajo.setVisible(false);
         btAceptar.setVisible(false);

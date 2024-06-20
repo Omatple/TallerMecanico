@@ -36,7 +36,7 @@
             </Menu>
          </menus>
          <VBox.margin>
-            <Insets bottom="15.0" />
+            <Insets bottom="25.0" />
          </VBox.margin>
       </MenuBar>
       <HBox alignment="CENTER" prefHeight="166.0" prefWidth="1100.0" spacing="25.0">
@@ -54,7 +54,7 @@
                      </VBox.margin></Button>
                </children>
                <HBox.margin>
-                  <Insets top="-25.0" />
+                  <Insets top="-40.0" />
                </HBox.margin>
             </VBox>
             <VBox alignment="CENTER">
@@ -67,7 +67,7 @@
                   <Button fx:id="btVehiculos" mnemonicParsing="false" text="VEHÍCULOS" />
                </children>
                <HBox.margin>
-                  <Insets top="-25.0" />
+                  <Insets top="-40.0" />
                </HBox.margin>
             </VBox>
             <VBox alignment="CENTER" prefHeight="154.0" prefWidth="200.0" spacing="14.0">
@@ -80,7 +80,7 @@
                   <Button fx:id="btTrabajos" mnemonicParsing="false" text="TRABAJOS" />
                </children>
                <HBox.margin>
-                  <Insets top="-25.0" />
+                  <Insets top="-40.0" />
                </HBox.margin>
             </VBox>
          </children>
@@ -126,7 +126,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="200.0" prefWidth="1000.0">
          <children>
-            <TableView fx:id="tvTrabajos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1000.0">
+            <TableView fx:id="tvTrabajos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1002.0">
               <columns>
                 <TableColumn fx:id="tcTipo" prefWidth="95.19998168945312" text="TIPO" />
                   <TableColumn fx:id="tcCliente" prefWidth="111.20002746582031" text="CLIENT." />

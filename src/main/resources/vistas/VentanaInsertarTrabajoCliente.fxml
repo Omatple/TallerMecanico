@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaInsertarTrabajoCliente">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="910.0" spacing="20.0" style="-fx-border-color: e50914;" stylesheets="@../estilos/hojaDeEstilo.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaInsertarTrabajoCliente">
    <children>
-      <Label text="INSERTAR TRABAJO CLIENTE" />
-      <GridPane>
+      <Label style="-fx-font-size: 35;" text="INSERTAR TRABAJO CLIENTE">
+         <VBox.margin>
+            <Insets bottom="30.0" />
+         </VBox.margin></Label>
+      <GridPane prefHeight="240.0" prefWidth="968.0" vgap="40.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="354.0" minWidth="10.0" prefWidth="147.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="427.0" minWidth="10.0" prefWidth="212.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="786.0" minWidth="10.0" prefWidth="550.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -27,27 +33,66 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Cliente:" />
-            <Label text="Vehiculo:" GridPane.rowIndex="1" />
-            <Label text="Tipo:" GridPane.rowIndex="3" />
-            <TextField fx:id="tfCliente" GridPane.columnIndex="1" />
-            <TextField fx:id="tfVehiculo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <HBox GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label prefHeight="47.0" prefWidth="89.0" text="Cliente:">
+               <GridPane.margin>
+                  <Insets left="44.0" />
+               </GridPane.margin></Label>
+            <Label prefHeight="47.0" prefWidth="104.0" text="Vehículo:" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="28.0" />
+               </GridPane.margin></Label>
+            <Label text="Tipo:" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="63.0" />
+               </GridPane.margin></Label>
+            <TextField fx:id="tfCliente" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" promptText="--- CLIENTE ---" style="-fx-alignment: CE;" GridPane.columnIndex="1" />
+            <TextField fx:id="tfVehiculo" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" promptText="--- VEHÍCULO ---" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <HBox spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <ComboBox fx:id="cbVehiculo" prefWidth="150.0" />
-                  <Button mnemonicParsing="false" onAction="#insertarVehiculo" text="Insertar Vehiculo" />
+                  <ComboBox fx:id="cbVehiculo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="245.0" promptText="-- L.VEHÍCULOS --" style="-fx-pref-height: 58; -fx-pref-width: 245;" />
+                  <Button graphicTextGap="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#insertarVehiculo" prefWidth="285.0" style="-fx-pref-width: 286;" text="INSERTAR VEHÍCULO">
+                     <graphic>
+                        <ImageView fitHeight="39.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/insertarVehiculo-taller-mecanico.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets top="3.5" />
+                     </HBox.margin></Button>
                </children>
             </HBox>
-            <ComboBox fx:id="cbTipo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cbTipo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="--- TIPO ---" style="-fx-pref-width: 200; -fx-pref-height: 58;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="Fecha Inicio:" GridPane.rowIndex="2" />
-            <DatePicker fx:id="dpFechaInicio" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="dpFechaInicio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" promptText="FCH. INICIO" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <HBox spacing="10.0" GridPane.columnIndex="2" />
          </children>
       </GridPane>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="CENTER" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
-            <Button mnemonicParsing="false" onAction="#aceptar" text="Aceptar" />
+            <Button graphicTextGap="16.0" mnemonicParsing="false" onAction="#cancelar" text="CANCELAR">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/cancelar-taller-mecanico.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button graphicTextGap="11.0" mnemonicParsing="false" onAction="#aceptar" text="ACEPTAR">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/aceptar-taller-mecanico.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
       </HBox>
    </children>
 </VBox>
