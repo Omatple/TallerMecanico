@@ -5,12 +5,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.VistaGrafica;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controlador;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controladores;
+import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controles;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Dialogos;
 
 import java.util.List;
@@ -19,11 +19,17 @@ public class VentanaVehiculos extends Controlador {
 
     private final ObservableList<Vehiculo> coleccionVehiculos = FXCollections.observableArrayList();
 
-    private final VentanaInsertarVehiculo ventanaInsertarVehiculo = (VentanaInsertarVehiculo) Controladores.get("/vistas/VentanaInsertarVehiculo.fxml", "INSERTAR VEHICULO", getEscenario());
+    private final VentanaInsertarVehiculo ventanaInsertarVehiculo = (VentanaInsertarVehiculo) Controladores.get("/vistas/VentanaInsertarVehiculo.fxml", "INSERTAR VEHÍCULO", getEscenario());
 
-    private final VentanaTrabajosVehiculo ventanaTrabajosVehiculo = (VentanaTrabajosVehiculo) Controladores.get("/vistas/VentanaTrabajosVehiculo.fxml", "LISTADO TRABAJOS VEHICULO", getEscenario());
+    private final VentanaTrabajosVehiculo ventanaTrabajosVehiculo = (VentanaTrabajosVehiculo) Controladores.get("/vistas/VentanaTrabajosVehiculo.fxml", "LISTADO TRABAJOS VEHÍCULO", getEscenario());
 
     private final VentanaAcercaDe ventanaAcercaDe = (VentanaAcercaDe) Controladores.get("/vistas/VentanaAcercaDe.fxml", "ACERCA DE ...", getEscenario());
+
+    @FXML
+    private Button btBorrar;
+
+    @FXML
+    private Button btInsertar;
 
     @FXML
     private Button btVehiculos;
@@ -165,8 +171,15 @@ public class VentanaVehiculos extends Controlador {
         }
     }
 
+    public void limpiarCampos() {
+        tfMatricula.clear();
+    }
+
     @FXML
     void initialize() {
+        ventanaAcercaDe.getEscenario().setResizable(false);
+        ventanaInsertarVehiculo.getEscenario().setResizable(false);
+        ventanaTrabajosVehiculo.getEscenario().setResizable(false);
         btBuscarEsPulsado = false;
         btlistar.setVisible(false);
         btVehiculos.setDisable(true);
@@ -176,6 +189,12 @@ public class VentanaVehiculos extends Controlador {
         tcMarca.setCellValueFactory(c -> new SimpleObjectProperty<>(c.getValue().marca()));
         tcModelo.setCellValueFactory(c -> new SimpleObjectProperty<>(c.getValue().modelo()));
         tvVehiculos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> ventanaTrabajosVehiculo.setStrMatriculaVehiculo(newValue.matricula()));
-        tvVehiculos.addEventFilter(MouseEvent.MOUSE_DRAGGED, MouseEvent::consume);
+        btlistar.setOnMouseEntered(e -> btlistar.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white; -fx-pref-width: 271;"));
+        btlistar.setOnMouseExited(e -> btlistar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white; -fx-pref-width: 271;"));
+        btInsertar.setOnMouseEntered(e -> btInsertar.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white;"));
+        btInsertar.setOnMouseExited(e -> btInsertar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        btBorrar.setOnMouseEntered(e -> btBorrar.setStyle("-fx-background-color: #FFA500; -fx-text-fill: white;"));
+        btBorrar.setOnMouseExited(e -> btBorrar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        tfMatricula.textProperty().addListener((observable, oldValue, newValue) -> Controles.validarCampoTexto(Vehiculo.ER_MATRICULA, tfMatricula));
     }
 }

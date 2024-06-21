@@ -6,11 +6,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
+import javafx.scene.paint.Color;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.VistaGrafica;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controlador;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controladores;
+import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controles;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Dialogos;
 
 import java.util.List;
@@ -23,9 +28,9 @@ public class VentanaClientes extends Controlador {
 
     private final VentanaTrabajosCliente ventanaTrabajosCliente = (VentanaTrabajosCliente) Controladores.get("/vistas/VentanaTrabajosCliente.fxml", "LISTADO TRABAJOS CLIENTE", getEscenario());
 
-    private final VentanaVehiculos ventanaVehiculos = (VentanaVehiculos) Controladores.get("/vistas/VentanaVehiculos.fxml", "TALLER MECANICO", getEscenario());
+    private final VentanaVehiculos ventanaVehiculos = (VentanaVehiculos) Controladores.get("/vistas/VentanaVehiculos.fxml", "TALLER MECÁNICO", getEscenario());
 
-    private final VentanaTrabajos ventanaTrabajos = (VentanaTrabajos) Controladores.get("/vistas/VentanaTrabajos.fxml", "TALLER MECANICO", getEscenario());
+    private final VentanaTrabajos ventanaTrabajos = (VentanaTrabajos) Controladores.get("/vistas/VentanaTrabajos.fxml", "TALLER MECÁNICO", getEscenario());
 
     private final VentanaAcercaDe ventanaAcercaDe = (VentanaAcercaDe) Controladores.get("/vistas/VentanaAcercaDe.fxml", "ACERCA DE ...", getEscenario());
 
@@ -34,6 +39,12 @@ public class VentanaClientes extends Controlador {
     private String nuevoNombre;
 
     private String nuevoTelefono;
+
+    @FXML
+    private Button btBorrar;
+
+    @FXML
+    private Button btInsertar;
 
     @FXML
     private Button btClientes;
@@ -178,6 +189,7 @@ public class VentanaClientes extends Controlador {
 
     @FXML
     void miEstadisticasMensuales() {
+        ventanaEstadisticasMensuales.limpiarDp();
         ventanaEstadisticasMensuales.limpiarVentana();
         ventanaEstadisticasMensuales.getEscenario().show();
     }
@@ -193,6 +205,7 @@ public class VentanaClientes extends Controlador {
     @FXML
     void ventanaTrabajos() {
         getEscenario().close();
+        ventanaTrabajos.limpiarCampos();
         ventanaTrabajos.getEscenario().show();
         VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
     }
@@ -200,12 +213,23 @@ public class VentanaClientes extends Controlador {
     @FXML
     void ventanaVehiculos() {
         getEscenario().close();
+        ventanaVehiculos.limpiarCampos();
         ventanaVehiculos.getEscenario().show();
         VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_VEHICULOS);
     }
 
+    public void limpiarCampos() {
+        tfDni.clear();
+    }
+
     @FXML
     void initialize() {
+        ventanaEstadisticasMensuales.getEscenario().setResizable(false);
+        ventanaVehiculos.getEscenario().setResizable(false);
+        ventanaTrabajos.getEscenario().setResizable(false);
+        ventanaTrabajosCliente.getEscenario().setResizable(false);
+        ventanaInsertarCliente.getEscenario().setResizable(false);
+        ventanaAcercaDe.getEscenario().setResizable(false);
         btBuscarEsPulsado = false;
         btlistar.setVisible(false);
         btClientes.setDisable(true);
@@ -233,6 +257,7 @@ public class VentanaClientes extends Controlador {
         tvClientes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> ventanaTrabajosCliente.setStrDniCliente(newValue.getDni()));
         ventanaVehiculos.getBtClientes().setOnAction(e -> {
             ventanaVehiculos.getEscenario().close();
+            limpiarCampos();
             getEscenario().show();
             VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
         });
@@ -245,17 +270,20 @@ public class VentanaClientes extends Controlador {
         });
         ventanaVehiculos.getBtTrabajos().setOnAction(e -> {
             ventanaVehiculos.getEscenario().close();
+            ventanaTrabajos.limpiarCampos();
             ventanaTrabajos.getEscenario().show();
             VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_TRABAJOS);
         });
         ventanaVehiculos.getMiEstadisticasMensuales().setOnAction(e -> miEstadisticasMensuales());
         ventanaTrabajos.getBtClientes().setOnAction(e -> {
             ventanaTrabajos.getEscenario().close();
+            limpiarCampos();
             getEscenario().show();
             VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
         });
         ventanaTrabajos.getBtVehiculos().setOnAction(e -> {
             ventanaTrabajos.getEscenario().close();
+            ventanaVehiculos.limpiarCampos();
             ventanaVehiculos.getEscenario().show();
             VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_VEHICULOS);
         });
@@ -267,5 +295,12 @@ public class VentanaClientes extends Controlador {
                 event.consume();
             }
         });
+        btlistar.setOnMouseEntered(e -> btlistar.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white; -fx-pref-width: 271;"));
+        btlistar.setOnMouseExited(e -> btlistar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white; -fx-pref-width: 271;"));
+        btInsertar.setOnMouseEntered(e -> btInsertar.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white;"));
+        btInsertar.setOnMouseExited(e -> btInsertar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        btBorrar.setOnMouseEntered(e -> btBorrar.setStyle("-fx-background-color: #FFA500; -fx-text-fill: white;"));
+        btBorrar.setOnMouseExited(e -> btBorrar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        tfDni.textProperty().addListener((observable, oldValue, newValue) -> Controles.validarCampoTexto(Cliente.ER_DNI, tfDni));
     }
 }

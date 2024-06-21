@@ -20,12 +20,42 @@ public class Controles {
     public static void validarCampoTexto(String er, TextField campoTexto) {
         String texto = campoTexto.getText();
         if (texto.matches(er)) {
+            campoTexto.setStyle("-fx-font-size: 14pt; " +
+                    "-fx-background-color: #1b5e20; " +
+                    "-fx-border-color: #28a745; " +
+                    "-fx-border-width: 2px; " +
+                    "-fx-border-radius: 10px; " +
+                    "-fx-alignment: center; -fx-text-alignment: center; " +
+                    "-fx-padding: 10px; " +
+                    "-fx-background-radius: 10px; " +
+                    "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 2, 2); " +
+                    "-fx-transition: all 0.3s ease-in-out; ");
+        } else {
+            campoTexto.setStyle("-fx-font-size: 14pt; " +
+                    "-fx-background-color: #303030; " +
+                    "-fx-border-color: #e50914; " +
+                    "-fx-border-width: 2px; " +
+                    "-fx-border-radius: 10px; " +
+                    "-fx-alignment: center; -fx-text-alignment: center; " +
+                    "-fx-padding: 10px; " +
+                    "-fx-background-radius: 10px; " +
+                    "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 2, 2); " +
+                    "-fx-transition: all 0.3s ease-in-out; ");
+        }
+    }
+
+    /***
+     * ORIGINAL PROFESOR -->
+     * public static void validarCampoTexto(String er, TextField campoTexto) {
+        String texto = campoTexto.getText();
+        if (texto.matches(er)) {
             setValido(campoTexto);
         }
         else {
             setInvalido(campoTexto);
         }
     }
+     ***/
 
     public static void setValido(Node nodo) {
         nodo.getStyleClass().remove(CSS_INVALIDO);

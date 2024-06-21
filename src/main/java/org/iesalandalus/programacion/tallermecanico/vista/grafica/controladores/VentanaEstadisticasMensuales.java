@@ -2,6 +2,7 @@ package org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
@@ -15,6 +16,9 @@ import java.time.LocalDate;
 import java.util.Map;
 
 public class VentanaEstadisticasMensuales extends Controlador {
+
+    @FXML
+    private Button btCancelar;
 
     @FXML
     private DatePicker dpFecha;
@@ -87,11 +91,18 @@ public class VentanaEstadisticasMensuales extends Controlador {
         pcTrabajos.setVisible(false);
     }
 
+    public void limpiarDp(){
+        dpFecha.setValue(null);
+        dpFecha.getEditor().clear();
+    }
+
     @FXML
     void initialize() {
         dpFecha.setEditable(false);
         pcTrabajos.setLabelsVisible(true);
         pcTrabajos.setVisible(false);
+        btCancelar.setOnMouseEntered(e -> btCancelar.setStyle("-fx-background-color: #FFA500; -fx-text-fill: white;"));
+        btCancelar.setOnMouseExited(e -> btCancelar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
     }
 
 }

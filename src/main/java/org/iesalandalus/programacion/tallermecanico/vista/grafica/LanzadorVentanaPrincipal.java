@@ -17,6 +17,8 @@ public class LanzadorVentanaPrincipal extends Application {
     @Override
     public void start(Stage primaryStage) {
         Controlador ventanaPrincipal = Controladores.get("/vistas/VentanaClientes.fxml", "TALLER MECÁNICO", null);
+        ventanaPrincipal.addIcono("/imagenes/logoAplicacion-taller-mecanico.png");
+        ventanaPrincipal.getEscenario().setResizable(false);
         VistaGrafica.getInstancia().setVentanaPrincipal(ventanaPrincipal);
         VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.LISTAR_CLIENTES);
         ventanaPrincipal.getEscenario().show();

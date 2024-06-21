@@ -11,21 +11,36 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="405.0" spacing="30.0" style="-fx-border-color: e50914;" stylesheets="@../estilos/hojaDeEstilo.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaAcercaDe">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="405.0" spacing="40.0" style="-fx-border-color: e50914;" stylesheets="@../estilos/aplicacion.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaAcercaDe">
    <children>
-      <ImageView fitHeight="190.0" fitWidth="198.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="190.0" fitWidth="248.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagenes/logoOmatple-taller-mecanico.png" />
          </image>
          <VBox.margin>
             <Insets top="15.0" />
          </VBox.margin></ImageView>
+      <Label prefHeight="65.0" prefWidth="294.0" text="Ángel Martínez Otero">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="84.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/desarrolladorWeb-taller-mecanico.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <VBox.margin>
+            <Insets top="-80.0" />
+         </VBox.margin>
+      </Label>
       <Label alignment="CENTER" text="Módulo Programación - JavaFX" textAlignment="CENTER" underline="true">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="213.0" style="-fx-border-color: darkred; -fx-background-color: darkred; -fx-border-radius: 50; -fx-background-radius: 30; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 0, 1, 1);" text="TALLER MECÁNICO" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="213.0" style="-fx-border-color: darkred; -fx-background-color: e50914; -fx-border-radius: 50; -fx-background-radius: 30; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 0, 1, 1);" text="TALLER MECÁNICO" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -64,10 +79,5 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </GridPane>
-      <Label text="Ángel Martínez Otero">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
    </children>
 </VBox>

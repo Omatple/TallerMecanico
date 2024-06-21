@@ -7,9 +7,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public abstract class Trabajo {
+
     public static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final float FACTOR_DIA = 10F;
-
     private Cliente cliente;
     private Vehiculo vehiculo;
     private LocalDate fechaInicio;

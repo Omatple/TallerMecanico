@@ -3,6 +3,7 @@ package org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -11,12 +12,22 @@ import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.VistaGrafica;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controlador;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controladores;
+import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controles;
 
 import java.util.List;
 
 public class VentanaInsertarTrabajoCliente extends Controlador {
 
-    private final VentanaInsertarVehiculo ventanaInsertarVehiculo = (VentanaInsertarVehiculo) Controladores.get("/vistas/VentanaInsertarVehiculo.fxml", "INSERCAR VEHICULO", getEscenario());
+    private final VentanaInsertarVehiculo ventanaInsertarVehiculo = (VentanaInsertarVehiculo) Controladores.get("/vistas/VentanaInsertarVehiculo.fxml", "INSERTAR VEHÍCULO", getEscenario());
+
+    @FXML
+    private Button btAceptar;
+
+    @FXML
+    private Button btCancelar;
+
+    @FXML
+    private Button btInsertarVehiculo;
 
     @FXML
     private ComboBox<String> cbTipo;
@@ -89,6 +100,7 @@ public class VentanaInsertarTrabajoCliente extends Controlador {
 
     @FXML
     void initialize() {
+        ventanaInsertarVehiculo.getEscenario().setResizable(false);
         tfCliente.setEditable(false);
         tfCliente.setDisable(true);
         cbVehiculo.setItems(coleccionVehiculos);
@@ -103,5 +115,12 @@ public class VentanaInsertarTrabajoCliente extends Controlador {
         cbTipo.setItems(FXCollections.observableArrayList(REVISION, MECANICO));
         cbTipo.getSelectionModel().select(0);
         dpFechaInicio.setEditable(false);
+        btInsertarVehiculo.setOnMouseEntered(e -> btInsertarVehiculo.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white; -fx-pref-width: 286;"));
+        btInsertarVehiculo.setOnMouseExited(e -> btInsertarVehiculo.setStyle("-fx-background-color: #e50914; -fx-text-fill: white; -fx-pref-width: 286;"));
+        btAceptar.setOnMouseEntered(e -> btAceptar.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white;"));
+        btAceptar.setOnMouseExited(e -> btAceptar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        btCancelar.setOnMouseEntered(e -> btCancelar.setStyle("-fx-background-color: #FFA500; -fx-text-fill: white;"));
+        btCancelar.setOnMouseExited(e -> btCancelar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        tfVehiculo.textProperty().addListener((observable, oldValue, newValue) -> Controles.validarCampoTexto(Vehiculo.ER_MATRICULA, tfVehiculo));
     }
 }
