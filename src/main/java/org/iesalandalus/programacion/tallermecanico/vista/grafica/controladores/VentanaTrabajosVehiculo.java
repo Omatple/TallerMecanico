@@ -24,8 +24,25 @@ public class VentanaTrabajosVehiculo extends Controlador {
 
     private final VentanaAgregarHoras ventanaAgregarHoras = (VentanaAgregarHoras) Controladores.get("/vistas/VentanaAgregarHoras.fxml", "AÑADIR HORAS", getEscenario());
     private final VentanaAgregarPrecioMaterial ventanaAgregarPrecioMaterial = (VentanaAgregarPrecioMaterial) Controladores.get("/vistas/VentanaAgregarPrecioMaterial.fxml", "AÑADIR PRECIO MATERIAL", getEscenario());
-    private final VentanaInsertarTrabajoVehiculo ventanaInsertarTrabajoVehiculo = (VentanaInsertarTrabajoVehiculo) Controladores.get("/vistas/VentanaInsertarTrabajoVehiculo.fxml", "INSERTAR TRABAJO VEHICULO", getEscenario());
+    private final VentanaInsertarTrabajoVehiculo ventanaInsertarTrabajoVehiculo = (VentanaInsertarTrabajoVehiculo) Controladores.get("/vistas/VentanaInsertarTrabajoVehiculo.fxml", "INSERTAR TRABAJO VEHÍCULO", getEscenario());
 
+    @FXML
+    private Button btBorrar;
+
+    @FXML
+    private Button btCancelar;
+
+    @FXML
+    private Button btCerrar;
+
+    @FXML
+    private Button btHoras;
+
+    @FXML
+    private Button btInsertar;
+
+    @FXML
+    private Button btMaterial;
 
     @FXML
     private DatePicker dpFechaInicio;
@@ -194,6 +211,7 @@ public class VentanaTrabajosVehiculo extends Controlador {
         } else if (trabajo.estaCerrado()) {
             Dialogos.mostrarDialogoError("AÑADIR HORAS", "ERROR: No se puede añadir horas, ya que el trabajo está cerrado.", getEscenario());
         } else {
+            ventanaAgregarHoras.limpiarCampo();
             ventanaAgregarHoras.getEscenario().show();
         }
     }
@@ -208,6 +226,7 @@ public class VentanaTrabajosVehiculo extends Controlador {
         } else if (trabajo.estaCerrado()) {
             Dialogos.mostrarDialogoError("AÑADIR PRECIO MATERIAL", "ERROR: No se puede añadir precio del material, ya que el trabajo mecánico está cerrado.", getEscenario());
         } else {
+            ventanaAgregarPrecioMaterial.limpiarCampo();
             ventanaAgregarPrecioMaterial.getEscenario().show();
         }
     }
@@ -263,6 +282,9 @@ public class VentanaTrabajosVehiculo extends Controlador {
 
     @FXML
     void initialize() {
+        ventanaAgregarHoras.getEscenario().setResizable(false);
+        ventanaAgregarPrecioMaterial.getEscenario().setResizable(false);
+        ventanaInsertarTrabajoVehiculo.getEscenario().setResizable(false);
         dpFechaInicio.setEditable(false);
         btlistar.setVisible(false);
         tvTrabajos.setItems(coleccionTrabajos);
@@ -300,6 +322,20 @@ public class VentanaTrabajosVehiculo extends Controlador {
             return new SimpleObjectProperty<>(precio);
         });
         tvTrabajos.getSelectionModel().selectedIndexProperty().addListener(observable -> activarDatePicker());
+        btlistar.setOnMouseEntered(e -> btlistar.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white; -fx-pref-width: 271;"));
+        btlistar.setOnMouseExited(e -> btlistar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white; -fx-pref-width: 271;"));
+        btInsertar.setOnMouseEntered(e -> btInsertar.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white; -fx-pref-width: 275;"));
+        btInsertar.setOnMouseExited(e -> btInsertar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white; -fx-pref-width: 275;"));
+        btBorrar.setOnMouseEntered(e -> btBorrar.setStyle("-fx-background-color: #FFA500; -fx-text-fill: white;"));
+        btBorrar.setOnMouseExited(e -> btBorrar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        btCerrar.setOnMouseEntered(e -> btCerrar.setStyle("-fx-background-color: #FFA500; -fx-text-fill: white;"));
+        btCerrar.setOnMouseExited(e -> btCerrar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        btCancelar.setOnMouseEntered(e -> btCancelar.setStyle("-fx-background-color: #FFA500; -fx-text-fill: white;"));
+        btCancelar.setOnMouseExited(e -> btCancelar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        btHoras.setOnMouseEntered(e -> btHoras.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white; -fx-pref-width: 239;"));
+        btHoras.setOnMouseExited(e -> btHoras.setStyle("-fx-background-color: #e50914; -fx-text-fill: white; -fx-pref-width: 239;"));
+        btMaterial.setOnMouseEntered(e -> btMaterial.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white; -fx-pref-width: 287;"));
+        btMaterial.setOnMouseExited(e -> btMaterial.setStyle("-fx-background-color: #e50914; -fx-text-fill: white; -fx-pref-width: 287;"));
     }
 
 }

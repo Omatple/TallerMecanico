@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class Cliente {
 
-    private static final String ER_NOMBRE = "[A-ZΑΙΝΣΪΡ][a-zαινσϊόρ]+(?: [A-ZΑΙΝΣΪ][a-zαινσϊόρ]+)*+";
-    private static final String ER_DNI = "\\d{8}[A-Z]";
-    private static final String ER_TELEFONO = "\\d{9}";
+    public static final String ER_NOMBRE = "[A-ZΑΙΝΣΪΡ][a-zαινσϊόρ]+(?: [A-ZΑΙΝΣΪ][a-zαινσϊόρ]+)*+";
+    public static final String ER_DNI = "\\d{8}[A-Z]";
+    public static final String ER_TELEFONO = "\\d{9}";
 
     private String nombre;
     private String dni;

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="910.0" spacing="20.0" style="-fx-border-color: e50914;" stylesheets="@../estilos/hojaDeEstilo.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaInsertarTrabajoVehiculo">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="910.0" spacing="20.0" style="-fx-border-color: e50914;" stylesheets="@../estilos/aplicacion.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaInsertarTrabajoVehiculo">
    <children>
       <Label style="-fx-font-size: 35;" text="INSERTAR TRABAJO VEHÍCULO">
          <VBox.margin>
@@ -54,7 +54,7 @@
             <HBox spacing="10.0" GridPane.columnIndex="2">
                <children>
                   <ComboBox fx:id="cbCliente" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="58.0" prefWidth="245.0" promptText="--- L. CLIENTES ---" style="-fx-pref-width: 245; -fx-pref-height: 58;" />
-                  <Button graphicTextGap="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#insertarCliente" prefWidth="251.0" style="-fx-pref-width: 261;" text="INSERTAR CLIENTE">
+                  <Button fx:id="btInsertarCliente" graphicTextGap="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#insertarCliente" prefWidth="251.0" style="-fx-pref-width: 261;" text="INSERTAR CLIENTE">
                      <graphic>
                         <ImageView fitHeight="34.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -71,7 +71,7 @@
       </GridPane>
       <HBox alignment="CENTER" spacing="20.0">
          <children>
-            <Button graphicTextGap="16.0" mnemonicParsing="false" onAction="#cancelar" text="CANCELAR">
+            <Button fx:id="btCancelar" graphicTextGap="16.0" mnemonicParsing="false" onAction="#cancelar" text="CANCELAR">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -80,7 +80,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button graphicTextGap="11.0" mnemonicParsing="false" onAction="#aceptar" text="ACEPTAR">
+            <Button fx:id="btAceptar" graphicTextGap="11.0" mnemonicParsing="false" onAction="#aceptar" text="ACEPTAR">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>

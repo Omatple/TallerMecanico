@@ -9,6 +9,7 @@ import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.VistaGrafica;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controlador;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controladores;
+import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controles;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Dialogos;
 
 import java.util.List;
@@ -21,10 +22,19 @@ public class VentanaInfoVehiculo extends Controlador {
     private Button btAceptar;
 
     @FXML
+    private Button btBorrar;
+
+    @FXML
+    private Button btCancelar;
+
+    @FXML
     private Button btCancelarTrabajo;
 
     @FXML
     private Button btInsertar;
+
+    @FXML
+    private Button btInsertarTrabajo;
 
     @FXML
     private ComboBox<Cliente> cbClientes;
@@ -137,11 +147,13 @@ public class VentanaInfoVehiculo extends Controlador {
 
     @FXML
     void insertar() {
+        ventanaInsertarCliente.limpiarCampos();
         ventanaInsertarCliente.getEscenario().show();
     }
 
     @FXML
     void initialize() {
+        ventanaInsertarCliente.getEscenario().setResizable(false);
         ocultarFormularioTrabajo();
         dpFechaInicio.setEditable(false);
         tfMatricula.setEditable(false);
@@ -155,5 +167,18 @@ public class VentanaInfoVehiculo extends Controlador {
         });
         cbTipo.setItems(FXCollections.observableArrayList(REVISION, MECANICO));
         cbTipo.getSelectionModel().select(0);
+        btAceptar.setOnMouseEntered(e -> btAceptar.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white;"));
+        btAceptar.setOnMouseExited(e -> btAceptar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        btInsertarTrabajo.setOnMouseEntered(e -> btInsertarTrabajo.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white; -fx-pref-width: 275;"));
+        btInsertarTrabajo.setOnMouseExited(e -> btInsertarTrabajo.setStyle("-fx-background-color: #e50914; -fx-text-fill: white; -fx-pref-width: 275;"));
+        btInsertar.setOnMouseEntered(e -> btInsertar.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white; -fx-pref-width: 261;"));
+        btInsertar.setOnMouseExited(e -> btInsertar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white; -fx-pref-width: 261;"));
+        btBorrar.setOnMouseEntered(e -> btBorrar.setStyle("-fx-background-color: #FFA500; -fx-text-fill: white;"));
+        btBorrar.setOnMouseExited(e -> btBorrar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        btCancelarTrabajo.setOnMouseEntered(e -> btCancelarTrabajo.setStyle("-fx-background-color: #FFA500; -fx-text-fill: white;"));
+        btCancelarTrabajo.setOnMouseExited(e -> btCancelarTrabajo.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        btCancelar.setOnMouseEntered(e -> btCancelar.setStyle("-fx-background-color: #FFA500; -fx-text-fill: white;"));
+        btCancelar.setOnMouseExited(e -> btCancelar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        tfMatricula.textProperty().addListener((observable, oldValue, newValue) -> Controles.validarCampoTexto(Vehiculo.ER_MATRICULA, tfMatricula));
     }
 }

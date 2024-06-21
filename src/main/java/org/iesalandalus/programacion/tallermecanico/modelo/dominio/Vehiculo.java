@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public record Vehiculo(String marca, String modelo, String matricula) {
 
-    private static final String ER_MARCA = "[A-Z][a-z]+(?:[- ]?[A-Z][a-z]+)?|[A-Z]+";
-    private static final String ER_MATRICULA = "\\d{4}[^\\W_AEIOUa-z]{3}";
+    public static final String ER_MARCA = "[A-Z][a-z]+(?:[- ]?[A-Z][a-z]+)?|[A-Z]+";
+    public static final String ER_MATRICULA = "\\d{4}[^\\W_AEIOUa-z0-9]{3}";
 
     public Vehiculo {
         valoidarMarca(marca);

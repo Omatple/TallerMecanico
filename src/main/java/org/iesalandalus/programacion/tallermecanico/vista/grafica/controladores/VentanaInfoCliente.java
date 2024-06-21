@@ -9,22 +9,32 @@ import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.VistaGrafica;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controlador;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controladores;
+import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Controles;
 import org.iesalandalus.programacion.tallermecanico.vista.grafica.utilidades.Dialogos;
 
 import java.util.List;
 
 public class VentanaInfoCliente extends Controlador {
 
-    private final VentanaInsertarVehiculo ventanaInsertarVehiculo = (VentanaInsertarVehiculo) Controladores.get("/vistas/VentanaInsertarVehiculo.fxml", "INSERTAR VEHICULO", getEscenario());
+    private final VentanaInsertarVehiculo ventanaInsertarVehiculo = (VentanaInsertarVehiculo) Controladores.get("/vistas/VentanaInsertarVehiculo.fxml", "INSERTAR VEHÍCULO", getEscenario());
 
     @FXML
     private Button btAceptar;
+
+    @FXML
+    private Button btBorrar;
+
+    @FXML
+    private Button btCancelar;
 
     @FXML
     private Button btCancelarTrabajo;
 
     @FXML
     private Button btInsertar;
+
+    @FXML
+    private Button btInsertarTrabajo;
 
     @FXML
     private ComboBox<Vehiculo> cbVehiculos;
@@ -113,6 +123,7 @@ public class VentanaInfoCliente extends Controlador {
 
     @FXML
     void insertar() {
+        ventanaInsertarVehiculo.limpiarCampos();
         ventanaInsertarVehiculo.getEscenario().show();
     }
 
@@ -170,6 +181,7 @@ public class VentanaInfoCliente extends Controlador {
 
     @FXML
     void initialize() {
+        ventanaInsertarVehiculo.getEscenario().setResizable(false);
         ocultarFormularioTrabajo();
         dpFechaInicio.setEditable(false);
         tfDNI.setEditable(false);
@@ -181,5 +193,20 @@ public class VentanaInfoCliente extends Controlador {
         });
         cbTipo.setItems(FXCollections.observableArrayList(REVISION, MECANICO));
         cbTipo.getSelectionModel().select(0);
+        btAceptar.setOnMouseEntered(e -> btAceptar.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white;"));
+        btAceptar.setOnMouseExited(e -> btAceptar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        btInsertarTrabajo.setOnMouseEntered(e -> btInsertarTrabajo.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white; -fx-pref-width: 275;"));
+        btInsertarTrabajo.setOnMouseExited(e -> btInsertarTrabajo.setStyle("-fx-background-color: #e50914; -fx-text-fill: white; -fx-pref-width: 275;"));
+        btInsertar.setOnMouseEntered(e -> btInsertar.setStyle("-fx-background-color: #3c9d3c; -fx-text-fill: white; -fx-pref-width: 286;"));
+        btInsertar.setOnMouseExited(e -> btInsertar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white; -fx-pref-width: 286;"));
+        btBorrar.setOnMouseEntered(e -> btBorrar.setStyle("-fx-background-color: #FFA500; -fx-text-fill: white;"));
+        btBorrar.setOnMouseExited(e -> btBorrar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        btCancelarTrabajo.setOnMouseEntered(e -> btCancelarTrabajo.setStyle("-fx-background-color: #FFA500; -fx-text-fill: white;"));
+        btCancelarTrabajo.setOnMouseExited(e -> btCancelarTrabajo.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        btCancelar.setOnMouseEntered(e -> btCancelar.setStyle("-fx-background-color: #FFA500; -fx-text-fill: white;"));
+        btCancelar.setOnMouseExited(e -> btCancelar.setStyle("-fx-background-color: #e50914; -fx-text-fill: white;"));
+        tfNombre.textProperty().addListener((observable, oldValue, newValue) -> Controles.validarCampoTexto(Cliente.ER_NOMBRE, tfNombre));
+        tfTelefono.textProperty().addListener((observable, oldValue, newValue) -> Controles.validarCampoTexto(Cliente.ER_TELEFONO, tfTelefono));
+        tfVehiculo.textProperty().addListener((observable, oldValue, newValue) -> Controles.validarCampoTexto(Vehiculo.ER_MATRICULA, tfVehiculo));
     }
 }

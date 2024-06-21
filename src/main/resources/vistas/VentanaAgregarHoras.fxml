@@ -8,17 +8,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="530.0" spacing="20.0" style="-fx-border-color: e50914;" stylesheets="@../estilos/hojaDeEstilo.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaAgregarHoras">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="530.0" spacing="20.0" style="-fx-border-color: e50914;" stylesheets="@../estilos/aplicacion.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaAgregarHoras">
    <children>
       <HBox alignment="CENTER">
          <children>
             <Label text="Cantidad de horas: " />
-            <TextField fx:id="tfHoras" style="-fx-alignment: center;" />
+            <TextField fx:id="tfHoras" promptText="-- CANT. HORAS --" style="-fx-alignment: center;" />
          </children>
       </HBox>
       <HBox alignment="CENTER" spacing="20.0">
          <children>
-            <Button graphicTextGap="16.0" mnemonicParsing="false" onAction="#cancelar" text="CANCELAR">
+            <Button fx:id="btCancelar" graphicTextGap="16.0" mnemonicParsing="false" onAction="#cancelar" text="CANCELAR">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -26,7 +26,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button graphicTextGap="11.0" mnemonicParsing="false" onAction="#aceptar" text="ACEPTAR">
+            <Button fx:id="btAceptar" graphicTextGap="11.0" mnemonicParsing="false" onAction="#aceptar" text="ACEPTAR">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="950.0" spacing="18.0" style="-fx-border-color: e50914;" stylesheets="@../estilos/hojaDeEstilo.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaTrabajosVehiculo">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="950.0" spacing="18.0" style="-fx-border-color: e50914;" stylesheets="@../estilos/aplicacion.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.tallermecanico.vista.grafica.controladores.VentanaTrabajosVehiculo">
    <children>
       <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="660.0" style="-fx-font-size: 35; -fx-pref-height: 60;" text="LISTADO DE TRABAJOS DEL VEHÍCULO">
          <VBox.margin>
@@ -68,7 +68,7 @@
       <HBox />
       <HBox alignment="CENTER" prefHeight="58.0" prefWidth="1100.0" spacing="20.0">
          <children>
-            <Button graphicTextGap="16.0" mnemonicParsing="false" onAction="#cancelar" text="CANCELAR">
+            <Button fx:id="btCancelar" graphicTextGap="16.0" mnemonicParsing="false" onAction="#cancelar" text="CANCELAR">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -77,7 +77,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button graphicTextGap="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#aniadirHoras" style="-fx-pref-width: 239;" text="AÑADIR HORAS">
+            <Button fx:id="btHoras" graphicTextGap="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#aniadirHoras" style="-fx-pref-width: 239;" text="AÑADIR HORAS">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -85,7 +85,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#aniadirPrecioMaterial" style="-fx-pref-width: 287;" text="AÑADIR P. MATERIAL">
+            <Button fx:id="btMaterial" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#aniadirPrecioMaterial" style="-fx-pref-width: 287;" text="AÑADIR P. MATERIAL">
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -100,7 +100,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="48.0" prefWidth="1100.0" spacing="20.0">
          <children>
-            <Button graphicTextGap="12.0" mnemonicParsing="false" onAction="#borrar" text="BORRAR">
+            <Button fx:id="btBorrar" graphicTextGap="12.0" mnemonicParsing="false" onAction="#borrar" text="BORRAR">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -109,7 +109,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cerrar" text="CERRAR">
+            <Button fx:id="btCerrar" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cerrar" text="CERRAR">
                <graphic>
                   <ImageView fitHeight="55.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -117,7 +117,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button graphicTextGap="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#aniadir" prefHeight="48.0" style="-fx-pref-width: 275;" text="INSERTAR TRABAJO">
+            <Button fx:id="btInsertar" graphicTextGap="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#aniadir" prefHeight="48.0" style="-fx-pref-width: 275;" text="INSERTAR TRABAJO">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
