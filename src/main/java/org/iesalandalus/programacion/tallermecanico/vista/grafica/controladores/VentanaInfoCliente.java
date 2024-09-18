@@ -105,6 +105,7 @@ public class VentanaInfoCliente extends Controlador {
     @FXML
     void borrar() {
         ocultarFormularioTrabajo();
+        Dialogos.setHojaEstilos("/estilos/aplicacion.css");
         if (Dialogos.mostrarDialogoConfirmacion("BORRAR CLIENTE", "¿Estás seguro de que quieres borrar este cliente?", getEscenario())) {
             VistaGrafica.getInstancia().getGestorEventos().notificar(Evento.BORRAR_CLIENTE);
         }
@@ -181,6 +182,7 @@ public class VentanaInfoCliente extends Controlador {
 
     @FXML
     void initialize() {
+        Dialogos.setHojaEstilos("/estilos/aplicacion.css");
         ventanaInsertarVehiculo.getEscenario().setResizable(false);
         ocultarFormularioTrabajo();
         dpFechaInicio.setEditable(false);

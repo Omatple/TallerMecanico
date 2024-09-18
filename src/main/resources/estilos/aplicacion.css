@@ -599,3 +599,44 @@
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 2, 2);
 }
+
+#btAccept {
+    -fx-mnemonic-parsing: false;
+    -fx-padding: 5px 20px 5px 20px;
+    -fx-background-image: url("../imagenes/aceptar-taller-mecanico.png");
+    -fx-background-size: 30px 24px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 20px center;
+    -fx-graphic-text-gap: 10px;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+#btCancel {
+    -fx-mnemonic-parsing: false;
+    -fx-padding: 5px 20px 5px 20px;
+    -fx-background-image: url("../imagenes/cancelar-taller-mecanico.png");
+    -fx-background-size: 30px 24px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 20px center;
+    -fx-graphic-text-gap: 10px;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+#btCancel:hover {
+    -fx-background-color: #FFA500;
+    -fx-border-color: #e50914;
+    -fx-border-width: 1px;
+}
+
+#btAccept:hover {
+    -fx-background-color: #3c9d3c;
+    -fx-border-color: #3c9d3c;
+    -fx-border-width: 1px;
+}
+

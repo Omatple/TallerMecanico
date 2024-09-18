@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <clientes>
     <cliente dni="77152572S" nombre="Juan Javier Segura Salinas" telefono="643284852"/>
-    <cliente dni="76657112K" nombre="Angel Martinez Otero" telefono="624476933"/>
     <cliente dni="82444261W" nombre="Carlos Fernandez Garcia" telefono="612345678"/>
     <cliente dni="27530712B" nombre="Maria Rodriguez Lopez" telefono="619876543"/>
     <cliente dni="03481372T" nombre="Jose Martinez Sanchez" telefono="622334556"/>

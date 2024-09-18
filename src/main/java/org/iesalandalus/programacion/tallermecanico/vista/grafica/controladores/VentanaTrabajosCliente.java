@@ -281,6 +281,7 @@ public class VentanaTrabajosCliente extends Controlador {
 
     @FXML
     void initialize() {
+        Dialogos.setHojaEstilos("/estilos/aplicacion.css");
         ventanaAgregarHoras.getEscenario().setResizable(false);
         ventanaAgregarPrecioMaterial.getEscenario().setResizable(false);
         ventanaInsertarTrabajoCliente.getEscenario().setResizable(false);

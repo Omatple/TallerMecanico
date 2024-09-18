@@ -74,7 +74,7 @@ public class VistaGrafica implements Vista {
     public Cliente leerClienteDni() {
         Cliente cliente;
         if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().isBtBuscarEsPulsado()) {
-            cliente = Cliente.get(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente());
+                cliente = Cliente.get(((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getStringTfCliente());
         } else if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().getEscenario().isShowing()) {
             if (((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().esVisibleListar()) {
                 ((VentanaClientes) ventanaPrincipal).getVentanaTrabajos().setBtBuscarPulsadoDesdeFuera(true);

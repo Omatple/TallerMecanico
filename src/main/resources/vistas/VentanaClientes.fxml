@@ -109,7 +109,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="256.0" prefWidth="1000.0">
          <children>
-            <TableView fx:id="tvClientes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="214.4" prefWidth="614.0">
+                <TableView fx:id="tvClientes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="214.4" prefWidth="614.0">
               <columns>
                 <TableColumn fx:id="tcDni" prefWidth="185.33" text="DNI" />
                 <TableColumn fx:id="tcNombre" prefWidth="185.33" text="NOMBRE" />

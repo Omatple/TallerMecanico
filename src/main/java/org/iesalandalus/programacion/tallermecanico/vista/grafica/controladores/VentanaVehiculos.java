@@ -108,9 +108,11 @@ public class VentanaVehiculos extends Controlador {
 
     public Vehiculo getVehiculo() {
         Vehiculo vehiculo;
-        if (esVisibleListar()) {
+        /*if (esVisibleListar()) {
             vehiculo = tvVehiculos.getSelectionModel().getSelectedItem();
-        } else if (btBuscarEsPulsado) {
+        } else*/
+        if (btBuscarEsPulsado) {
+            btBuscarEsPulsado = false;
             vehiculo = Vehiculo.get(getTfMatricula());
         } else {
             vehiculo = tvVehiculos.getSelectionModel().getSelectedItem();
@@ -177,6 +179,7 @@ public class VentanaVehiculos extends Controlador {
 
     @FXML
     void initialize() {
+        Dialogos.setHojaEstilos("/estilos/aplicacion.css");
         ventanaAcercaDe.getEscenario().setResizable(false);
         ventanaInsertarVehiculo.getEscenario().setResizable(false);
         ventanaTrabajosVehiculo.getEscenario().setResizable(false);

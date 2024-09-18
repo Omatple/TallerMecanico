@@ -153,6 +153,7 @@ public class VentanaInfoVehiculo extends Controlador {
 
     @FXML
     void initialize() {
+        Dialogos.setHojaEstilos("/estilos/aplicacion.css");
         ventanaInsertarCliente.getEscenario().setResizable(false);
         ocultarFormularioTrabajo();
         dpFechaInicio.setEditable(false);

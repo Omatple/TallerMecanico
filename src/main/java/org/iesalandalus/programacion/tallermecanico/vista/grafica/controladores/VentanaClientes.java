@@ -124,9 +124,15 @@ public class VentanaClientes extends Controlador {
 
     public Cliente getCliente() {
         Cliente cliente;
-        if (esVisibleListar()) {
+        /*if (esVisibleListar()) {
             cliente = tvClientes.getSelectionModel().getSelectedItem();
-        } else if (btBuscarEsPulsado) {
+        /} else */ // <-- Despues de 3 meses sin tocar el proyecto al entrar vi un fallo en la busqueda
+        // de clientes y vehiculos creo que el fallo residia en este condicional que despues de 3 meses
+        // sin ver el proyecto parece irrelevante, ademas de añadir el boolean false al btPulsado nada
+        // mas entrar al siguiente if. Aparentemente ya esta solucionado, pero si he fastidiado otra cosa
+        // al arreglar esta es solo cuestion de tiempo para notarlo
+        if (btBuscarEsPulsado) {
+            btBuscarEsPulsado = false;
             cliente = Cliente.get(getTfDni());
         } else {
             cliente = tvClientes.getSelectionModel().getSelectedItem();
@@ -145,6 +151,7 @@ public class VentanaClientes extends Controlador {
     @FXML
     void borrar() {
         if (tvClientes.getSelectionModel().getSelectedIndex() == -1) {
+            Dialogos.setHojaEstilos("/estilos/aplicacion.css");
             Dialogos.mostrarDialogoError("BORRAR CLIENTE", "ERROR: Selecciona un cliente para poder borrarlo.", getEscenario());
         } else {
             if (Dialogos.mostrarDialogoConfirmacion("BORRAR CLIENTE", "¿Estás seguro de que quieres borrar este cliente?", getEscenario())) {
@@ -224,6 +231,7 @@ public class VentanaClientes extends Controlador {
 
     @FXML
     void initialize() {
+        Dialogos.setHojaEstilos("/estilos/aplicacion.css");
         ventanaEstadisticasMensuales.getEscenario().setResizable(false);
         ventanaVehiculos.getEscenario().setResizable(false);
         ventanaTrabajos.getEscenario().setResizable(false);

@@ -10,8 +10,8 @@ import java.util.Optional;
 
 public class Dialogos {
 
-    private static final String ID_BT_ACEPTAR = "btAceptar";
-    private static final String ID_BT_CANCELAR = "btCancelar";
+    private static final String ID_BT_ACEPTAR = "btAccept";
+    private static final String ID_BT_CANCELAR = "btCancel";
     private static String css;
 
     private Dialogos() {

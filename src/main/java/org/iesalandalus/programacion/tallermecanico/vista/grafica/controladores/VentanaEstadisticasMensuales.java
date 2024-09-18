@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.TipoTrabajo;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
@@ -98,6 +97,7 @@ public class VentanaEstadisticasMensuales extends Controlador {
 
     @FXML
     void initialize() {
+        Dialogos.setHojaEstilos("/estilos/aplicacion.css");
         dpFecha.setEditable(false);
         pcTrabajos.setLabelsVisible(true);
         pcTrabajos.setVisible(false);
