@@ -231,7 +231,10 @@ public class VentanaClientes extends Controlador {
 
     @FXML
     void initialize() {
+<<<<<<< HEAD
         Dialogos.setHojaEstilos("/estilos/aplicacion.css");
+=======
+>>>>>>> a2d8d5c1b640785279c4ccc3272babb63fdf7725
         ventanaEstadisticasMensuales.getEscenario().setResizable(false);
         ventanaVehiculos.getEscenario().setResizable(false);
         ventanaTrabajos.getEscenario().setResizable(false);
