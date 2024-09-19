@@ -834,10 +834,14 @@
     -fx-border-radius: 10px;
     -fx-padding: 15px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 6, 0, 3, 3);
+    -fx-min-width: 550px; /* Ancho mínimo */
+    -fx-pref-width: 550px; /* Ancho preferido */
+    -fx-min-height: 200px; /* Altura mínima */
+    -fx-pref-height: 200px; /* Altura preferida */
 }
 
 .dialog-pane .content {
-    -fx-font-size: 14pt;
+    -fx-font-size: 18pt;
     -fx-text-fill: #e5e5e5;
 }
 
