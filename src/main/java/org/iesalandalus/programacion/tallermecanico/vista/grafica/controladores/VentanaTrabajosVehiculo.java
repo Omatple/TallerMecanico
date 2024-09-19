@@ -282,10 +282,7 @@ public class VentanaTrabajosVehiculo extends Controlador {
 
     @FXML
     void initialize() {
-<<<<<<< HEAD
         Dialogos.setHojaEstilos("/estilos/aplicacion.css");
-=======
->>>>>>> a2d8d5c1b640785279c4ccc3272babb63fdf7725
         ventanaAgregarHoras.getEscenario().setResizable(false);
         ventanaAgregarPrecioMaterial.getEscenario().setResizable(false);
         ventanaInsertarTrabajoVehiculo.getEscenario().setResizable(false);

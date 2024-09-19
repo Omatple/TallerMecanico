@@ -375,7 +375,6 @@
     -fx-padding: 10px;
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 0, 1, 1);
-<<<<<<< HEAD
 }
 
 .label.section-header {
@@ -641,7 +640,6 @@
     -fx-border-width: 1px;
 }
 
-=======
 }
 
 .label.section-header {
@@ -865,9 +863,4 @@
     -fx-text-fill: #e50914;
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 2, 2);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a2d8d5c1b640785279c4ccc3272babb63fdf7725
->>>>>>> 36fa3c350e1f41a78d826c26fd70e293f32dc5a0
